@@ -431,7 +431,8 @@ static bool BuildToken(WString& token, const word*& token_begin, const word* str
 
 	// Check what the first character of the token is; all we need to know is if it is white-space or not.
 	bool parsing_zero_width_space = StringUtilities::IsZeroWidthSpace(*token_begin);
-	bool parsing_white_space = StringUtilities::IsWhitespace(*token_begin) || parsing_zero_width_space;
+	bool parsing_white_space = StringUtilities::IsWhitespace(*token_begin);
+    bool parsing_white_space_or_zero_width_space = parsing_white_space || parsing_zero_width_space;
 
 	// Loop through the string from the token's beginning until we find an end to the token. This can occur in various
 	// places, depending on the white-space processing;
@@ -496,9 +497,11 @@ static bool BuildToken(WString& token, const word*& token_begin, const word* str
 		// If we've transitioned from white-space characters to non-white-space characters, or vice-versa, then check
 		// if should terminate the token; if we're not collapsing white-space, then yes (as sections of white-space are
 		// non-breaking), otherwise only if we've transitioned from characters to white-space.
-		bool zero_width_space = StringUtilities::IsZeroWidthSpace(character);
-		bool white_space = !force_non_whitespace && (StringUtilities::IsWhitespace(character) || zero_width_space);
-		if (white_space != parsing_white_space)
+        bool zero_width_space = StringUtilities::IsZeroWidthSpace(character);
+        bool white_space = !force_non_whitespace && (StringUtilities::IsWhitespace(character));
+		bool white_space_or_zero_width_space = !force_non_whitespace && (StringUtilities::IsWhitespace(character) || StringUtilities::IsZeroWidthSpace(character));
+
+		if (white_space_or_zero_width_space != parsing_white_space_or_zero_width_space)
 		{
 			if (!collapse_white_space)
 			{
@@ -530,20 +533,23 @@ static bool BuildToken(WString& token, const word*& token_begin, const word* str
 				}
 			}
 
-			parsing_white_space = false;
-			parsing_zero_width_space = false;
+            parsing_white_space = false;
+            parsing_zero_width_space = false;
+            parsing_white_space_or_zero_width_space = false;
 		}
 
 		// If the current character is white-space, we'll append a space character to the token if we're not collapsing
 		// sections of white-space.
 		if (white_space)
 		{
-			if (!collapse_white_space)
+			if (!collapse_white_space && !zero_width_space)
+            {
 				token += ' ';
+            }
 		}
 		else
 		{
-			if (text_transformation == TEXT_TRANSFORM_UPPERCASE)
+            if (text_transformation == TEXT_TRANSFORM_UPPERCASE)
 			{
 				if (character >= 'a' && character <= 'z')
 					character += (Rocket::Core::word)('A' - 'a');
@@ -554,7 +560,10 @@ static bool BuildToken(WString& token, const word*& token_begin, const word* str
 					character -= (Rocket::Core::word)('A' - 'a');
 			}
 
-			token += character;
+            if (!zero_width_space)
+            {
+			    token += character;
+            }
 		}
 
 		++token_begin;
@@ -574,8 +583,9 @@ static bool LastToken(const word* token_begin, const word* string_end, bool coll
 
 		while (character != string_end)
 		{
-			if (!StringUtilities::IsWhitespace(*character) ||
-				(break_at_endline && *character == '\n'))
+			if ( (!StringUtilities::IsWhitespace(*character) /*&& !StringUtilities::IsZeroWidthSpace(*character)*/) 
+                || (break_at_endline && *character == '\n')
+                )
 			{
 				last_token = false;
 				break;
