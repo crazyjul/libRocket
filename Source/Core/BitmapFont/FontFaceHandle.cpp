@@ -230,6 +230,7 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 			geometry[geometry_index + i].SetTexture(layer->GetTexture(i));
 
 		line_width = 0;
+
 		word prior_character = 0;
 
 		const word* string_iterator = string.CString();
@@ -243,9 +244,11 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 
 			// Adjust the cursor for the kerning between this character and the previous one.
 			if (prior_character != 0)
+            {
 				line_width += GetKerning(prior_character, *string_iterator);
+            }
 
-			layer->GenerateGeometry(&geometry[geometry_index], *string_iterator, Vector2f(position.x + line_width, position.y), layer_colour);
+			layer->GenerateGeometry(&geometry[geometry_index], *string_iterator, Vector2f((int)position.x + line_width, (int)position.y), layer_colour);
 
 			line_width += iterator->second.advance;
 			prior_character = *string_iterator;
