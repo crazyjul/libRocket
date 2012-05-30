@@ -25,7 +25,7 @@
         <echo message="Dumping symbols from ${exe_or_pdb_file}..." />
         
         <delete file="${exe_or_pdb_file}.sym" quiet="true"/>
-        <exec executable="m:\MOJITO\APP\TOOLS\PC\dump_syms.exe" output="${exe_or_pdb_file}.sym">
+        <exec executable="m:\MOJITO\APP\TOOLS\WIN\dump_syms.exe" output="${exe_or_pdb_file}.sym">
             <arg value="${exe_or_pdb_file}"/>
         </exec>
         
