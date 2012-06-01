@@ -91,6 +91,16 @@ void RenderInterface::Release()
 {
 }
 
+// Called when context rendering starts.
+void RenderInterface::PreRender()
+{
+}
+
+// Called when context rendering ends.
+void RenderInterface::PostRender()
+{
+}
+
 void RenderInterface::OnReferenceDeactivate()
 {
 	TextureDatabase::ReleaseTextures(this);

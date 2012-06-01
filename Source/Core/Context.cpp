@@ -158,7 +158,9 @@ bool Context::Render()
 	render_interface->context = this;
 	ElementUtilities::ApplyActiveClipRegion(this, render_interface);
 
+	render_interface->PreRender();
 	root->Render();
+	render_interface->PostRender();
 
 	ElementUtilities::SetClippingRegion(NULL, this);
 
