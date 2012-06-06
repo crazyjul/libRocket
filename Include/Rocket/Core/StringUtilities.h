@@ -96,7 +96,7 @@ public:
 	/// @return True if the character is zero width whitespace, false otherwise.
 	static bool IsZeroWidthSpace(unsigned short x)
 	{
-		return (x == L'\u200C');
+		return (x == L'\x200C');
 	}
 
 	/// Strip whitespace characters from the beginning and end of a string.

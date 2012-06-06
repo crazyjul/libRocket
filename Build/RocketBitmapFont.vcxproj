@@ -9,110 +9,263 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5BEC81C2-EC50-46B8-83D7-68730F4B9CE5}</ProjectGuid>
-    <RootNamespace>RocketBitmapFont</RootNamespace>
+    <ProjectGUID>{CF1EA71A-88D3-4576-8DAE-7CB52A64CA80}</ProjectGUID>
     <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>RocketBitmapFont</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="vsprops\BuildConfigurationDLLRelease.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="vsprops\BuildConfigurationDLLDebug.props" />
-  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../bin/</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">build\$(ProjectName)\$(Configuration)\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../bin/</OutDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_d</TargetName>
-  </PropertyGroup>
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">P:\librocket\Build\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RocketBitmapFont.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RocketBitmapFont_d</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">P:\librocket\Build\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RocketBitmapFont.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RocketBitmapFont</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">P:\librocket\Build\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">RocketBitmapFont.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">RocketBitmapFont</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">P:\librocket\Build\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">RocketBitmapFont.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">RocketBitmapFont</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+    </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ROCKETBITMAPFONT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;STATIC_LIB;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Debug</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>P:/librocket/Build/Debug/RocketBitmapFont_d.pdb</ProgramDataBaseFileName>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>RocketCore_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;STATIC_LIB;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ROCKETBITMAP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Release</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>P:/librocket/Build/Release/RocketBitmapFont.pdb</ProgramDataBaseFileName>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>RocketCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>MinSizeRel</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>P:/librocket/Build/MinSizeRel/RocketBitmapFont.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>RelWithDebInfo</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>P:/librocket/Build/RelWithDebInfo/RocketBitmapFont.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Source\Core\BitmapFont\BM_Font.h" />
-    <ClInclude Include="..\Source\Core\BitmapFont\FontFace.h" />
-    <ClInclude Include="..\Source\Core\BitmapFont\FontFaceHandle.h" />
-    <ClInclude Include="..\Source\Core\BitmapFont\FontFaceLayer.h" />
-    <ClInclude Include="..\Source\Core\BitmapFont\FontFamily.h" />
-    <ClInclude Include="..\Source\Core\BitmapFont\FontParser.h" />
-    <ClInclude Include="..\Include\Rocket\Core\BitmapFont\FontProvider.h" />
-    <ClInclude Include="..\Include\Rocket\Core\BitmapFont\Header.h" />
+    <CustomBuild Include="CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule P:/librocket/Build/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"e:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HP:/librocket/Build -BP:/librocket/Build --check-stamp-file P:\librocket\Build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">P:/librocket/Build/CMakeLists.txt;P:\librocket\Build\CMakeLists.txt;P:\librocket\Build\CMakeFiles\CMakeSystem.cmake;P:\librocket\Build\CMakeFiles\CMakeCCompiler.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;P:\librocket\Build\CMakeFiles\CMakeRCCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIForScope.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIStreamHeaders.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForSTDNamespace.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindFreetype.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;P:\librocket\Build\cmake\FileList.cmake;P:\librocket\Build\cmake\ContribFileList.cmake;P:\librocket\Build\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">P:\librocket\Build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule P:/librocket/Build/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"e:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HP:/librocket/Build -BP:/librocket/Build --check-stamp-file P:\librocket\Build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">P:/librocket/Build/CMakeLists.txt;P:\librocket\Build\CMakeLists.txt;P:\librocket\Build\CMakeFiles\CMakeSystem.cmake;P:\librocket\Build\CMakeFiles\CMakeCCompiler.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;P:\librocket\Build\CMakeFiles\CMakeRCCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIForScope.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIStreamHeaders.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForSTDNamespace.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindFreetype.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;P:\librocket\Build\cmake\FileList.cmake;P:\librocket\Build\cmake\ContribFileList.cmake;P:\librocket\Build\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">P:\librocket\Build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule P:/librocket/Build/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"e:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HP:/librocket/Build -BP:/librocket/Build --check-stamp-file P:\librocket\Build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">P:/librocket/Build/CMakeLists.txt;P:\librocket\Build\CMakeLists.txt;P:\librocket\Build\CMakeFiles\CMakeSystem.cmake;P:\librocket\Build\CMakeFiles\CMakeCCompiler.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;P:\librocket\Build\CMakeFiles\CMakeRCCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIForScope.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIStreamHeaders.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForSTDNamespace.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindFreetype.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;P:\librocket\Build\cmake\FileList.cmake;P:\librocket\Build\cmake\ContribFileList.cmake;P:\librocket\Build\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">P:\librocket\Build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule P:/librocket/Build/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"e:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HP:/librocket/Build -BP:/librocket/Build --check-stamp-file P:\librocket\Build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">P:/librocket/Build/CMakeLists.txt;P:\librocket\Build\CMakeLists.txt;P:\librocket\Build\CMakeFiles\CMakeSystem.cmake;P:\librocket\Build\CMakeFiles\CMakeCCompiler.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;P:\librocket\Build\CMakeFiles\CMakeRCCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIForScope.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIStreamHeaders.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForSTDNamespace.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindFreetype.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;P:\librocket\Build\cmake\FileList.cmake;P:\librocket\Build\cmake\ContribFileList.cmake;P:\librocket\Build\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">P:\librocket\Build\CMakeFiles\generate.stamp</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\Core\BitmapFont\FontFace.cpp" />
-    <ClCompile Include="..\Source\Core\BitmapFont\FontFaceHandle.cpp" />
-    <ClCompile Include="..\Source\Core\BitmapFont\FontFaceLayer.cpp" />
-    <ClCompile Include="..\Source\Core\BitmapFont\FontFamily.cpp" />
-    <ClCompile Include="..\Source\Core\BitmapFont\FontParser.cpp" />
-    <ClCompile Include="..\Source\Core\BitmapFont\FontProvider.cpp" />
+    <ClCompile Include="P:\librocket\Source\Core\BitmapFont\FontFaceLayer.cpp" />
+    <ClCompile Include="P:\librocket\Source\Core\BitmapFont\FontProvider.cpp" />
+    <ClCompile Include="P:\librocket\Source\Core\BitmapFont\FontParser.cpp" />
+    <ClCompile Include="P:\librocket\Source\Core\BitmapFont\FontFamily.cpp" />
+    <ClCompile Include="P:\librocket\Source\Core\BitmapFont\FontFaceHandle.cpp" />
+    <ClCompile Include="P:\librocket\Source\Core\BitmapFont\FontFace.cpp" />
+    <ClInclude Include="P:\librocket\Source\Core\BitmapFont\FontParser.h" />
+    <ClInclude Include="P:\librocket\Source\Core\BitmapFont\FontFamily.h" />
+    <ClInclude Include="P:\librocket\Source\Core\BitmapFont\BM_Font.h" />
+    <ClInclude Include="P:\librocket\Source\Core\BitmapFont\FontFaceHandle.h" />
+    <ClInclude Include="P:\librocket\Source\Core\BitmapFont\FontFace.h" />
+    <ClInclude Include="P:\librocket\Source\Core\BitmapFont\FontFaceLayer.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Core\BitmapFont\FontProvider.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Core\BitmapFont\Header.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="P:/librocket/Build/RocketCore.vcxproj">
+      <Project>7B946A15-0B66-420B-BDB6-DB0F30B7F8C9</Project>
+    </ProjectReference>
+    <ProjectReference Include="P:/librocket/Build/ZERO_CHECK.vcxproj">
+      <Project>A6C20ED8-6E98-4824-8C41-E713F2EABC80</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

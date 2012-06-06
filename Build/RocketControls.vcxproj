@@ -9,163 +9,323 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1AAC0B29-AEC9-4E3F-9EDF-B56F8949C41B}</ProjectGuid>
-    <RootNamespace>controls</RootNamespace>
+    <ProjectGUID>{CC7496BA-7AE4-49B3-A1A2-BBA088607574}</ProjectGUID>
     <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>RocketControls</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="vsprops\BuildConfigurationDLLRelease.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="vsprops\BuildConfigurationDLLDebug.props" />
-  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\bin\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\bin\</OutDir>
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_d</TargetName>
-  </PropertyGroup>
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">P:\librocket\Build\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RocketControls.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RocketControls_d</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">P:\librocket\Build\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RocketControls.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RocketControls</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">P:\librocket\Build\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">RocketControls.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">RocketControls</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">P:\librocket\Build\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">RocketControls.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">RocketControls</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+    </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_WIN32;_DEBUG;RocketControls_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;STATIC_LIB;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Debug</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>P:/librocket/Build/Debug/RocketControls_d.pdb</ProgramDataBaseFileName>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>RocketCore_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;STATIC_LIB;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_WIN32;NDEBUG;RocketControls_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Release</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>P:/librocket/Build/Release/RocketControls.pdb</ProgramDataBaseFileName>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>RocketCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>MinSizeRel</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>P:/librocket/Build/MinSizeRel/RocketControls.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>RelWithDebInfo</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>P:/librocket/Build/RelWithDebInfo/RocketControls.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;STATIC_LIB;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>p:/support/freetype/include;P:/librocket/Build/../Include;P:/librocket/Build/../Contrib/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\Controls\Controls.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementForm.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementFormControl.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementFormControlDataSelect.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementFormControlInput.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementFormControlSelect.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementFormControlTextArea.cpp" />
-    <ClCompile Include="..\Source\Controls\SelectOption.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementTextSelection.cpp" />
-    <ClCompile Include="..\Source\Controls\WidgetDropDown.cpp" />
-    <ClCompile Include="..\Source\Controls\WidgetSlider.cpp" />
-    <ClCompile Include="..\Source\Controls\WidgetSliderInput.cpp" />
-    <ClCompile Include="..\Source\Controls\WidgetTextInput.cpp" />
-    <ClCompile Include="..\Source\Controls\WidgetTextInputMultiLine.cpp" />
-    <ClCompile Include="..\Source\Controls\WidgetTextInputSingleLine.cpp" />
-    <ClCompile Include="..\Source\Controls\WidgetTextInputSingleLinePassword.cpp" />
-    <ClCompile Include="..\Source\Controls\InputType.cpp" />
-    <ClCompile Include="..\Source\Controls\InputTypeButton.cpp" />
-    <ClCompile Include="..\Source\Controls\InputTypeCheckbox.cpp" />
-    <ClCompile Include="..\Source\Controls\InputTypeRadio.cpp" />
-    <ClCompile Include="..\Source\Controls\InputTypeRange.cpp" />
-    <ClCompile Include="..\Source\Controls\InputTypeSubmit.cpp" />
-    <ClCompile Include="..\Source\Controls\InputTypeText.cpp" />
-    <ClCompile Include="..\Source\Controls\XMLNodeHandlerTextArea.cpp" />
-    <ClCompile Include="..\Source\Controls\Clipboard.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementTabSet.cpp" />
-    <ClCompile Include="..\Source\Controls\XMLNodeHandlerTabSet.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementDataGrid.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementDataGridCell.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementDataGridExpandButton.cpp" />
-    <ClCompile Include="..\Source\Controls\ElementDataGridRow.cpp" />
-    <ClCompile Include="..\Source\Controls\XMLNodeHandlerDataGrid.cpp" />
-    <ClCompile Include="..\Source\Controls\DataFormatter.cpp" />
-    <ClCompile Include="..\Source\Controls\DataQuery.cpp" />
-    <ClCompile Include="..\Source\Controls\DataSource.cpp" />
-    <ClCompile Include="..\Source\Controls\DataSourceListener.cpp" />
+    <CustomBuild Include="CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule P:/librocket/Build/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"e:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HP:/librocket/Build -BP:/librocket/Build --check-stamp-file P:\librocket\Build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">P:/librocket/Build/CMakeLists.txt;P:\librocket\Build\CMakeLists.txt;P:\librocket\Build\CMakeFiles\CMakeSystem.cmake;P:\librocket\Build\CMakeFiles\CMakeCCompiler.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;P:\librocket\Build\CMakeFiles\CMakeRCCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIForScope.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIStreamHeaders.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForSTDNamespace.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindFreetype.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;P:\librocket\Build\cmake\FileList.cmake;P:\librocket\Build\cmake\ContribFileList.cmake;P:\librocket\Build\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">P:\librocket\Build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule P:/librocket/Build/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"e:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HP:/librocket/Build -BP:/librocket/Build --check-stamp-file P:\librocket\Build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">P:/librocket/Build/CMakeLists.txt;P:\librocket\Build\CMakeLists.txt;P:\librocket\Build\CMakeFiles\CMakeSystem.cmake;P:\librocket\Build\CMakeFiles\CMakeCCompiler.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;P:\librocket\Build\CMakeFiles\CMakeRCCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIForScope.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIStreamHeaders.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForSTDNamespace.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindFreetype.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;P:\librocket\Build\cmake\FileList.cmake;P:\librocket\Build\cmake\ContribFileList.cmake;P:\librocket\Build\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">P:\librocket\Build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule P:/librocket/Build/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"e:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HP:/librocket/Build -BP:/librocket/Build --check-stamp-file P:\librocket\Build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">P:/librocket/Build/CMakeLists.txt;P:\librocket\Build\CMakeLists.txt;P:\librocket\Build\CMakeFiles\CMakeSystem.cmake;P:\librocket\Build\CMakeFiles\CMakeCCompiler.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;P:\librocket\Build\CMakeFiles\CMakeRCCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIForScope.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIStreamHeaders.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForSTDNamespace.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindFreetype.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;P:\librocket\Build\cmake\FileList.cmake;P:\librocket\Build\cmake\ContribFileList.cmake;P:\librocket\Build\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">P:\librocket\Build\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule P:/librocket/Build/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"e:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HP:/librocket/Build -BP:/librocket/Build --check-stamp-file P:\librocket\Build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">P:/librocket/Build/CMakeLists.txt;P:\librocket\Build\CMakeLists.txt;P:\librocket\Build\CMakeFiles\CMakeSystem.cmake;P:\librocket\Build\CMakeFiles\CMakeCCompiler.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;P:\librocket\Build\CMakeFiles\CMakeRCCompiler.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;P:\librocket\Build\CMakeFiles\CMakeCPlatform.cmake;P:\librocket\Build\CMakeFiles\CMakeCXXPlatform.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIForScope.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForANSIStreamHeaders.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\TestForSTDNamespace.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindFreetype.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;e:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;P:\librocket\Build\cmake\FileList.cmake;P:\librocket\Build\cmake\ContribFileList.cmake;P:\librocket\Build\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">P:\librocket\Build\CMakeFiles\generate.stamp</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Include\Rocket\Controls\Controls.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\Header.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementForm.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementFormControl.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementFormControlDataSelect.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementFormControlInput.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementFormControlSelect.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementFormControlTextArea.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\SelectOption.h" />
-    <ClInclude Include="..\Source\Controls\ElementTextSelection.h" />
-    <ClInclude Include="..\Source\Controls\WidgetDropDown.h" />
-    <ClInclude Include="..\Source\Controls\WidgetSlider.h" />
-    <ClInclude Include="..\Source\Controls\WidgetSliderInput.h" />
-    <ClInclude Include="..\Source\Controls\WidgetTextInput.h" />
-    <ClInclude Include="..\Source\Controls\WidgetTextInputMultiLine.h" />
-    <ClInclude Include="..\Source\Controls\WidgetTextInputSingleLine.h" />
-    <ClInclude Include="..\Source\Controls\WidgetTextInputSingleLinePassword.h" />
-    <ClInclude Include="..\Source\Controls\InputType.h" />
-    <ClInclude Include="..\Source\Controls\InputTypeButton.h" />
-    <ClInclude Include="..\Source\Controls\InputTypeCheckbox.h" />
-    <ClInclude Include="..\Source\Controls\InputTypeRadio.h" />
-    <ClInclude Include="..\Source\Controls\InputTypeRange.h" />
-    <ClInclude Include="..\Source\Controls\InputTypeSubmit.h" />
-    <ClInclude Include="..\Source\Controls\InputTypeText.h" />
-    <ClInclude Include="..\Source\Controls\XMLNodeHandlerTextArea.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\Clipboard.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementTabSet.h" />
-    <ClInclude Include="..\Source\Controls\XMLNodeHandlerTabSet.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementDataGrid.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementDataGridCell.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementDataGridExpandButton.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\ElementDataGridRow.h" />
-    <ClInclude Include="..\Source\Controls\XMLNodeHandlerDataGrid.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\DataFormatter.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\DataQuery.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\DataSource.h" />
-    <ClInclude Include="..\Include\Rocket\Controls\DataSourceListener.h" />
-    <ClInclude Include="..\Include\Rocket\Controls.h" />
-    <ClInclude Include="resource1.h" />
+    <ClCompile Include="P:\librocket\Source\Controls\Clipboard.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\XMLNodeHandlerTabSet.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementTextSelection.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementFormControlInput.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\InputTypeRange.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\InputTypeRadio.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\InputTypeText.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementTabSet.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementDataGridCell.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementDataGridExpandButton.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementFormControlTextArea.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\DataSource.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\InputTypeCheckbox.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\InputTypeSubmit.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\DataSourceListener.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementFormControlDataSelect.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\WidgetDropDown.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\WidgetTextInput.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\XMLNodeHandlerDataGrid.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\XMLNodeHandlerTextArea.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementDataGrid.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementForm.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\SelectOption.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementFormControlSelect.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementFormControl.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\WidgetSlider.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\WidgetTextInputSingleLine.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\WidgetTextInputSingleLinePassword.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\InputTypeButton.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\WidgetTextInputMultiLine.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\Controls.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\DataFormatter.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\DataQuery.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\WidgetSliderInput.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\ElementDataGridRow.cpp" />
+    <ClCompile Include="P:\librocket\Source\Controls\InputType.cpp" />
+    <ClInclude Include="P:\librocket\Source\Controls\XMLNodeHandlerTabSet.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\XMLNodeHandlerDataGrid.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\InputTypeText.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\WidgetTextInputSingleLine.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\WidgetSliderInput.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\InputTypeRadio.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\ElementTextSelection.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\InputTypeSubmit.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\XMLNodeHandlerTextArea.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\InputType.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\WidgetDropDown.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\WidgetTextInputSingleLinePassword.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\InputTypeButton.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\InputTypeRange.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\InputTypeCheckbox.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\WidgetTextInput.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\WidgetTextInputMultiLine.h" />
+    <ClInclude Include="P:\librocket\Source\Controls\WidgetSlider.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\Clipboard.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\Controls.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementDataGridRow.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementForm.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\DataFormatter.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementFormControl.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementFormControlTextArea.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\Header.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementDataGridCell.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementFormControlInput.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementFormControlDataSelect.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementDataGrid.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\SelectOption.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementDataGridExpandButton.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementTabSet.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\DataQuery.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\DataSource.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\DataSourceListener.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls\ElementFormControlSelect.h" />
+    <ClInclude Include="P:\librocket\Include\Rocket\Controls.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="RocketCore.vcxproj">
-      <Project>{1aac0b29-aeb9-4e3f-8edf-b46f8949c41b}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="P:/librocket/Build/RocketCore.vcxproj">
+      <Project>7B946A15-0B66-420B-BDB6-DB0F30B7F8C9</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="RocketControls.rc" />
+    <ProjectReference Include="P:/librocket/Build/ZERO_CHECK.vcxproj">
+      <Project>A6C20ED8-6E98-4824-8C41-E713F2EABC80</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

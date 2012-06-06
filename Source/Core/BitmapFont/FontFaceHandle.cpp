@@ -244,11 +244,11 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 
 			// Adjust the cursor for the kerning between this character and the previous one.
 			if (prior_character != 0)
-            {
+			{
 				line_width += GetKerning(prior_character, *string_iterator);
-            }
+			}
 
-			layer->GenerateGeometry(&geometry[geometry_index], *string_iterator, Vector2f((int)position.x + line_width, (int)position.y), layer_colour);
+			layer->GenerateGeometry(&geometry[geometry_index], *string_iterator, Vector2f(position.x + line_width, position.y), layer_colour);
 
 			line_width += iterator->second.advance;
 			prior_character = *string_iterator;
@@ -298,7 +298,7 @@ void FontFaceHandle::GenerateMetrics(BM_Font *bm_face)
 	/*underline_thickness = FT_MulFix(ft_face->underline_thickness, ft_face->size->metrics.y_scale) / float(1 << 6);
 	underline_thickness = Math::Max(underline_thickness, 1.0f);
 */
-	baseline += underline_position / 1.5f;
+	baseline += int(underline_position / 1.5f);
 	underline_thickness = 1.0f;
 	average_advance = 0;
 	for (FontGlyphMap::iterator i = glyphs.begin(); i != glyphs.end(); ++i)

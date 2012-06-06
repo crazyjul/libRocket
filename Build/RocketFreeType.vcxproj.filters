@@ -1,50 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\Source\Core\FreeType\FontFace.cpp">
+    <ClCompile Include="P:\librocket\Source\Core\FreeType\FontProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Core\FreeType\FontFaceHandle.cpp">
+    <ClCompile Include="P:\librocket\Source\Core\FreeType\FontFamily.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Core\FreeType\FontFamily.cpp">
+    <ClCompile Include="P:\librocket\Source\Core\FreeType\FontFaceHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Core\FreeType\FontProvider.cpp">
+    <ClCompile Include="P:\librocket\Source\Core\FreeType\FontFace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Source\Core\FreeType\FontFace.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="P:\librocket\Source\Core\FreeType\FontFamily.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Core\FreeType\FontFaceHandle.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="P:\librocket\Source\Core\FreeType\FontFaceHandle.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Core\FreeType\FontFamily.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="P:\librocket\Source\Core\FreeType\FontFace.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource2.h">
+    <ClInclude Include="P:\librocket\Include\Rocket\Core\FreeType\FontProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P:\librocket\Include\Rocket\Core\FreeType\Header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="RocketFreeType.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4F80FD00-AF69-4736-9EE4-93F55D353F39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{AA448E81-1C12-4E0B-9658-361583D47F14}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
   </ItemGroup>
 </Project>
