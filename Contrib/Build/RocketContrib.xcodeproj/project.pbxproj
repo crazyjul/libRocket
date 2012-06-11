@@ -12,7 +12,6 @@
 		B0108E2D14AE4DC600A53356 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0108DEC14AE0FAB00A53356 /* Cocoa.framework */; };
 		B0108E3B14AE4DD700A53356 /* ElementProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0108E1114AE10FD00A53356 /* ElementProgressBar.cpp */; };
 		B0108E3C14AE4DDA00A53356 /* ProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0108E1214AE10FD00A53356 /* ProgressBar.cpp */; };
-		B0108EB614AEEFAC00A53356 /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0108EB414AEEF8600A53356 /* RocketCoreOSX.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +39,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0108E2D14AE4DC600A53356 /* Cocoa.framework in Frameworks */,
-				B0108EB614AEEFAC00A53356 /* RocketCoreOSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +181,7 @@
 			name = RocketProgressBar;
 			productName = RocketProgressBar;
 			productReference = B0108E2C14AE4DC600A53356 /* RocketProgressBar.framework */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -345,11 +343,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../bin\"",
 				);
-				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				MACH_O_TYPE = staticlib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
 		};
@@ -363,11 +360,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../bin\"",
 				);
-				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				MACH_O_TYPE = staticlib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
 		};
