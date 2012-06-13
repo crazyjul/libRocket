@@ -44,7 +44,6 @@
 		6E8B1CF6123AB0CC00C451C8 /* XMLNodeHandlerTabSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1C6E123AB0CC00C451C8 /* XMLNodeHandlerTabSet.cpp */; };
 		6E8B1CF8123AB0CC00C451C8 /* XMLNodeHandlerTextArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1C70123AB0CC00C451C8 /* XMLNodeHandlerTextArea.cpp */; };
 		6E8B1DC3123AB7A500C451C8 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DC2123AB7A500C451C8 /* libfreetype.a */; };
-		6E8B1DE2123ABCA200C451C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DD1123ABA3A00C451C8 /* libz.dylib */; };
 		6E8B1DE3123ABCC200C451C8 /* BaseXMLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E9D09261209823B00099E1A /* BaseXMLParser.cpp */; };
 		6E8B1DE4123ABCC200C451C8 /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28B78120580DA000FAF17 /* Box.cpp */; };
 		6E8B1DE5123ABCC200C451C8 /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D0312058A45000FAF17 /* Clock.cpp */; };
@@ -207,8 +206,8 @@
 		6E8B1E91123ABD1A00C451C8 /* XMLNodeHandlerDataGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1C6C123AB0CC00C451C8 /* XMLNodeHandlerDataGrid.cpp */; };
 		6E8B1E92123ABD1A00C451C8 /* XMLNodeHandlerTabSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1C6E123AB0CC00C451C8 /* XMLNodeHandlerTabSet.cpp */; };
 		6E8B1E93123ABD1A00C451C8 /* XMLNodeHandlerTextArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1C70123AB0CC00C451C8 /* XMLNodeHandlerTextArea.cpp */; };
-		6E8B1E94123ABD2200C451C8 /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */; };
-		6E8B1ECB123AC83300C451C8 /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */; };
+		6E8B1E94123ABD2200C451C8 /* libRocketCoreOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* libRocketCoreOSX.a */; };
+		6E8B1ECB123AC83300C451C8 /* libRocketCoreOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* libRocketCoreOSX.a */; };
 		6E8B1EE3123AC85100C451C8 /* Debugger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1ED0123AC85100C451C8 /* Debugger.cpp */; };
 		6E8B1EE4123AC85100C451C8 /* ElementContextHook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1ED1123AC85100C451C8 /* ElementContextHook.cpp */; };
 		6E8B1EE6123AC85100C451C8 /* ElementInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1ED3123AC85100C451C8 /* ElementInfo.cpp */; };
@@ -459,8 +458,6 @@
 		B00E96CA149A1EE4002493D4 /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95F11499F0E2002493D4 /* FontFamily.cpp */; };
 		B00E96CB149A1EE4002493D4 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95F51499F2F5002493D4 /* FontFaceHandle.cpp */; };
 		B00E96CD149A1EE4002493D4 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DC2123AB7A500C451C8 /* libfreetype.a */; };
-		B00E97A5149A1F0E002493D4 /* libfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B00E95FC1499FC5C002493D4 /* libfreetype.dylib */; };
-		B00E97A6149A1F0E002493D4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DD1123ABA3A00C451C8 /* libz.dylib */; };
 		B00E97B4149A1F7B002493D4 /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95F11499F0E2002493D4 /* FontFamily.cpp */; };
 		B00E97B5149A1F7B002493D4 /* FontFamily.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95F21499F0E2002493D4 /* FontFamily.h */; };
 		B00E97B6149A1F7B002493D4 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95ED14997746002493D4 /* FontFaceHandle.cpp */; };
@@ -482,7 +479,7 @@
 		B06552FF14BC81850019C95A /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D014BC812B0019C95A /* FontFamily.cpp */; };
 		B065530014BC81850019C95A /* FontParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D214BC812B0019C95A /* FontParser.cpp */; };
 		B065530114BC81850019C95A /* FontProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D414BC812B0019C95A /* FontProvider.cpp */; };
-		B065530214BC819C0019C95A /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */; };
+		B065530214BC819C0019C95A /* libRocketCoreOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* libRocketCoreOSX.a */; };
 		B065530914BC82360019C95A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B065530814BC82360019C95A /* Foundation.framework */; };
 		B065531314BC824F0019C95A /* FontFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552CA14BC812B0019C95A /* FontFace.cpp */; };
 		B065531414BC824F0019C95A /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552CC14BC812B0019C95A /* FontFaceHandle.cpp */; };
@@ -490,18 +487,9 @@
 		B065531614BC824F0019C95A /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D014BC812B0019C95A /* FontFamily.cpp */; };
 		B065531714BC824F0019C95A /* FontParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D214BC812B0019C95A /* FontParser.cpp */; };
 		B065531814BC824F0019C95A /* FontProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D414BC812B0019C95A /* FontProvider.cpp */; };
-		B0845E00149A21010000CC58 /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */; };
-		B0845E02149A21050000CC58 /* RocketFreeTypeOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */; };
-		B90B868214FE26850036C443 /* libRocketControlsiOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E8B1BF0123AAEE200C451C8 /* libRocketControlsiOS.a */; };
-		B90B868414FE26B20036C443 /* RocketControlsOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E8B1E6B123ABCEF00C451C8 /* RocketControlsOSX.framework */; };
-		B90B868714FE26CD0036C443 /* libRocketCoreiOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E8B1B0C123A0E2A00C451C8 /* libRocketCoreiOS.a */; };
-		B90B868914FE26E50036C443 /* RocketCoreOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */; };
-		B90B868B14FE26F90036C443 /* libRocketDebuggeriOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E8B1EBC123AC7A200C451C8 /* libRocketDebuggeriOS.a */; };
-		B90B868D14FE27060036C443 /* RocketDebuggerOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E8B1EC6123AC80700C451C8 /* RocketDebuggerOSX.framework */; };
-		B90B868F14FE27190036C443 /* libRocketFreeTypeiOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = B00E96D1149A1EE4002493D4 /* libRocketFreeTypeiOS.a */; };
-		B90B869114FE27290036C443 /* RocketFreeTypeOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */; };
-		B90B869414FE27430036C443 /* libRocketBitmapFontiOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = B065530714BC82360019C95A /* libRocketBitmapFontiOS.a */; };
-		B90B869614FE27510036C443 /* RocketBitmapFontOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B06552E714BC81770019C95A /* RocketBitmapFontOSX.framework */; };
+		B0845E00149A21010000CC58 /* libRocketCoreOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* libRocketCoreOSX.a */; };
+		B0845E02149A21050000CC58 /* libRocketFreeTypeOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B00E97AA149A1F0E002493D4 /* libRocketFreeTypeOSX.a */; };
+		B971A794155AB49D0064CB76 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B971A793155AB49D0064CB76 /* libfreetype.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -534,109 +522,6 @@
 			remoteInfo = RocketCoreOSX;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		B90B867714FE25EB0036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B868214FE26850036C443 /* libRocketControlsiOS.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B868314FE26930036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B868414FE26B20036C443 /* RocketControlsOSX.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B868614FE26BD0036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B868714FE26CD0036C443 /* libRocketCoreiOS.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B868814FE26D20036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B868914FE26E50036C443 /* RocketCoreOSX.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B868A14FE26EC0036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B868B14FE26F90036C443 /* libRocketDebuggeriOS.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B868C14FE26FC0036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B868D14FE27060036C443 /* RocketDebuggerOSX.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B868E14FE270C0036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B868F14FE27190036C443 /* libRocketFreeTypeiOS.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B869014FE271E0036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B869114FE27290036C443 /* RocketFreeTypeOSX.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B869314FE27340036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B869414FE27430036C443 /* libRocketBitmapFontiOS.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B90B869514FE27470036C443 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(ROCKET)/lib";
-			dstSubfolderSpec = 0;
-			files = (
-				B90B869614FE27510036C443 /* RocketBitmapFontOSX.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6E8B1B0C123A0E2A00C451C8 /* libRocketCoreiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketCoreiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -696,14 +581,12 @@
 		6E8B1C70123AB0CC00C451C8 /* XMLNodeHandlerTextArea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = XMLNodeHandlerTextArea.cpp; path = ../Source/Controls/XMLNodeHandlerTextArea.cpp; sourceTree = SOURCE_ROOT; };
 		6E8B1C71123AB0CC00C451C8 /* XMLNodeHandlerTextArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLNodeHandlerTextArea.h; path = ../Source/Controls/XMLNodeHandlerTextArea.h; sourceTree = SOURCE_ROOT; };
 		6E8B1DC2123AB7A500C451C8 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../support/lib/libfreetype.a; sourceTree = SOURCE_ROOT; };
-		6E8B1DCF123ABA2200C451C8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6E8B1DD1123ABA3A00C451C8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketCoreOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E8B1DDC123ABC7800C451C8 /* libRocketCoreOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketCoreOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E8B1DDD123ABC7800C451C8 /* RocketCoreOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RocketCoreOSX-Info.plist"; sourceTree = "<group>"; };
-		6E8B1E6B123ABCEF00C451C8 /* RocketControlsOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketControlsOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E8B1E6B123ABCEF00C451C8 /* libRocketControlsOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketControlsOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E8B1E6C123ABCEF00C451C8 /* RocketControlsOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RocketControlsOSX-Info.plist"; sourceTree = "<group>"; };
 		6E8B1EBC123AC7A200C451C8 /* libRocketDebuggeriOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketDebuggeriOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E8B1EC6123AC80700C451C8 /* RocketDebuggerOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketDebuggerOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E8B1EC6123AC80700C451C8 /* libRocketDebuggerOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketDebuggerOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E8B1EC7123AC80700C451C8 /* RocketDebuggerOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RocketDebuggerOSX-Info.plist"; sourceTree = "<group>"; };
 		6E8B1ECE123AC85100C451C8 /* BeaconSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeaconSource.h; path = ../Source/Debugger/BeaconSource.h; sourceTree = SOURCE_ROOT; };
 		6E8B1ECF123AC85100C451C8 /* CommonSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonSource.h; path = ../Source/Debugger/CommonSource.h; sourceTree = SOURCE_ROOT; };
@@ -955,9 +838,8 @@
 		B00E95F11499F0E2002493D4 /* FontFamily.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFamily.cpp; path = ../Source/Core/FreeType/FontFamily.cpp; sourceTree = "<group>"; };
 		B00E95F21499F0E2002493D4 /* FontFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontFamily.h; path = ../Source/Core/FreeType/FontFamily.h; sourceTree = "<group>"; };
 		B00E95F51499F2F5002493D4 /* FontFaceHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFaceHandle.cpp; path = ../Source/Core/FontFaceHandle.cpp; sourceTree = "<group>"; };
-		B00E95FC1499FC5C002493D4 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.dylib; path = SDKs/MacOSX10.6.sdk/usr/local/lib/libfreetype.dylib; sourceTree = DEVELOPER_DIR; };
 		B00E96D1149A1EE4002493D4 /* libRocketFreeTypeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketFreeTypeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketFreeTypeOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00E97AA149A1F0E002493D4 /* libRocketFreeTypeOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketFreeTypeOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00E97AB149A1F10002493D4 /* RocketFreeTypeOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RocketFreeTypeOSX-Info.plist"; path = "/Users/hamaide/Project/librocket-dev/Build/RocketFreeTypeOSX-Info.plist"; sourceTree = "<absolute>"; };
 		B06552C914BC812B0019C95A /* BM_Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BM_Font.h; sourceTree = "<group>"; };
 		B06552CA14BC812B0019C95A /* FontFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontFace.cpp; sourceTree = "<group>"; };
@@ -971,13 +853,14 @@
 		B06552D214BC812B0019C95A /* FontParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontParser.cpp; sourceTree = "<group>"; };
 		B06552D314BC812B0019C95A /* FontParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontParser.h; sourceTree = "<group>"; };
 		B06552D414BC812B0019C95A /* FontProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontProvider.cpp; sourceTree = "<group>"; };
-		B06552E714BC81770019C95A /* RocketBitmapFontOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketBitmapFontOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B06552E714BC81770019C95A /* libRocketBitmapFontOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketBitmapFontOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B06552E914BC81770019C95A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		B06552EC14BC81770019C95A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		B06552ED14BC81770019C95A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B06552EE14BC81770019C95A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B065530714BC82360019C95A /* libRocketBitmapFontiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketBitmapFontiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B065530814BC82360019C95A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B971A793155AB49D0064CB76 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../freetype/libfreetype.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -992,7 +875,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E8B1DE2123ABCA200C451C8 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,7 +882,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E8B1E94123ABD2200C451C8 /* RocketCoreOSX.framework in Frameworks */,
+				6E8B1E94123ABD2200C451C8 /* libRocketCoreOSX.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,8 +897,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0845E02149A21050000CC58 /* RocketFreeTypeOSX.framework in Frameworks */,
-				6E8B1ECB123AC83300C451C8 /* RocketCoreOSX.framework in Frameworks */,
+				B0845E02149A21050000CC58 /* libRocketFreeTypeOSX.a in Frameworks */,
+				6E8B1ECB123AC83300C451C8 /* libRocketCoreOSX.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1032,9 +914,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0845E00149A21010000CC58 /* RocketCoreOSX.framework in Frameworks */,
-				B00E97A5149A1F0E002493D4 /* libfreetype.dylib in Frameworks */,
-				B00E97A6149A1F0E002493D4 /* libz.dylib in Frameworks */,
+				B0845E00149A21010000CC58 /* libRocketCoreOSX.a in Frameworks */,
+				B971A794155AB49D0064CB76 /* libfreetype.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,7 +923,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B065530214BC819C0019C95A /* RocketCoreOSX.framework in Frameworks */,
+				B065530214BC819C0019C95A /* libRocketCoreOSX.a in Frameworks */,
 				B06552EA14BC81770019C95A /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1069,7 +950,7 @@
 		0867D691FE84028FC02AAC07 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				B00E95FC1499FC5C002493D4 /* libfreetype.dylib */,
+				B971A793155AB49D0064CB76 /* libfreetype.a */,
 				6E8B1EB6123AC78300C451C8 /* Debugger */,
 				6E8B1BE2123AADEB00C451C8 /* Controls */,
 				6E8B1BD8123AABCD00C451C8 /* Core */,
@@ -1402,19 +1283,17 @@
 			isa = PBXGroup;
 			children = (
 				B065530714BC82360019C95A /* libRocketBitmapFontiOS.a */,
-				B06552E714BC81770019C95A /* RocketBitmapFontOSX.framework */,
-				B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */,
+				B06552E714BC81770019C95A /* libRocketBitmapFontOSX.a */,
+				B00E97AA149A1F0E002493D4 /* libRocketFreeTypeOSX.a */,
 				B00E96D1149A1EE4002493D4 /* libRocketFreeTypeiOS.a */,
 				B00E97AB149A1F10002493D4 /* RocketFreeTypeOSX-Info.plist */,
-				6E8B1EC6123AC80700C451C8 /* RocketDebuggerOSX.framework */,
+				6E8B1EC6123AC80700C451C8 /* libRocketDebuggerOSX.a */,
 				6E8B1EC7123AC80700C451C8 /* RocketDebuggerOSX-Info.plist */,
 				6E8B1EBC123AC7A200C451C8 /* libRocketDebuggeriOS.a */,
-				6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */,
+				6E8B1DDC123ABC7800C451C8 /* libRocketCoreOSX.a */,
 				6E8B1DDD123ABC7800C451C8 /* RocketCoreOSX-Info.plist */,
-				6E8B1E6B123ABCEF00C451C8 /* RocketControlsOSX.framework */,
+				6E8B1E6B123ABCEF00C451C8 /* libRocketControlsOSX.a */,
 				6E8B1E6C123ABCEF00C451C8 /* RocketControlsOSX-Info.plist */,
-				6E8B1DCF123ABA2200C451C8 /* libz.dylib */,
-				6E8B1DD1123ABA3A00C451C8 /* libz.dylib */,
 				6E8B1DC2123AB7A500C451C8 /* libfreetype.a */,
 				6E8B1BF0123AAEE200C451C8 /* libRocketControlsiOS.a */,
 				6E8B1B0C123A0E2A00C451C8 /* libRocketCoreiOS.a */,
@@ -1663,7 +1542,6 @@
 				6E8B1BEC123AAEE200C451C8 /* Headers */,
 				6E8B1BED123AAEE200C451C8 /* Sources */,
 				6E8B1BEE123AAEE200C451C8 /* Frameworks */,
-				B90B867714FE25EB0036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1683,7 +1561,6 @@
 				6E8B1DD8123ABC7800C451C8 /* Resources */,
 				6E8B1DD9123ABC7800C451C8 /* Sources */,
 				6E8B1DDA123ABC7800C451C8 /* Frameworks */,
-				B90B868814FE26D20036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1691,8 +1568,8 @@
 			);
 			name = RocketCoreOSX;
 			productName = RocketCoreOSX;
-			productReference = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = 6E8B1DDC123ABC7800C451C8 /* libRocketCoreOSX.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		6E8B1E6A123ABCEF00C451C8 /* RocketControlsOSX */ = {
 			isa = PBXNativeTarget;
@@ -1702,7 +1579,6 @@
 				6E8B1E67123ABCEF00C451C8 /* Resources */,
 				6E8B1E68123ABCEF00C451C8 /* Sources */,
 				6E8B1E69123ABCEF00C451C8 /* Frameworks */,
-				B90B868314FE26930036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1711,8 +1587,8 @@
 			);
 			name = RocketControlsOSX;
 			productName = RocketControlsOSX;
-			productReference = 6E8B1E6B123ABCEF00C451C8 /* RocketControlsOSX.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = 6E8B1E6B123ABCEF00C451C8 /* libRocketControlsOSX.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		6E8B1EBB123AC7A200C451C8 /* RocketDebuggeriOS */ = {
 			isa = PBXNativeTarget;
@@ -1721,7 +1597,6 @@
 				6E8B1EB8123AC7A200C451C8 /* Headers */,
 				6E8B1EB9123AC7A200C451C8 /* Sources */,
 				6E8B1EBA123AC7A200C451C8 /* Frameworks */,
-				B90B868A14FE26EC0036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1741,7 +1616,6 @@
 				6E8B1EC2123AC80700C451C8 /* Resources */,
 				6E8B1EC3123AC80700C451C8 /* Sources */,
 				6E8B1EC4123AC80700C451C8 /* Frameworks */,
-				B90B868C14FE26FC0036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1750,8 +1624,8 @@
 			);
 			name = RocketDebuggerOSX;
 			productName = RocketDebuggerOSX;
-			productReference = 6E8B1EC6123AC80700C451C8 /* RocketDebuggerOSX.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = 6E8B1EC6123AC80700C451C8 /* libRocketDebuggerOSX.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		B00E9642149A1EE4002493D4 /* RocketFreeTypeiOS */ = {
 			isa = PBXNativeTarget;
@@ -1760,7 +1634,6 @@
 				B00E9643149A1EE4002493D4 /* Headers */,
 				B00E9648149A1EE4002493D4 /* Sources */,
 				B00E96CC149A1EE4002493D4 /* Frameworks */,
-				B90B868E14FE270C0036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1779,7 +1652,6 @@
 				B00E9716149A1F0E002493D4 /* Resources */,
 				B00E9720149A1F0E002493D4 /* Sources */,
 				B00E97A4149A1F0E002493D4 /* Frameworks */,
-				B90B869014FE271E0036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1787,8 +1659,8 @@
 			);
 			name = RocketFreeTypeOSX;
 			productName = RocketCoreOSX;
-			productReference = B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = B00E97AA149A1F0E002493D4 /* libRocketFreeTypeOSX.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		B06552E614BC81770019C95A /* RocketBitmapFontOSX */ = {
 			isa = PBXNativeTarget;
@@ -1798,7 +1670,6 @@
 				B06552E314BC81770019C95A /* Frameworks */,
 				B06552E414BC81770019C95A /* Headers */,
 				B06552E514BC81770019C95A /* Resources */,
-				B90B869514FE27470036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1806,8 +1677,8 @@
 			);
 			name = RocketBitmapFontOSX;
 			productName = RocketBitmapFontOSX;
-			productReference = B06552E714BC81770019C95A /* RocketBitmapFontOSX.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = B06552E714BC81770019C95A /* libRocketBitmapFontOSX.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		B065530614BC82360019C95A /* RocketBitmapFontiOS */ = {
 			isa = PBXNativeTarget;
@@ -1816,7 +1687,6 @@
 				B065530314BC82360019C95A /* Sources */,
 				B065530414BC82360019C95A /* Frameworks */,
 				B065530514BC82360019C95A /* Headers */,
-				B90B869314FE27340036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1834,7 +1704,6 @@
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
-				B90B868614FE26BD0036C443 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -2419,6 +2288,7 @@
 					"\"$(SRCROOT)/../../support/lib\"",
 				);
 				PRODUCT_NAME = RocketCoreiOS;
+				STRIP_STYLE = all;
 			};
 			name = Release;
 		};
@@ -2430,18 +2300,20 @@
 					armv6,
 					armv7,
 				);
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					../Include,
 					../../Support/freetype/include,
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				MACH_O_TYPE = "com.apple.product-type.library.static";
 				SDKROOT = iphoneos;
+				STRIP_STYLE = debugging;
 				USE_HEADERMAP = false;
 			};
 			name = Debug;
@@ -2454,16 +2326,17 @@
 					armv6,
 					armv7,
 				);
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					../Include,
 					../../Support/freetype/include,
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				MACH_O_TYPE = "com.apple.product-type.library.static";
 				SDKROOT = iphoneos;
 				USE_HEADERMAP = false;
 			};
@@ -2487,9 +2360,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
 				PRODUCT_NAME = RocketControlsiOS;
+				STRIP_STYLE = all;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2502,13 +2376,12 @@
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/freetype2,
 					../Include,
@@ -2525,6 +2398,7 @@
 				PRODUCT_NAME = RocketCoreOSX;
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 ";
+				WRAPPER_EXTENSION = "";
 			};
 			name = Debug;
 		};
@@ -2537,11 +2411,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/freetype2,
 					../Include,
@@ -2558,6 +2431,7 @@
 				PRODUCT_NAME = RocketCoreOSX;
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 ";
+				WRAPPER_EXTENSION = "";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2579,6 +2453,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "plist/RocketControlsOSX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				MACH_O_TYPE = "com.apple.product-type.library.static";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2606,6 +2481,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "plist/RocketControlsOSX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				MACH_O_TYPE = "com.apple.product-type.library.static";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2636,9 +2512,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
 				PRODUCT_NAME = RocketDebuggeriOS;
+				STRIP_STYLE = all;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2736,6 +2613,7 @@
 					"\"$(SRCROOT)/../../support/lib\"",
 				);
 				PRODUCT_NAME = RocketFreeTypeiOS;
+				STRIP_STYLE = all;
 			};
 			name = Release;
 		};
@@ -2760,12 +2638,16 @@
 				);
 				INFOPLIST_FILE = "RocketFreeTypeOSX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../freetype\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
+					"-search_paths_first",
 				);
 				PRODUCT_NAME = RocketFreeTypeOSX;
 				SDKROOT = macosx;
@@ -2793,12 +2675,16 @@
 				);
 				INFOPLIST_FILE = "RocketFreeTypeOSX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../freetype\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
+					"-search_paths_first",
 				);
 				PRODUCT_NAME = RocketFreeTypeOSX;
 				SDKROOT = macosx;
@@ -2846,7 +2732,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2883,12 +2769,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = all;
 			};
 			name = Debug;
 		};
@@ -2900,12 +2787,13 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = all;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
