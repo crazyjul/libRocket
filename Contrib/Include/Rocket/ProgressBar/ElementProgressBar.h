@@ -15,6 +15,14 @@ namespace ProgressBar {
 	@author Gauthier Billot
  */
 
+enum ProgressBarOrientation
+{
+	ProgressBarOrientationLeft = 0,
+	ProgressBarOrientationRight,
+	ProgressBarOrientationTop,
+	ProgressBarOrientationBottom
+};
+
 class ROCKETPROGRESSBAR_API ElementProgressBar : public Core::Element
 {
 public:
@@ -50,13 +58,17 @@ private:
 	/// Called when source texture has changed.
 	void LoadTexture(int index);
 
+	/// Generate a quad vertices and indices.
+	void GenerateQuad(Rocket::Core::Vertex* vertices, int* indices, const Core::Vector2f& origin, const Core::Vector2f& dimensions, const Core::Colourb& colour, const Core::Vector2f& top_left_texcoord, const Core::Vector2f& bottom_right_texcoord, const Core::Vector2f& bottom_left_texcoord, const Core::Vector2f& top_right_texcoord);
+
 	Core::Texture texture[3];
 
 	// The geometries used to render this element.
-	Core::Geometry left_geometry;
+	Core::Geometry start_geometry;
 	Core::Geometry center_geometry;
-	Core::Geometry right_geometry;
+	Core::Geometry end_geometry;
 	bool geometry_dirty;
+	ProgressBarOrientation progressbar_orientation;
 
 	// The current value of the progress bar.
 	float value;
