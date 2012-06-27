@@ -65,7 +65,7 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 {
 	Element::OnPropertyChange(changed_properties);
 
-	if (changed_properties.find("progress-start-src") != changed_properties.end())
+	if (changed_properties.find("progress-start-image") != changed_properties.end())
 	{
 		LoadTexture(0);
 	}
@@ -75,7 +75,7 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 		LoadTexture(1);
 	}
 	
-	if (changed_properties.find("progress-end-src") != changed_properties.end())
+	if (changed_properties.find("progress-end-image") != changed_properties.end())
 	{
 		LoadTexture(2);
 	}
