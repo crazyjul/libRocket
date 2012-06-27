@@ -6,7 +6,7 @@ namespace Rocket {
 namespace ProgressBar {
 
 // Constructs a new ElementProgressBar. This should not be called directly; use the Factory instead.
-ElementProgressBar::ElementProgressBar(const Rocket::Core::String& tag) : Core::Element(tag), left_geometry(this), center_geometry(this), right_geometry(this), geometry_dirty(true), value(0.0f)
+ElementProgressBar::ElementProgressBar(const Rocket::Core::String& tag) : Core::Element(tag), start_geometry(this), center_geometry(this), end_geometry(this), geometry_dirty(true), value(0.0f), progressbar_orientation(ProgressBarOrientationLeft)
 {
 }
 
@@ -37,9 +37,9 @@ void ElementProgressBar::OnRender()
 	if(geometry_dirty)
 		GenerateGeometry();
 
-	left_geometry.Render(GetAbsoluteOffset(Rocket::Core::Box::CONTENT));
+	start_geometry.Render(GetAbsoluteOffset(Rocket::Core::Box::CONTENT));
 	center_geometry.Render(GetAbsoluteOffset(Rocket::Core::Box::CONTENT));
-	right_geometry.Render(GetAbsoluteOffset(Rocket::Core::Box::CONTENT));
+	end_geometry.Render(GetAbsoluteOffset(Rocket::Core::Box::CONTENT));
 }
 
 // Called when attributes on the element are changed.
@@ -65,7 +65,7 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 {
 	Element::OnPropertyChange(changed_properties);
 
-	if (changed_properties.find("progress-left-image") != changed_properties.end())
+	if (changed_properties.find("progress-start-src") != changed_properties.end())
 	{
 		LoadTexture(0);
 	}
@@ -75,9 +75,33 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 		LoadTexture(1);
 	}
 	
-	if (changed_properties.find("progress-right-image") != changed_properties.end())
+	if (changed_properties.find("progress-end-src") != changed_properties.end())
 	{
 		LoadTexture(2);
+	}
+
+	if (changed_properties.find("orientation") != changed_properties.end())
+	{
+		Core::String orientation_string = GetProperty< Core::String >("orientation");
+
+		if (orientation_string == "left")
+		{
+			progressbar_orientation = ProgressBarOrientationLeft;
+		}
+		else if (orientation_string =="right")
+		{
+			progressbar_orientation = ProgressBarOrientationRight;
+		}
+		else if (orientation_string == "top")
+		{
+			progressbar_orientation = ProgressBarOrientationTop;
+		}
+		else if (orientation_string == "bottom")
+		{
+			progressbar_orientation = ProgressBarOrientationBottom;
+		}
+
+		geometry_dirty = true;
 	}
 }
 
@@ -85,31 +109,94 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 void ElementProgressBar::GenerateGeometry()
 {
 	const Core::Vector2f complete_extent = GetBox().GetSize(Core::Box::CONTENT);
+	Core::Vector2f final_part_position[3];
 	Core::Vector2f final_part_size[3];
 	float progress_size;
 
-	progress_size = value * (complete_extent.x - initial_part_size[0].x - initial_part_size[2].x);
-
-	left_geometry.Release(true);
+	start_geometry.Release(true);
 	center_geometry.Release(true);
-	right_geometry.Release(true);
+	end_geometry.Release(true);
 
-	final_part_size[0].y = final_part_size[1].y = final_part_size[2].y = float(complete_extent.y);
-	final_part_size[0].x = float(initial_part_size[0].x);
-	final_part_size[2].x = float(initial_part_size[2].x);
-	final_part_size[1].x = progress_size;
-
-	// Generate left part geometry.
+	switch(progressbar_orientation)
 	{
-		std::vector< Rocket::Core::Vertex >& vertices = left_geometry.GetVertices();
-		std::vector< int >& indices = left_geometry.GetIndices();
+		case ProgressBarOrientationLeft :
+		{
+			progress_size = value * (complete_extent.x - initial_part_size[0].x - initial_part_size[2].x);
+
+			final_part_size[0].y = final_part_size[1].y = final_part_size[2].y = float(complete_extent.y);
+			final_part_size[0].x = float(initial_part_size[0].x);
+			final_part_size[2].x = float(initial_part_size[2].x);
+			final_part_size[1].x = progress_size;
+
+			final_part_position[0] = Core::Vector2f(0, 0);
+			final_part_position[1] = Core::Vector2f(final_part_size[0].x, 0);
+			final_part_position[2] = Core::Vector2f(final_part_size[0].x + final_part_size[1].x, 0);
+		} break;
+
+		case ProgressBarOrientationRight :
+		{
+			float
+				offset;
+
+			progress_size = value * (complete_extent.x - initial_part_size[0].x - initial_part_size[2].x);
+			offset = (complete_extent.x - initial_part_size[0].x - initial_part_size[2].x) - progress_size;
+
+			final_part_size[0].y = final_part_size[1].y = final_part_size[2].y = float(complete_extent.y);
+			final_part_size[0].x = float(initial_part_size[0].x);
+			final_part_size[2].x = float(initial_part_size[2].x);
+			final_part_size[1].x = progress_size;
+
+			final_part_position[0] = Core::Vector2f(offset, 0);
+			final_part_position[1] = Core::Vector2f(final_part_size[0].x + offset, 0);
+			final_part_position[2] = Core::Vector2f(final_part_size[0].x + final_part_size[1].x + offset, 0);
+		} break;
+
+		case ProgressBarOrientationTop :
+		{
+			progress_size = value * (complete_extent.y - initial_part_size[0].y - initial_part_size[2].y);
+
+			final_part_size[0].x = final_part_size[1].x = final_part_size[2].x = float(complete_extent.x);
+			final_part_size[0].y = float(initial_part_size[0].y);
+			final_part_size[2].y = float(initial_part_size[2].y);
+			final_part_size[1].y = progress_size;
+
+			final_part_position[0] = Core::Vector2f(0, 0);
+			final_part_position[1] = Core::Vector2f(0, final_part_size[0].y);
+			final_part_position[2] = Core::Vector2f(0, final_part_size[0].y + final_part_size[1].y);
+		} break;
+
+		case ProgressBarOrientationBottom :
+		{
+			float
+				offset;
+
+			progress_size = value * (complete_extent.y - initial_part_size[0].y - initial_part_size[2].y);
+			offset = (complete_extent.y - initial_part_size[0].y - initial_part_size[2].y) - progress_size;
+
+			final_part_size[0].x = final_part_size[1].x = final_part_size[2].x = float(complete_extent.x);
+			final_part_size[0].y = float(initial_part_size[0].y);
+			final_part_size[2].y = float(initial_part_size[2].y);
+			final_part_size[1].y = progress_size;
+
+			final_part_position[2] = Core::Vector2f(0, offset);
+			final_part_position[1] = Core::Vector2f(0, final_part_size[2].y + offset);
+			final_part_position[0] = Core::Vector2f(0, final_part_size[2].y + final_part_size[1].y + offset);
+		} break;
+	}
+
+	
+
+	// Generate start part geometry.
+	{
+		std::vector< Rocket::Core::Vertex >& vertices = start_geometry.GetVertices();
+		std::vector< int >& indices = start_geometry.GetIndices();
 
 		vertices.resize(4);
 		indices.resize(6);
 
 		Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],
 													  &indices[0],
-													  Core::Vector2f(0, 0),
+													  final_part_position[0],
 													  final_part_size[0],
 													  Core::Colourb(255, 255, 255, 255),
 													  texcoords[0][0],
@@ -117,7 +204,6 @@ void ElementProgressBar::GenerateGeometry()
 	}
 
 	// Generate center part geometry.
-	if (final_part_size[1].x > 0.0f)
 	{
 		std::vector< Rocket::Core::Vertex >& vertices = center_geometry.GetVertices();
 		std::vector< int >& indices = center_geometry.GetIndices();
@@ -127,7 +213,7 @@ void ElementProgressBar::GenerateGeometry()
 
 		Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],
 													  &indices[0],
-													  Core::Vector2f(final_part_size[0].x, 0),
+													  final_part_position[1],
 													  final_part_size[1],
 													  Core::Colourb(255, 255, 255, 255),
 													  texcoords[1][0],
@@ -136,15 +222,15 @@ void ElementProgressBar::GenerateGeometry()
 
 	// Generate center part geometry.
 	{
-		std::vector< Rocket::Core::Vertex >& vertices = right_geometry.GetVertices();
-		std::vector< int >& indices = right_geometry.GetIndices();
+		std::vector< Rocket::Core::Vertex >& vertices = end_geometry.GetVertices();
+		std::vector< int >& indices = end_geometry.GetIndices();
 
 		vertices.resize(4);
 		indices.resize(6);
 
 		Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],
 													  &indices[0],
-													  Core::Vector2f(final_part_size[0].x + final_part_size[1].x, 0),
+													  final_part_position[2],
 													  final_part_size[2],
 													  Core::Colourb(255, 255, 255, 255),
 													  texcoords[2][0],
@@ -164,7 +250,7 @@ void ElementProgressBar::LoadTexture(int index)
 	{
 		case 0:
 		{
-			LoadTexture(source_url, 0, "progress-left-image", left_geometry);
+			LoadTexture(source_url, 0, "progress-start-image", start_geometry);
 			break;
 		}
 
@@ -176,7 +262,7 @@ void ElementProgressBar::LoadTexture(int index)
 
 		case 2:
 		{
-			LoadTexture(source_url, 2, "progress-right-image", right_geometry);
+			LoadTexture(source_url, 2, "progress-end-image", end_geometry);
 			break;
 		}
 	}
