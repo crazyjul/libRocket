@@ -70,6 +70,7 @@ private:
 	Core::Geometry center_geometry;
 	Core::Geometry end_geometry;
 	bool geometry_dirty;
+    bool is_mask;
 	ProgressBarOrientation progressbar_orientation;
 
 	// The current value of the progress bar.

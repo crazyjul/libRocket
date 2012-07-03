@@ -6,7 +6,7 @@ namespace Rocket {
 namespace ProgressBar {
 
 // Constructs a new ElementProgressBar. This should not be called directly; use the Factory instead.
-ElementProgressBar::ElementProgressBar(const Rocket::Core::String& tag) : Core::Element(tag), start_geometry(this), center_geometry(this), end_geometry(this), geometry_dirty(true), value(0.0f), progressbar_orientation(ProgressBarOrientationLeft)
+ElementProgressBar::ElementProgressBar(const Rocket::Core::String& tag) : Core::Element(tag), start_geometry(this), center_geometry(this), end_geometry(this), geometry_dirty(true), is_mask(false), value(0.0f), progressbar_orientation(ProgressBarOrientationLeft)
 {
 }
 
@@ -103,6 +103,13 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 
 		geometry_dirty = true;
 	}
+
+	if (changed_properties.find("mask") != changed_properties.end())
+	{
+		is_mask = GetProperty< bool >("mask");
+
+		geometry_dirty = true;
+	}
 }
 
 // Called when value has changed.
@@ -112,10 +119,14 @@ void ElementProgressBar::GenerateGeometry()
 	Core::Vector2f final_part_position[3];
 	Core::Vector2f final_part_size[3];
 	float progress_size;
+	Core::Vector2f final_center_texcoords[2];
 
 	start_geometry.Release(true);
 	center_geometry.Release(true);
 	end_geometry.Release(true);
+
+	final_center_texcoords[0] = texcoords[1][0];
+	final_center_texcoords[1] = texcoords[1][1];
 
 	switch(progressbar_orientation)
 	{
@@ -131,6 +142,14 @@ void ElementProgressBar::GenerateGeometry()
 			final_part_position[0] = Core::Vector2f(0, 0);
 			final_part_position[1] = Core::Vector2f(final_part_size[0].x, 0);
 			final_part_position[2] = Core::Vector2f(final_part_size[0].x + final_part_size[1].x, 0);
+
+			if (is_mask)
+			{
+				final_center_texcoords[0].x = texcoords[1][0].x;
+				final_center_texcoords[0].y = texcoords[1][0].y;
+				final_center_texcoords[1].x = texcoords[1][0].x + value * (texcoords[1][1].x - texcoords[1][0].x);
+				final_center_texcoords[1].y = texcoords[1][1].y;
+			}
 		} break;
 
 		case ProgressBarOrientationRight :
@@ -149,6 +168,14 @@ void ElementProgressBar::GenerateGeometry()
 			final_part_position[0] = Core::Vector2f(offset, 0);
 			final_part_position[1] = Core::Vector2f(final_part_size[0].x + offset, 0);
 			final_part_position[2] = Core::Vector2f(final_part_size[0].x + final_part_size[1].x + offset, 0);
+
+			if (is_mask)
+			{
+				final_center_texcoords[0].x = texcoords[1][0].x + (1.0f - value) * (texcoords[1][1].x - texcoords[1][0].x);
+				final_center_texcoords[0].y = texcoords[1][0].y;
+				final_center_texcoords[1].x = texcoords[1][1].x;
+				final_center_texcoords[1].y = texcoords[1][1].y;
+			}
 		} break;
 
 		case ProgressBarOrientationTop :
@@ -163,6 +190,14 @@ void ElementProgressBar::GenerateGeometry()
 			final_part_position[0] = Core::Vector2f(0, 0);
 			final_part_position[1] = Core::Vector2f(0, final_part_size[0].y);
 			final_part_position[2] = Core::Vector2f(0, final_part_size[0].y + final_part_size[1].y);
+
+			if (is_mask)
+			{
+				final_center_texcoords[0].x = texcoords[1][0].x;
+				final_center_texcoords[0].y = texcoords[1][0].y;
+				final_center_texcoords[1].x = texcoords[1][1].x;
+				final_center_texcoords[1].y = texcoords[1][0].y + value * (texcoords[1][1].y - texcoords[1][0].y);
+			}
 		} break;
 
 		case ProgressBarOrientationBottom :
@@ -181,10 +216,16 @@ void ElementProgressBar::GenerateGeometry()
 			final_part_position[2] = Core::Vector2f(0, offset);
 			final_part_position[1] = Core::Vector2f(0, final_part_size[2].y + offset);
 			final_part_position[0] = Core::Vector2f(0, final_part_size[2].y + final_part_size[1].y + offset);
+
+			if (is_mask)
+			{
+				final_center_texcoords[0].x = texcoords[1][0].x;
+				final_center_texcoords[0].y = texcoords[1][0].y + (1.0f - value) * (texcoords[1][1].y - texcoords[1][0].y);
+				final_center_texcoords[1].x = texcoords[1][1].x;
+				final_center_texcoords[1].y = texcoords[1][1].y;
+			}
 		} break;
 	}
-
-	
 
 	// Generate start part geometry.
 	{
@@ -216,8 +257,8 @@ void ElementProgressBar::GenerateGeometry()
 													  final_part_position[1],
 													  final_part_size[1],
 													  Core::Colourb(255, 255, 255, 255),
-													  texcoords[1][0],
-													  texcoords[1][1]);
+													  final_center_texcoords[0],
+													  final_center_texcoords[1]);
 	}
 
 	// Generate center part geometry.
