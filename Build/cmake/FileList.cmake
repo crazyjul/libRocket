@@ -493,7 +493,6 @@ set(FreeType_HDR_FILES
 
 set(FreeType_PUB_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/FreeType/FontProvider.h
-    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/FreeType/Header.h
 )
 
 set(FreeType_SRC_FILES
@@ -514,7 +513,6 @@ set(BitmapFont_HDR_FILES
 
 set(BitmapFont_PUB_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/BitmapFont/FontProvider.h
-    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/BitmapFont/Header.h
 )
 
 set(BitmapFont_SRC_FILES
