@@ -49,10 +49,22 @@ option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 option(BUILD_PYTHON_BINDINGS "Build python bindings" OFF)
 option(BUILD_SAMPLES "Build samples" OFF)
 option(BUILD_CONTRIB "Build contrib libraries" OFF)
+option(DISABLE_RTTI "Build with rtti disable" OFF)
 
 if(NOT BUILD_SHARED_LIBS)
     add_definitions(-DSTATIC_LIB)
 endif()
+
+#on windows, check for VC10 and fix the multiple compile target issue.
+IF(WIN32)
+  if(MSVC)
+    if(${MSVC_VERSION} STREQUAL 1600 OR ${MSVC_VERSION} STRGREATER 1600)
+      message("Visual Studio 2010 (${MSVC_VERSION}) build fix at play (/FORCE:MULTIPLE)")
+      set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /FORCE:MULTIPLE")
+    endif()
+  endif() 
+ENDIF(WIN32)
+
 
 #===================================
 # Find dependencies ================
@@ -196,6 +208,24 @@ if(BUILD_CONTRIB)
             	RUNTIME DESTINATION bin
         )
     endforeach(library)
+endif()
+
+
+if(DISABLE_RTTI)
+    if( CMAKE_COMPILER_IS_GNUCXX ) 
+		add_definitions( -fno-rtti -fno-exceptions ) 
+    elseif( MSVC ) 
+		add_definitions( -D_HAS_EXCEPTIONS=0 /GR- )
+		if(CMAKE_CXX_FLAGS MATCHES "/EHsc ")
+			string(REPLACE "/EHsc" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+			message(STATUS "CMAKE_CXX_FLAGS matches /EHsc before end of string replaced...")
+		endif()
+
+		if(CMAKE_CXX_FLAGS MATCHES "/EHsc$")
+			string(REPLACE "/EHsc" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+			message(STATUS "CMAKE_CXX_FLAGS matches /EHsc at end of string replaced...")
+		endif()
+    endif() 
 endif()
 
 #===================================
