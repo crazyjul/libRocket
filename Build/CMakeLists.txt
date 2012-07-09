@@ -69,8 +69,7 @@ if(BUILD_FREETYPE_SUPPORT)
 	endif()
 
 	mark_as_advanced(FREETYPE_INCLUDE_DIRS FREETYPE_LIBRARY FREETYPE_LINK_DIRECTORIES)
-else()
-	add_definitions(-DNO_FREETYPE)
+	add_definitions(-DROCKET_WITH_FREETYPE)
 endif()
 
 # Boost and Python
@@ -198,7 +197,6 @@ if(BUILD_CONTRIB)
         )
     endforeach(library)
 endif()
-
 
 #===================================
 # Link libraries ===================
