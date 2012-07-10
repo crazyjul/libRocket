@@ -1174,6 +1174,59 @@ bool Element::RemoveChild(Element* child)
 	return false;
 }
 
+// Removes all children (except domain one)
+void Element::RemoveAllChildren()
+{
+	size_t child_index = 0;
+	bool element_removed = GetNumChildren() != 0;
+	Context* context = GetContext();
+
+	for (int child_index = 0, num_children = GetNumChildren(); child_index < num_children; ++child_index)
+	{
+		Element * child = children[child_index];
+		
+		// Inform the context of the element's pending removal (if we have a valid context).
+		if (context)
+			context->OnElementRemove(child);
+
+		child->OnChildRemove(child);
+
+		deleted_children.push_back(child);
+
+		// Remove the child element as the focussed child of this element.
+		if (child == focus)
+		{
+			focus = NULL;
+
+			// If this child (or a descendant of this child) is the context's currently
+			// focussed element, set the focus to us instead.
+			if (context != NULL)
+			{
+				Element* focus_element = context->GetFocusElement();
+				while (focus_element != NULL)
+				{
+					if (focus_element == child)
+					{
+						Focus();
+						break;
+					}
+
+					focus_element = focus_element->GetParentNode();
+				}
+			}
+		}
+	}
+	
+	children.erase(children.begin(), children.begin() + GetNumChildren());
+	
+	if(element_removed)
+	{
+		DirtyLayout();
+		DirtyStackingContext();
+		DirtyStructure();
+	}
+}
+
 bool Element::HasChildNodes() const
 {
 	return (int) children.size() > num_non_dom_children;
