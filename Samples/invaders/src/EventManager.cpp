@@ -41,7 +41,7 @@ extern Rocket::Core::Context* context;
 static EventHandler* event_handler = NULL;
 
 // The event handlers registered with the manager.
-typedef std::map< Rocket::Core::String, EventHandler* > EventHandlerMap;
+typedef Rocket::Core::Container::map< Rocket::Core::String, EventHandler* >::Type EventHandlerMap;
 EventHandlerMap event_handlers;
 
 EventManager::EventManager()

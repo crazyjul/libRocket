@@ -37,7 +37,7 @@
 
 struct FileSystemNode;
 
-typedef std::map< Rocket::Core::String, FileSystemNode* > NodeMap;
+typedef Rocket::Core::Container::map< Rocket::Core::String, FileSystemNode* >::Type NodeMap;
 
 FileSystemNode* file_system_root = NULL;
 NodeMap node_map;
@@ -114,7 +114,7 @@ struct FileSystemNode
 		}
 	}
 
-	typedef std::vector< FileSystemNode* > NodeList;
+    typedef Rocket::Core::Container::vector< FileSystemNode* >::Type NodeList;
 
 	Rocket::Core::String id;
 	Rocket::Core::String name;

@@ -62,7 +62,7 @@ private:
 
 	struct StarLayer
 	{
-		typedef std::vector< Rocket::Core::Vector2f > StarList;
+        typedef Rocket::Core::Container::vector< Rocket::Core::Vector2f >::Type StarList;
 		StarList stars;
 		Rocket::Core::Colourb colour;
 		float speed;
@@ -74,7 +74,7 @@ private:
 		float last_update;
 		Rocket::Core::Vector2f dimensions;
 
-		typedef std::vector< StarLayer > StarLayerList;
+		typedef Rocket::Core::Container::vector< StarLayer >::Type StarLayerList;
 		StarLayerList star_layers;
 	};
 };

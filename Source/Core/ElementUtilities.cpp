@@ -27,7 +27,6 @@
 
 #include "precompiled.h"
 #include <Rocket/Core/ElementUtilities.h>
-#include <queue>
 #include <Rocket/Core/FontFaceHandle.h>
 #include "LayoutEngine.h"
 #include <Rocket/Core.h>
@@ -43,7 +42,7 @@ static void SetElementOffset(Element* element, const Vector2f& offset);
 Element* ElementUtilities::GetElementById(Element* root_element, const String& id)
 {
 	// Breadth first search on elements for the corresponding id
-	typedef std::queue<Element*> SearchQueue;
+	typedef Container::queue<Element*>::Type SearchQueue;
 	SearchQueue search_queue;
 	search_queue.push(root_element);
 
@@ -68,7 +67,7 @@ Element* ElementUtilities::GetElementById(Element* root_element, const String& i
 void ElementUtilities::GetElementsByTagName(ElementList& elements, Element* root_element, const String& tag)
 {
 	// Breadth first search on elements for the corresponding id
-	typedef std::queue< Element* > SearchQueue;
+	typedef Container::queue< Element* >::Type SearchQueue;
 	SearchQueue search_queue;
 	for (int i = 0; i < root_element->GetNumChildren(); ++i)
 		search_queue.push(root_element->GetChild(i));
@@ -90,7 +89,7 @@ void ElementUtilities::GetElementsByTagName(ElementList& elements, Element* root
 void ElementUtilities::GetElementsByClassName(ElementList& elements, Element* root_element, const String& class_name)
 {
 	// Breadth first search on elements for the corresponding id
-	typedef std::queue< Element* > SearchQueue;
+    typedef Container::queue< Element* >::Type SearchQueue;
 	SearchQueue search_queue;
 	for (int i = 0; i < root_element->GetNumChildren(); ++i)
 		search_queue.push(root_element->GetChild(i));

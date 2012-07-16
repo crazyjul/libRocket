@@ -112,7 +112,7 @@ private:
 	FontDatabase(void);
 	~FontDatabase(void);
 
-	typedef std::vector< FontProvider *> FontProviderTable;
+	typedef Container::vector< FontProvider *>::Type FontProviderTable;
 
 	static FontProviderTable font_provider_table;
 	static FontDatabase* instance;

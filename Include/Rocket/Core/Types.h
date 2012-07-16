@@ -35,14 +35,10 @@
 
 #include <Rocket/Core/Platform.h>
 #include <Rocket/Core/Debug.h>
+#include <Rocket/Core/ContainerWrapper.h>
 
 #include <float.h>
 #include <limits.h>
-#include <string>
-#include <map>
-#include <set>
-#include <vector>
-#include <algorithm>
 
 namespace Rocket {
 namespace Core {
@@ -88,10 +84,10 @@ typedef uintptr_t CompiledGeometryHandle;
 typedef uintptr_t DecoratorDataHandle;
 
 // List of elements.
-typedef std::vector< Element* > ElementList;
-typedef std::set< String > PseudoClassList;
-typedef std::set< String > PropertyNameList;
-typedef std::set< String > AttributeNameList;
+typedef Container::vector< Element* >::Type ElementList;
+typedef Container::set< String >::Type PseudoClassList;
+typedef Container::set< String >::Type PropertyNameList;
+typedef Container::set< String >::Type AttributeNameList;
 typedef Dictionary ElementAttributes;
 
 }

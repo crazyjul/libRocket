@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include "ElementStyle.h"
-#include <algorithm>
+#include <Rocket/Core/ContainerWrapper.h>
 #include <Rocket/Core/ElementDocument.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/Log.h>
@@ -176,7 +176,7 @@ const PseudoClassList& ElementStyle::GetActivePseudoClasses() const
 // Sets or removes a class on the element.
 void ElementStyle::SetClass(const String& class_name, bool activate)
 {
-	StringList::iterator class_location = std::find(classes.begin(), classes.end(), class_name);
+	StringList::iterator class_location = Container::find(classes.begin(), classes.end(), class_name);
 
 	if (activate)
 	{

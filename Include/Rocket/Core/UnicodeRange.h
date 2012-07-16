@@ -34,7 +34,7 @@ namespace Rocket {
 namespace Core {
 
 class UnicodeRange;
-typedef std::vector< UnicodeRange > UnicodeRangeList;
+typedef Container::vector< UnicodeRange >::Type UnicodeRangeList;
 
 /**
  */

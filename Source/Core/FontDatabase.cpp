@@ -42,7 +42,7 @@ namespace Core {
 FontDatabase* FontDatabase::instance = NULL;
 FontDatabase::FontProviderTable FontDatabase::font_provider_table;
 
-typedef std::map< String, FontEffect* > FontEffectCache;
+typedef Container::map< String, FontEffect* >::Type FontEffectCache;
 FontEffectCache font_effect_cache;
 
 FontDatabase::FontDatabase()
@@ -181,7 +181,7 @@ FontEffect* FontDatabase::GetFontEffect(const String& name, const PropertyDictio
 	//  * could be shared with decorators as well
 
 	// Generate a key so we can distinguish unique property sets quickly.
-	typedef std::list< std::pair< String, String > > PropertyList;
+	typedef Container::list< Container::pair< String, String >::Type >::Type PropertyList;
 	PropertyList sorted_properties;
 	for (PropertyMap::const_iterator property_iterator = properties.GetProperties().begin(); property_iterator != properties.GetProperties().end(); ++property_iterator)
 	{

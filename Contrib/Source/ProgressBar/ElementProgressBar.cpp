@@ -1,6 +1,7 @@
 #include <Rocket/ProgressBar/ElementProgressBar.h>
 #include <Rocket/Core/GeometryUtilities.h>
 #include <Rocket/Core/ElementDocument.h>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace ProgressBar {
@@ -229,8 +230,8 @@ void ElementProgressBar::GenerateGeometry()
 
 	// Generate start part geometry.
 	{
-		std::vector< Rocket::Core::Vertex >& vertices = start_geometry.GetVertices();
-		std::vector< int >& indices = start_geometry.GetIndices();
+        Rocket::Core::Container::vector< Rocket::Core::Vertex >::Type& vertices = start_geometry.GetVertices();
+		Rocket::Core::Container::vector< int >::Type& indices = start_geometry.GetIndices();
 
 		vertices.resize(4);
 		indices.resize(6);
@@ -246,8 +247,8 @@ void ElementProgressBar::GenerateGeometry()
 
 	// Generate center part geometry.
 	{
-		std::vector< Rocket::Core::Vertex >& vertices = center_geometry.GetVertices();
-		std::vector< int >& indices = center_geometry.GetIndices();
+        Rocket::Core::Container::vector< Rocket::Core::Vertex >::Type& vertices = center_geometry.GetVertices();
+		Rocket::Core::Container::vector< int >::Type& indices = center_geometry.GetIndices();
 
 		vertices.resize(4);
 		indices.resize(6);
@@ -263,8 +264,8 @@ void ElementProgressBar::GenerateGeometry()
 
 	// Generate center part geometry.
 	{
-		std::vector< Rocket::Core::Vertex >& vertices = end_geometry.GetVertices();
-		std::vector< int >& indices = end_geometry.GetIndices();
+        Rocket::Core::Container::vector< Rocket::Core::Vertex >::Type& vertices = end_geometry.GetVertices();
+		Rocket::Core::Container::vector< int >::Type& indices = end_geometry.GetIndices();
 
 		vertices.resize(4);
 		indices.resize(6);
