@@ -474,6 +474,8 @@ static bool BuildToken(WString& token, const word*& token_begin, const word* str
 					character = '>';
 				else if (ucs2_escape_code == "amp")
 					character = '&';
+				else if (ucs2_escape_code == "quot")
+					character = '"';
 				else if (ucs2_escape_code == "nbsp")
 				{
 					character = ' ';

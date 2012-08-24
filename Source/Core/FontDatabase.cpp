@@ -89,7 +89,6 @@ void FontDatabase::Shutdown()
 	}
 }
 
-
 // Loads a new font face.
 bool FontDatabase::LoadFontFace(const String& file_name)
 {
