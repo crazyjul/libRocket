@@ -200,7 +200,16 @@ if(BUILD_CONTRIB)
                             ${Contrib${library}_PUB_HDR_FILES}
         )
 
-        set_target_properties(${NAME} PROPERTIES PREFIX "")
+        set_target_properties(${NAME} PROPERTIES
+						   VERSION ${PROJECT_VERSION}
+						   SOVERSION ${LIBROCKET_VERSION_MAJOR}
+						   )
+						   
+		if(APPLE)
+			set_target_properties(${NAME} PROPERTIES
+						OSX_ARCHITECTURES "i386;x86_64;"
+		)
+    endif()
 
         install(TARGETS ${NAME}
                 LIBRARY DESTINATION lib
@@ -212,6 +221,8 @@ endif()
 
 
 if(DISABLE_RTTI)
+    set(ROCKET_SUPPORTS_RTTI false)
+
     if( CMAKE_COMPILER_IS_GNUCXX ) 
 		add_definitions( -fno-rtti -fno-exceptions ) 
     elseif( MSVC ) 
@@ -226,7 +237,11 @@ if(DISABLE_RTTI)
 			message(STATUS "CMAKE_CXX_FLAGS matches /EHsc at end of string replaced...")
 		endif()
     endif() 
+else()
+    set(ROCKET_SUPPORTS_RTTI true)
 endif()
+
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/Config.h.in ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/Config.h)
 
 #===================================
 # Link libraries ===================

@@ -485,6 +485,8 @@ public:
 	/// @param[in] The element to remove.
 	/// @returns True if the element was found and removed.
 	bool RemoveChild(Element* element);
+	/// Remove all children elements from this element.
+	void RemoveAllChildren();
 	/// Returns whether or not this element has any DOM children.
 	/// @return True if the element has at least one DOM child, false otherwise.
 	bool HasChildNodes() const;
