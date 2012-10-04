@@ -223,12 +223,12 @@ Core::Element* ElementTabSet::GetChildByTag(const Rocket::Core::String& tag)
 	return element;
 }
 
-void ElementTabSet::OnAttach(Core::Element * ROCKET_UNUSED(element))
+void ElementTabSet::OnAttach(Core::Element * element)
 {
 	AddReference();
 }
 
-void ElementTabSet::OnDetach(Core::Element * ROCKET_UNUSED(element))
+void ElementTabSet::OnDetach(Core::Element * element)
 {
 	RemoveReference();
 }

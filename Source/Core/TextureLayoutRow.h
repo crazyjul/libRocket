@@ -29,6 +29,7 @@
 #define TEXTURELAYOUTROW_H
 
 #include "TextureLayoutRectangle.h"
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
