@@ -30,7 +30,6 @@
 
 #include "TextureLayoutRectangle.h"
 #include "TextureLayoutTexture.h"
-#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {

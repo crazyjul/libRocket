@@ -29,7 +29,6 @@
 #define ROCKETCOREFONTFACE_H
 #include <Rocket/Core/Font.h>
 #include "BM_Font.h"
-#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {

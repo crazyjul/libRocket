@@ -429,13 +429,13 @@ void ElementDataGridRow::RemoveChildren(int first_row_removed, int num_rows_remo
 
 void ElementDataGridRow::ChangeChildren(int first_row_changed, int num_rows_changed)
 {
-    for (int i = first_row_changed; i < first_row_changed + num_rows_changed; i++)
-        children[i]->DirtyCells();
+	for (int i = first_row_changed; i < first_row_changed + num_rows_changed; i++)
+		children[i]->DirtyCells();
 
-    Rocket::Core::Dictionary parameters;
-    parameters.Set("first_row_changed", GetChildTableRelativeIndex(first_row_changed));
-    parameters.Set("num_rows_changed", num_rows_changed);
-    parent_grid->DispatchEvent("rowchange", parameters);
+	Rocket::Core::Dictionary parameters;
+	parameters.Set("first_row_changed", GetChildTableRelativeIndex(first_row_changed));
+	parameters.Set("num_rows_changed", num_rows_changed);
+	parent_grid->DispatchEvent("rowchange", parameters);
 }
 
 // Returns the number of rows under this row (children, grandchildren, etc)

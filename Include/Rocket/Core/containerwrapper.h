@@ -13,7 +13,6 @@
    #include <queue>
    #include <stack>
    #include <iterator>
-   #include <algorithm>
 
    namespace Rocket {
    namespace Core {

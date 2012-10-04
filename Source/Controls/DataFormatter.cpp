@@ -25,7 +25,6 @@
  *
  */
 
-#include <Rocket/Core/ContainerWrapper.h>
 #include <Rocket/Controls/DataFormatter.h>
 
 namespace Rocket {

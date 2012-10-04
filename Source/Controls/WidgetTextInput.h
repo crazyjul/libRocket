@@ -32,7 +32,6 @@
 #include <Rocket/Core/Geometry.h>
 #include <Rocket/Core/WString.h>
 #include <Rocket/Core/Vertex.h>
-#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
