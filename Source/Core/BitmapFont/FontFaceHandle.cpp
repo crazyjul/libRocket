@@ -292,14 +292,13 @@ void FontFaceHandle::OnReferenceDeactivate()
 void FontFaceHandle::GenerateMetrics(BM_Font *bm_face)
 {
 	line_height = bm_face->CommonCharactersInfo.LineHeight;
-	baseline = bm_face->CommonCharactersInfo.BaseLine;
+	baseline = line_height - bm_face->CommonCharactersInfo.BaseLine;
 
 	underline_position = (float)line_height - bm_face->CommonCharactersInfo.BaseLine;//FT_MulFix(ft_face->underline_position, ft_face->size->metrics.y_scale) / float(1 << 6);
 	/*underline_thickness = FT_MulFix(ft_face->underline_thickness, ft_face->size->metrics.y_scale) / float(1 << 6);
 	underline_thickness = Math::Max(underline_thickness, 1.0f);
 */
 
-	baseline += int( underline_position / 1.5f );
 	underline_thickness = 1.0f;
 	average_advance = 0;
 	for (FontGlyphMap::iterator i = glyphs.begin(); i != glyphs.end(); ++i)
