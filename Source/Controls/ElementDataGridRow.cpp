@@ -37,6 +37,8 @@ namespace Controls {
 
 const float MAX_UPDATE_TIME = 0.01f;
 
+ROCKET_RTTI_Implement( ElementDataGridRow )
+
 ElementDataGridRow::ElementDataGridRow(const Rocket::Core::String& tag) : Core::Element(tag)
 {
 	parent_grid = NULL;

@@ -43,6 +43,8 @@ namespace Core {
 static bool BuildToken(WString& token, const word*& token_begin, const word* string_end, bool first_token, bool collapse_white_space, bool break_at_endline, int text_transformation);
 static bool LastToken(const word* token_begin, const word* string_end, bool collapse_white_space, bool break_at_endline);
 
+ROCKET_RTTI_Implement( ElementTextDefault )
+
 ElementTextDefault::ElementTextDefault(const String& tag) : ElementText(tag), colour(255, 255, 255), decoration(this)
 {
 	dirty_layout_on_change = true;

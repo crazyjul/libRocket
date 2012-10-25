@@ -31,6 +31,8 @@
 namespace Rocket {
 namespace Debugger {
 
+ROCKET_RTTI_Implement( ElementContextHook )
+
 ElementContextHook::ElementContextHook(const Core::String& tag) : Core::ElementDocument(tag)
 {
 	debugger = NULL;

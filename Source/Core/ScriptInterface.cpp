@@ -25,44 +25,13 @@
  *
  */
 
-#include "ElementTextSelection.h"
-#include "WidgetTextInput.h"
+#include "precompiled.h"
+#include <Rocket/Core/ScriptInterface.h>
 
 namespace Rocket {
-namespace Controls {
+namespace Core {
 
-ROCKET_RTTI_Implement( ElementTextSelection )
-
-ElementTextSelection::ElementTextSelection(const Rocket::Core::String& tag) : Rocket::Core::Element(tag)
-{
-	widget = NULL;
-}
-
-ElementTextSelection::~ElementTextSelection()
-{
-}
-
-// Set the widget that this selection element was created for.
-void ElementTextSelection::SetWidget(WidgetTextInput* _widget)
-{
-	widget = _widget;
-}
-
-// Processes 'color' and 'background-color' property changes.
-void ElementTextSelection::OnPropertyChange(const Rocket::Core::PropertyNameList& changed_properties)
-{
-	Element::OnPropertyChange(changed_properties);
-
-	if (widget == NULL)
-		return;
-
-	// Check for a colour change.
-	if (changed_properties.find("color") != changed_properties.end() ||
-		changed_properties.find("background-color") != changed_properties.end())
-	{
-		widget->UpdateSelectionColours();
-	}
-}
+ROCKET_RTTI_Implement( ScriptInterface )
 
 }
 }

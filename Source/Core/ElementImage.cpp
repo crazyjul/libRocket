@@ -34,6 +34,8 @@
 namespace Rocket {
 namespace Core {
 
+ROCKET_RTTI_Implement( ElementImage )
+
 // Constructs a new ElementImage.
 ElementImage::ElementImage(const String& tag) : Element(tag), dimensions(-1, -1), geometry(this)
 {

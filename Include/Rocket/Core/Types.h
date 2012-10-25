@@ -96,16 +96,19 @@ typedef Dictionary ElementAttributes;
 #if !ROCKET_SUPPORT_RTTI
 
 #define ROCKET_RTTI_Define() \
-	static void * GetStaticClassIdentifier(){ static int dummy; return &dummy; } \
+	static void * GetStaticClassIdentifier(); \
 	virtual void * GetClassIdentifier() const { return GetStaticClassIdentifier(); } \
 	virtual bool IsExactClass(void * type_identifier) const { return type_identifier == GetStaticClassIdentifier(); } \
 	virtual bool IsClass(void * type_identifier) const { return type_identifier == GetStaticClassIdentifier(); }
 
 #define ROCKET_RTTI_DefineWithParent( _PARENT_ ) \
-	static void * GetStaticClassIdentifier(){ static int dummy; return &dummy; } \
+	static void * GetStaticClassIdentifier(); \
 	virtual void * GetClassIdentifier() const { return GetStaticClassIdentifier(); } \
 	virtual bool IsExactClass(void * type_identifier) const { return type_identifier == GetStaticClassIdentifier(); } \
 	virtual bool IsClass(void * type_identifier) const { return type_identifier == GetStaticClassIdentifier() || _PARENT_::IsClass(type_identifier);}
+
+#define ROCKET_RTTI_Implement( _CLASS_ ) \
+	void * _CLASS_::GetStaticClassIdentifier() { static int dummy; return &dummy; }
 
 template<class T>
 struct make_non_const;
@@ -134,6 +137,7 @@ derived rocket_dynamic_cast(base base_instance)
 
 #define ROCKET_RTTI_Define()
 #define ROCKET_RTTI_DefineWithParent(_PARENT_)
+#define ROCKET_RTTI_Implement( _CLASS_ )
 
 #define rocket_dynamic_cast dynamic_cast
 

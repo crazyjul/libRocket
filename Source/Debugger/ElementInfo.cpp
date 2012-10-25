@@ -36,6 +36,8 @@
 namespace Rocket {
 namespace Debugger {
 
+ROCKET_RTTI_Implement( ElementInfo )
+
 ElementInfo::ElementInfo(const Core::String& tag) : Core::ElementDocument(tag)
 {
 	hover_element = NULL;

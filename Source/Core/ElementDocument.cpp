@@ -42,6 +42,8 @@
 namespace Rocket {
 namespace Core {
 
+ROCKET_RTTI_Implement( ElementDocument )
+
 ElementDocument::ElementDocument(const String& tag) : Element(tag)
 {
 	style_sheet = NULL;

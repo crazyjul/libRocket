@@ -33,6 +33,8 @@
 namespace Rocket {
 namespace Controls {
 
+ROCKET_RTTI_Implement( ElementForm )
+
 // Constructs a new ElementForm. This should not be called directly; use the Factory instead.
 ElementForm::ElementForm(const Rocket::Core::String& tag) : Core::Element(tag)
 {

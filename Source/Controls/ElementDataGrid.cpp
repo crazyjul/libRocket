@@ -39,6 +39,8 @@
 namespace Rocket {
 namespace Controls {
 
+ROCKET_RTTI_Implement( ElementDataGrid )
+
 ElementDataGrid::ElementDataGrid(const Rocket::Core::String& tag) : Core::Element(tag)
 {
 	Rocket::Core::XMLAttributes attributes;
