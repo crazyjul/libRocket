@@ -197,15 +197,11 @@ void* FontProvider::LoadFace(const String& file_name)
 	file_interface->Close(handle);
 
 	StreamMemory* stream = new StreamMemory( buffer, length );
-	stream->SetSourceURL( file_name );
 
 	parser.Parse( stream );
 
-	URL
-		file_url = file_name;
-
-	bm_face->Face.Source = file_url.GetFileName();
-	bm_face->Face.Directory = file_url.GetPath();
+	bm_face->Face.Source = file_name.Substring( file_name.RFind( "/" ) + 1, file_name.RFind( "." ) - file_name.RFind( "/" ) - 1 );
+	bm_face->Face.Directory = file_name.Substring( 0, file_name.RFind( "/" ) + 1 );
 
 	return bm_face;
 }
