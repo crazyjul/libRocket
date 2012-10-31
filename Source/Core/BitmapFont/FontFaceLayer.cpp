@@ -103,7 +103,7 @@ bool FontFaceLayer::Initialise(const Rocket::Core::FontFaceHandle* _handle, Font
 		}
 
 		Texture texture;
-		if (!texture.Load( bm_font_face_handle->GetTextureBaseName() + "_0.tga", bm_font_face_handle->GetTextureDirectory() ) )
+		if (!texture.Load( bm_font_face_handle->GetTextureFullName(), bm_font_face_handle->GetTextureDirectory() ) )
 			return false;
 		textures.push_back(texture); 
 	}

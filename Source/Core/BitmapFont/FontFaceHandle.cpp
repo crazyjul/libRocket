@@ -66,7 +66,7 @@ FontFaceHandle::~FontFaceHandle()
 bool FontFaceHandle::Initialise(BM_Font *bm_face, const String& _charset, int _size)
 {
 	size = _size;
-	TextureBaseName = bm_face->Face.Source;
+	TextureFullName = bm_face->PagesInfo[ 0 ].FileName;
 	TextureDirectory = bm_face->Face.Directory;
 	TextureSize = Vector2i( bm_face->CommonCharactersInfo.ScaleWidth, bm_face->CommonCharactersInfo.ScaleHeight );
 	raw_charset = _charset;

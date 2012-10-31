@@ -93,9 +93,9 @@ public:
 	/// @param[in] colour The colour to draw the line in.
 	void GenerateLine(Geometry* geometry, const Vector2f& position, int width, Font::Line height, const Colourb& colour) const;
 
-    const String & GetTextureBaseName() const
+    const String & GetTextureFullName() const
     {
-        return TextureBaseName;
+        return TextureFullName;
     }
 
     const String & GetTextureDirectory() const
@@ -124,7 +124,7 @@ private:
     // Generates (or shares) a layer derived from a font effect.
     virtual FontFaceLayer* GenerateLayer(FontEffect* font_effect);
 
-    String TextureBaseName;
+    String TextureFullName;
     String TextureDirectory;
     Vector2i TextureSize;
 };
