@@ -139,6 +139,10 @@ public:
 	/// @param[in] copy Variant to share data.
 	Variant& operator=(const Variant& copy);
 
+	/// Compare two variant
+	bool operator==(const Variant&other) const;
+	bool operator!=(const Variant&other) const{ return !operator==(other); }
+
 private:
 	
 #ifdef ROCKET_ARCH_64

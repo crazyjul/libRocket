@@ -628,9 +628,14 @@ void Element::SetAttributes(const ElementAttributes* _attributes)
 	AttributeNameList changed_attributes;
 
 	while (_attributes->Iterate(index, key, value))
-	{		
-		changed_attributes.insert(key);
-		attributes.Set(key, *value);
+	{
+		Variant* iterator;
+
+		if((iterator=attributes.Get(key))==0 || (*iterator)!=(*value) )
+		{
+			changed_attributes.insert(key);
+			attributes.Set(key, *value);
+		}
 	}
 
 	OnAttributeChange(changed_attributes);
@@ -1179,7 +1184,6 @@ bool Element::RemoveChild(Element* child)
 // Removes all children (except domain one)
 void Element::RemoveAllChildren()
 {
-	size_t child_index = 0;
 	bool element_removed = GetNumChildren() != 0;
 	Context* context = GetContext();
 

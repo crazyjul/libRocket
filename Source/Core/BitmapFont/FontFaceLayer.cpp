@@ -83,7 +83,6 @@ bool FontFaceLayer::Initialise(const Rocket::Core::FontFaceHandle* _handle, Font
 			const FontGlyph& glyph = i->second;
 
 			Vector2i glyph_origin( glyph.bitmap_dimensions.x, glyph.bitmap_dimensions.y ); // position in texture
-			Vector2i glyph_dimension = glyph.dimensions; // size of char
 
 			Character character;
             character.origin = Vector2f((float) (glyph.bearing.x), (float) (glyph.bearing.y) - bm_font_face_handle->GetLineHeight() + bm_font_face_handle->GetBaseline() );
