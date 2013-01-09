@@ -364,6 +364,10 @@ void ElementDataGridRow::AddChildren(int first_row_added, int num_rows_added)
 		first_row_added = (int)children.size();
 	}
 
+	// prevent relayout of the document while adding rows
+	Core::ElementDocument* document = parent_grid->GetOwnerDocument();
+	document->LockLayout(true);
+
 	// We need to make a row for each new child, then pass through the cell
 	// information and the child's data source (if one exists.)
 	if (data_source)
@@ -394,6 +398,8 @@ void ElementDataGridRow::AddChildren(int first_row_added, int num_rows_added)
 		}
 	}
 
+	document->LockLayout(false);
+
 	RefreshChildDependentCells();
 	DirtyRow();
 
@@ -410,6 +416,10 @@ void ElementDataGridRow::RemoveChildren(int first_row_removed, int num_rows_remo
 		num_rows_removed = (int)children.size() - first_row_removed;
 	}
 
+	// prevent relayout of the document while removing rows
+	Core::ElementDocument* document = parent_grid->GetOwnerDocument();
+	document->LockLayout(true);
+
 	for (int i = num_rows_removed - 1; i >= 0; i--)
 	{
 		children[first_row_removed + i]->RemoveChildren();
@@ -422,6 +432,8 @@ void ElementDataGridRow::RemoveChildren(int first_row_removed, int num_rows_remo
 		children[i]->SetChildIndex(i);
 		children[i]->DirtyTableRelativeIndex();
 	}
+
+	document->LockLayout(false);
 
 	Rocket::Core::Dictionary parameters;
 	parameters.Set("first_row_removed", GetChildTableRelativeIndex(first_row_removed));
