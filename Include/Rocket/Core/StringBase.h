@@ -161,8 +161,8 @@ public:
 	/// Create a lowercase version of the string
 	/// @returns The lower case representation of the string
 	StringBase<T> ToLower() const;
-	/// Create a lowercase version of the string
-	/// @returns The lower case representation of the string
+	/// Create a uppercase version of the string
+	/// @returns The upper case representation of the string
 	StringBase<T> ToUpper() const;
 
 	inline bool operator==(const T* compare) const;
