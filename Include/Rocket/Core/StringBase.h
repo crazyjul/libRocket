@@ -171,6 +171,7 @@ public:
 	inline bool operator!=(const T* compare) const;
 	inline bool operator!=(const StringBase<T>& compare) const;
 
+	inline bool operator<(const T* compare) const;
 	inline bool operator<(const StringBase<T>& compare) const;
 
 	inline StringBase<T>& operator=(const T* assign);
