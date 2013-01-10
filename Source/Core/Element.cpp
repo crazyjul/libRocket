@@ -295,7 +295,7 @@ String Element::GetAddress(bool include_pseudo_classes) const
 // Sets the position of this element, as a two-dimensional offset from another element.
 void Element::SetOffset(const Vector2f& offset, Element* _offset_parent, bool _offset_fixed)
 {
-	_offset_fixed |= GetProperty< int >(POSITION) == POSITION_FIXED;
+	_offset_fixed |= GetPosition() == POSITION_FIXED;
 
 	// If our offset has definitely changed, or any of our parenting has, then these are set and
 	// updated based on our left / right / top / bottom properties.
@@ -529,6 +529,82 @@ const Property* Element::GetLocalProperty(const String& name)
 float Element::ResolveProperty(const String& name, float base_value)
 {
 	return style->ResolveProperty(name, base_value);
+}
+
+// Resolves one of this element's style.
+float Element::ResolveProperty(const Property *property, float base_value)
+{
+	return style->ResolveProperty(property, base_value);
+}
+
+void Element::GetBorderWidthProperties(const Property **border_top, const Property **border_bottom, const Property **border_left, const Property **bottom_right)
+{
+	style->GetBorderWidthProperties(border_top, border_bottom, border_left, bottom_right);
+}
+
+void Element::GetMarginProperties(const Property **margin_top, const Property **margin_bottom, const Property **margin_left, const Property **margin_right)
+{
+	style->GetMarginProperties(margin_top, margin_bottom, margin_left, margin_right);
+}
+
+void Element::GetPaddingProperties(const Property **padding_top, const Property **padding_bottom, const Property **padding_left, const Property **padding_right)
+{
+	style->GetPaddingProperties(padding_top, padding_bottom, padding_left, padding_right);
+}
+
+void Element::GetDimensionProperties(const Property **width, const Property **height)
+{
+	style->GetDimensionProperties(width, height);
+}
+
+void Element::GetLocalDimensionProperties(const Property **width, const Property **height)
+{
+	style->GetLocalDimensionProperties(width, height);
+}
+
+void Element::GetOverflow(int *overflow_x, int *overflow_y)
+{
+	style->GetOverflow(overflow_x, overflow_y);
+}
+
+int Element::GetPosition()
+{
+	return style->GetPosition();
+}
+
+int Element::GetFloat()
+{
+	return style->GetFloat();
+}
+
+int Element::GetDisplay()
+{
+	return style->GetDisplay();
+}
+
+int Element::GetWhitespace()
+{
+	return style->GetWhitespace();
+}
+
+const Property *Element::GetLineHeightProperty()
+{
+	return style->GetLineHeightProperty();
+}
+
+int Element::GetTextAlign()
+{
+	return style->GetTextAlign();
+}
+
+int Element::GetTextTransform()
+{
+	return style->GetTextTransform();
+}
+
+const Property *Element::GetVerticalAlignProperty()
+{
+	return style->GetVerticalAlignProperty();
 }
 
 // Iterates over the properties defined on this element.
@@ -1026,6 +1102,8 @@ void Element::ScrollIntoView(bool align_with_top)
 // Appends a child to this element
 void Element::AppendChild(Element* child, bool dom_element)
 {
+	LockLayout(true);
+
 	child->AddReference();
 	child->SetParent(this);
 	if (dom_element)
@@ -1045,6 +1123,8 @@ void Element::AppendChild(Element* child, bool dom_element)
 
 	if (dom_element)
 		DirtyLayout();
+
+	LockLayout(false);
 }
 
 // Adds a child to this element, directly after the adjacent element. Inherits
@@ -1070,6 +1150,8 @@ void Element::InsertBefore(Element* child, Element* adjacent_element)
 
 	if (found_child)
 	{
+		LockLayout(true);
+
 		child->AddReference();
 		child->SetParent(this);
 
@@ -1086,6 +1168,8 @@ void Element::InsertBefore(Element* child, Element* adjacent_element)
 		child->OnChildAdd(child);
 		DirtyStackingContext();
 		DirtyStructure();
+
+		LockLayout(false);
 	}
 	else
 	{
@@ -1111,12 +1195,16 @@ bool Element::ReplaceChild(Element* inserted_element, Element* replaced_element)
 		return false;
 	}
 
+	LockLayout(true);
+
 	children.insert(insertion_point, inserted_element);
 	RemoveChild(replaced_element);
 
 	inserted_element->GetStyle()->DirtyDefinition();
 	inserted_element->GetStyle()->DirtyProperties();
 	inserted_element->OnChildAdd(inserted_element);
+
+	LockLayout(false);
 
 	return true;
 }
@@ -1131,6 +1219,8 @@ bool Element::RemoveChild(Element* child)
 		// Add the element to the delete list
 		if ((*itr) == child)
 		{
+			LockLayout(true);
+
 			// Inform the context of the element's pending removal (if we have a valid context).
 			Context* context = GetContext();
 			if (context)
@@ -1171,6 +1261,8 @@ bool Element::RemoveChild(Element* child)
 			DirtyLayout();
 			DirtyStackingContext();
 			DirtyStructure();
+
+			LockLayout(false);
 
 			return true;
 		}
@@ -1437,8 +1529,8 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 	if (all_dirty || changed_properties.find(VISIBILITY) != changed_properties.end() ||
 		changed_properties.find(DISPLAY) != changed_properties.end())
 	{
-		bool new_visibility = GetProperty< int >(VISIBILITY) == VISIBILITY_VISIBLE &&
-							  GetProperty< int >(DISPLAY) != DISPLAY_NONE;
+		bool new_visibility = GetDisplay() != DISPLAY_NONE &&
+							  GetProperty< int >(VISIBILITY) == VISIBILITY_VISIBLE;
 
 		if (visible != new_visibility)
 		{
@@ -1619,6 +1711,14 @@ void Element::DirtyLayout()
 		document->DirtyLayout();
 }
 
+/// Increment/Decrement the layout lock
+void Element::LockLayout(bool lock)
+{
+	Element* document = GetOwnerDocument();
+	if (document != NULL)
+		document->LockLayout(lock);
+}
+
 // Forces a re-layout of this element, and any other children required.
 bool Element::IsLayoutDirty()
 {
@@ -1776,7 +1876,7 @@ void Element::DirtyOffset()
 
 void Element::UpdateOffset()
 {
-	int position_property = GetProperty< int >(POSITION);
+	int position_property = GetPosition();
 	if (position_property == POSITION_ABSOLUTE ||
 		position_property == POSITION_FIXED)
 	{
@@ -1869,11 +1969,11 @@ void Element::BuildStackingContext(ElementList* new_stacking_context)
 		Container::pair< Element*, float >::Type ordered_child;
 		ordered_child.first = child;
 
-		if (child->GetProperty< int >(POSITION) != POSITION_STATIC)
+		if (child->GetPosition() != POSITION_STATIC)
 			ordered_child.second = 3;
-		else if (child->GetProperty< int >(FLOAT) != FLOAT_NONE)
+		else if (child->GetFloat() != FLOAT_NONE)
 			ordered_child.second = 1;
-		else if (child->GetProperty< int >(DISPLAY) == DISPLAY_BLOCK)
+		else if (child->GetDisplay() == DISPLAY_BLOCK)
 			ordered_child.second = 0;
 		else
 			ordered_child.second = 2;
