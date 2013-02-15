@@ -123,7 +123,18 @@ namespace BitmapFont {
 
         int BM_Helper_GetCharacterTableIndex( int unicode_code )
         {
+            if ( !BM_Helper_IsUnicodeCodeInsideFontBoundaries( unicode_code ) )
+                return -1;
+
             return BinarySearch( unicode_code, 0, CommonCharactersInfo.CharacterCount );
+        }
+
+        bool BM_Helper_IsUnicodeCodeInsideFontBoundaries( int unicode_code )
+        {
+            if ( CharactersInfo[ CommonCharactersInfo.CharacterCount - 1 ].Id < unicode_code || unicode_code < 0 )
+                return false;
+
+            return true;
         }
 
         int BM_Helper_GetXKerning( int left_uni_id, int right_uni_id )

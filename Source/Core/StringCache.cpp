@@ -83,6 +83,7 @@ const String FONT_CHARSET = "font-charset";
 const String FONT_STYLE = "font-style";
 const String FONT_WEIGHT = "font-weight";
 const String FONT_SIZE = "font-size";
+const String FONT_DEFAULT_CHARACTER = "font-default-character";
 const String FONT = "font";
 const String TEXT_ALIGN = "text-align";
 const String TEXT_DECORATION = "text-decoration";

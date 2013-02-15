@@ -86,6 +86,7 @@ extern const String FONT_CHARSET;
 extern const String FONT_STYLE;
 extern const String FONT_WEIGHT;
 extern const String FONT_SIZE;
+extern const String FONT_DEFAULT_CHARACTER;
 extern const String FONT;
 extern const String TEXT_ALIGN;
 extern const String TEXT_DECORATION;

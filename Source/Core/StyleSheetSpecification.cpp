@@ -244,7 +244,8 @@ void StyleSheetSpecification::RegisterDefaultProperties()
 	RegisterProperty(FONT_STYLE, "normal", true, true).AddParser("keyword", "normal, italic");
 	RegisterProperty(FONT_WEIGHT, "normal", true, true).AddParser("keyword", "normal, bold");
 	RegisterProperty(FONT_SIZE, "12", true, true).AddParser("number");
-	RegisterShorthand(FONT, "font-style, font-weight, font-size, font-family, font-charset");
+	RegisterProperty(FONT_DEFAULT_CHARACTER, "0", true, false).AddParser("number");
+	RegisterShorthand(FONT, "font-style, font-weight, font-size, font-family, font-charset, font-default-character");
 
 	RegisterProperty(TEXT_ALIGN, LEFT, true, true).AddParser("keyword", "left, right, center, justify");
 	RegisterProperty(TEXT_DECORATION, "none", true, false).AddParser("keyword", "none, underline"/*"none, underline, overline, line-through"*/);

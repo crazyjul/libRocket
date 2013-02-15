@@ -106,7 +106,7 @@ const FontGlyphMap& FontFaceHandle::GetGlyphs() const
 }
 
 // Returns the width a string will take up if rendered with this handle.
-int FontFaceHandle::GetStringWidth(const WString& string, word prior_character) const
+int FontFaceHandle::GetStringWidth(const WString& string, word prior_character, word default_character) const
 {
 	int width = 0;
 
@@ -116,7 +116,24 @@ int FontFaceHandle::GetStringWidth(const WString& string, word prior_character) 
 
 		FontGlyphMap::const_iterator iterator = glyphs.find(character_code);
 		if (iterator == glyphs.end())
-			continue;
+		{
+			if (default_character >= 32)
+			{
+				iterator = glyphs.find(default_character);
+				if (iterator == glyphs.end())
+				{
+					continue;
+				}
+				else
+				{
+					character_code = default_character;
+				}
+			}
+			else
+			{
+				continue;
+			}
+		}
 
 		// Adjust the cursor for the kerning between this character and the previous one.
 		if (prior_character != 0)
@@ -141,7 +158,7 @@ bool FontFaceHandle::GenerateLayerTexture(const byte*& texture_data, Vector2i& t
 }
 
 // Generates the geometry required to render a single line of text.
-int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string, const Vector2f& position, const Colourb& colour, int layer_configuration_index) const
+int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string, const Vector2f& position, const Colourb& colour, int layer_configuration_index, word default_character) const
 {
 	int geometry_index = 0;
 	int line_width = 0;
@@ -174,21 +191,36 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 
 		const word* string_iterator = string.CString();
 		const word* string_end = string.CString() + string.Length();
+		word final_character;
 
 		for (; string_iterator != string_end; string_iterator++)
 		{
+			final_character = *string_iterator;
 			FontGlyphMap::const_iterator iterator = glyphs.find(*string_iterator);
 			if (iterator == glyphs.end())
-				continue;
+			{
+				if (default_character >= 32)
+				{
+					iterator = glyphs.find(default_character);
+					if (iterator == glyphs.end())
+					{
+						continue;
+					}
+					else
+					{
+						final_character = default_character;
+					}
+				}
+			}
 
 			// Adjust the cursor for the kerning between this character and the previous one.
 			if (prior_character != 0)
-				line_width += GetKerning(prior_character, *string_iterator);
+				line_width += GetKerning(prior_character, final_character);
 
-			layer->GenerateGeometry(&geometry[geometry_index], *string_iterator, Vector2f(position.x + line_width, position.y), layer_colour);
+			layer->GenerateGeometry(&geometry[geometry_index], final_character, Vector2f(position.x + line_width, position.y), layer_colour);
 
 			line_width += iterator->second.advance;
-			prior_character = *string_iterator;
+			prior_character = final_character;
 		}
 
 		geometry_index += layer->GetNumTextures();

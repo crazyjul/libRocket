@@ -169,7 +169,7 @@ int ElementUtilities::GetStringWidth(Element* element, const WString& string)
 	if (font_face_handle == NULL)
 		return 0;
 
-	return font_face_handle->GetStringWidth(string);
+	return font_face_handle->GetStringWidth(string, 0, element->GetProperty<int>(FONT_DEFAULT_CHARACTER));
 }
 
 void ElementUtilities::BindEventAttributes(Element* element)
