@@ -60,6 +60,9 @@ public:
 	/// If any reference countable objects are still allocated, this function will write a leak report to the log.
 	static void DumpLeakReport();
 
+    void * operator new(size_t size);
+    void operator delete(void * ptr,size_t size);
+
 protected:		
 	/// A hook method called when the reference count climbs from 0.
 	virtual void OnReferenceActivate();
@@ -67,6 +70,10 @@ protected:
 	virtual void OnReferenceDeactivate();
 
 private:
+
+    static void * Allocate(size_t size);
+    static void Deallocate(void * ptr,size_t size);
+
 	// The number of references against this object.
 	int reference_count;
 };
