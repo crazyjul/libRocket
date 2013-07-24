@@ -42,7 +42,7 @@ RenderInterface::~RenderInterface()
 }
 
 // Called by Rocket when it wants to compile geometry it believes will be static for the forseeable future.
-CompiledGeometryHandle RenderInterface::CompileGeometry(Vertex* ROCKET_UNUSED(vertices), int ROCKET_UNUSED(num_vertices), int* ROCKET_UNUSED(indices), int ROCKET_UNUSED(num_indices), TextureHandle ROCKET_UNUSED(texture))
+CompiledGeometryHandle RenderInterface::CompileGeometry(Vertex* ROCKET_UNUSED(vertices), int ROCKET_UNUSED(num_vertices), int ROCKET_UNUSED(num_indices), TextureHandle ROCKET_UNUSED(texture))
 {
 	return NULL;
 }
