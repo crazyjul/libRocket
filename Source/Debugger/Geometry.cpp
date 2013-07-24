@@ -51,14 +51,13 @@ void Geometry::RenderOutline(const Core::Vector2f& origin, const Core::Vector2f&
 	Core::RenderInterface* render_interface = context->GetRenderInterface();
 
 	Core::Vertex vertices[4 * 4];
-	int indices[6 * 4];
 
-	Core::GeometryUtilities::GenerateQuad(vertices + 0, indices + 0, Core::Vector2f(0, 0), Core::Vector2f(dimensions.x, width), colour, 0);
-	Core::GeometryUtilities::GenerateQuad(vertices + 4, indices + 6, Core::Vector2f(0, dimensions.y - width), Core::Vector2f(dimensions.x, width), colour, 4);
-	Core::GeometryUtilities::GenerateQuad(vertices + 8, indices + 12, Core::Vector2f(0, 0), Core::Vector2f(width, dimensions.y), colour, 8);
-	Core::GeometryUtilities::GenerateQuad(vertices + 12, indices + 18, Core::Vector2f(dimensions.x - width, 0), Core::Vector2f(width, dimensions.y), colour, 12);
+	Core::GeometryUtilities::GenerateQuad(vertices + 0, Core::Vector2f(0, 0), Core::Vector2f(dimensions.x, width), colour, 0);
+	Core::GeometryUtilities::GenerateQuad(vertices + 4, Core::Vector2f(0, dimensions.y - width), Core::Vector2f(dimensions.x, width), colour, 4);
+	Core::GeometryUtilities::GenerateQuad(vertices + 8, Core::Vector2f(0, 0), Core::Vector2f(width, dimensions.y), colour, 8);
+	Core::GeometryUtilities::GenerateQuad(vertices + 12, Core::Vector2f(dimensions.x - width, 0), Core::Vector2f(width, dimensions.y), colour, 12);
 
-	render_interface->RenderGeometry(vertices, 4 * 4, indices, 6 * 4, NULL, origin);
+	render_interface->RenderGeometry(vertices, 4 * 4, 6 * 4, NULL, origin);
 }
 
 // Renders a box.
@@ -70,11 +69,10 @@ void Geometry::RenderBox(const Core::Vector2f& origin, const Core::Vector2f& dim
 	Core::RenderInterface* render_interface = context->GetRenderInterface();
 
 	Core::Vertex vertices[4];
-	int indices[6];
 
-	Core::GeometryUtilities::GenerateQuad(vertices, indices, Core::Vector2f(0, 0), Core::Vector2f(dimensions.x, dimensions.y), colour, 0);
+	Core::GeometryUtilities::GenerateQuad(vertices, Core::Vector2f(0, 0), Core::Vector2f(dimensions.x, dimensions.y), colour, 0);
 
-	render_interface->RenderGeometry(vertices, 4, indices, 6, NULL, origin);
+	render_interface->RenderGeometry(vertices, 4, 6, NULL, origin);
 }
 
 // Renders a box with a hole in the middle.
