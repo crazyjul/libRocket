@@ -63,9 +63,21 @@ public:
 	/// Returns the geometry's vertices. If these are written to, Release() should be called to force a recompile.
 	/// @return The geometry's vertex array.
 	Container::vector< Vertex >::Type& GetVertices();
-	/// Returns the geometry's indices. If these are written to, Release() should be called to force a recompile.
-	/// @return The geometry's index array.
-	Container::vector< int >::Type& GetIndices();
+
+    int GetNumIndices() const
+    {
+        return num_indices;
+    }
+
+    void SetNumIndices(const int num)
+    {
+        num_indices = num;
+    }
+
+    void IncreaseNumIndices(const int num)
+    {
+        num_indices += num;
+    }
 
 	/// Gets the geometry's texture.
 	/// @return The geometry's texture.
@@ -85,7 +97,7 @@ private:
 	Element* host_element;
 
 	Container::vector< Vertex >::Type vertices;
-	Container::vector< int >::Type indices;
+    int num_indices;
 	const Texture* texture;
 
 	CompiledGeometryHandle compiled_geometry;

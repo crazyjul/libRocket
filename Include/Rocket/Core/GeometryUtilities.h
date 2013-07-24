@@ -51,7 +51,7 @@ public:
 	/// @param[in] dimensions The dimensions of the quad to generate.
 	/// @param[in] colour The colour to be assigned to each of the quad's vertices.
 	/// @param[in] index_offset The offset to be added to the generated indices; this should be the number of vertices already in the array.
-	static void GenerateQuad(Vertex* vertices, int* indices, const Vector2f& origin, const Vector2f& dimensions, const Colourb& colour, int index_offset = 0);
+	static void GenerateQuad(Vertex* vertices, const Vector2f& origin, const Vector2f& dimensions, const Colourb& colour, int index_offset = 0);
 	/// Generates a quad from a position, size, colour and texture coordinates.
 	/// @param[out] vertices An array of at least four vertices that the generated vertex data will be written into.
 	/// @param[out] indices An array of at least six indices that the generated index data will be written into.
@@ -61,7 +61,7 @@ public:
 	/// @param[in] top_left_texcoord The texture coordinates at the top-left of the quad.
 	/// @param[in] bottom_right_texcoord The texture coordinates at the bottom-right of the quad.
 	/// @param[in] index_offset The offset to be added to the generated indices; this should be the number of vertices already in the array.
-	static void GenerateQuad(Vertex* vertices, int* indices, const Vector2f& origin, const Vector2f& dimensions, const Colourb& colour, const Vector2f& top_left_texcoord, const Vector2f& bottom_right_texcoord, int index_offset = 0);
+	static void GenerateQuad(Vertex* vertices, const Vector2f& origin, const Vector2f& dimensions, const Colourb& colour, const Vector2f& top_left_texcoord, const Vector2f& bottom_right_texcoord, int index_offset = 0);
 
 private:
 	GeometryUtilities();

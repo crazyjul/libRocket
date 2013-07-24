@@ -48,6 +48,7 @@ Geometry::Geometry(Element* _host_element)
 	fixed_texcoords = false;
 	compile_attempted = false;
 	compiled_geometry = NULL;
+    num_indices = 0;
 }
 
 Geometry::Geometry(Context* _host_context)
@@ -62,6 +63,7 @@ Geometry::Geometry(Context* _host_context)
 	fixed_texcoords = false;
 	compile_attempted = false;
 	compiled_geometry = NULL;
+    num_indices = 0;
 }
 
 Geometry::~Geometry()
@@ -101,8 +103,7 @@ void Geometry::Render(const Vector2f& translation)
 	// immediate mode.
 	else
 	{
-		if (vertices.empty() ||
-			indices.empty())
+		if (vertices.empty())
 			return;
 
 		if (!compile_attempted)
@@ -128,7 +129,7 @@ void Geometry::Render(const Vector2f& translation)
 			}
 
 			compile_attempted = true;
-			compiled_geometry = render_interface->CompileGeometry(&vertices[0], (int) vertices.size(), &indices[0], (int) indices.size(), texture != NULL ? texture->GetHandle(GetRenderInterface()) : NULL);
+			compiled_geometry = render_interface->CompileGeometry(&vertices[0], (int) vertices.size(), NULL, num_indices, texture != NULL ? texture->GetHandle(GetRenderInterface()) : NULL);
 
 			// If we managed to compile the geometry, we can clear the local copy of vertices and indices and
 			// immediately render the compiled version.
@@ -141,7 +142,7 @@ void Geometry::Render(const Vector2f& translation)
 
 		// Either we've attempted to compile before (and failed), or the compile we just attempted failed; either way,
 		// render the uncompiled version.
-		render_interface->RenderGeometry(&vertices[0], (int) vertices.size(), &indices[0], (int) indices.size(), texture != NULL ? texture->GetHandle(GetRenderInterface()) : NULL, translation);
+		render_interface->RenderGeometry(&vertices[0], (int) vertices.size(), NULL, num_indices, texture != NULL ? texture->GetHandle(GetRenderInterface()) : NULL, translation);
 	}
 }
 
@@ -149,12 +150,6 @@ void Geometry::Render(const Vector2f& translation)
 Container::vector< Vertex >::Type& Geometry::GetVertices()
 {
 	return vertices;
-}
-
-// Returns the geometry's indices. If these are written to, Release() should be called to force a recompile.
-Container::vector< int >::Type& Geometry::GetIndices()
-{
-	return indices;
 }
 
 // Gets the geometry's texture.
@@ -183,7 +178,7 @@ void Geometry::Release(bool clear_buffers)
 	if (clear_buffers)
 	{
 		vertices.clear();
-		indices.clear();
+        num_indices = 0;
 		fixed_texcoords = false;
 	}
 }

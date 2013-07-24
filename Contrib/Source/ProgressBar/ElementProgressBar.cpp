@@ -231,13 +231,10 @@ void ElementProgressBar::GenerateGeometry()
 	// Generate start part geometry.
 	{
         Rocket::Core::Container::vector< Rocket::Core::Vertex >::Type& vertices = start_geometry.GetVertices();
-		Rocket::Core::Container::vector< int >::Type& indices = start_geometry.GetIndices();
-
+        start_geometry.SetNumIndices(6);
 		vertices.resize(4);
-		indices.resize(6);
 
 		Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],
-													  &indices[0],
 													  final_part_position[0],
 													  final_part_size[0],
 													  Core::Colourb(255, 255, 255, 255),
@@ -248,13 +245,11 @@ void ElementProgressBar::GenerateGeometry()
 	// Generate center part geometry.
 	{
         Rocket::Core::Container::vector< Rocket::Core::Vertex >::Type& vertices = center_geometry.GetVertices();
-		Rocket::Core::Container::vector< int >::Type& indices = center_geometry.GetIndices();
+        center_geometry.SetNumIndices(6);
 
 		vertices.resize(4);
-		indices.resize(6);
 
 		Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],
-													  &indices[0],
 													  final_part_position[1],
 													  final_part_size[1],
 													  Core::Colourb(255, 255, 255, 255),
@@ -265,13 +260,11 @@ void ElementProgressBar::GenerateGeometry()
 	// Generate center part geometry.
 	{
         Rocket::Core::Container::vector< Rocket::Core::Vertex >::Type& vertices = end_geometry.GetVertices();
-		Rocket::Core::Container::vector< int >::Type& indices = end_geometry.GetIndices();
+        end_geometry.SetNumIndices(6);
 
 		vertices.resize(4);
-		indices.resize(6);
 
 		Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],
-													  &indices[0],
 													  final_part_position[2],
 													  final_part_size[2],
 													  Core::Colourb(255, 255, 255, 255),

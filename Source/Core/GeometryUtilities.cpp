@@ -40,13 +40,13 @@ GeometryUtilities::~GeometryUtilities()
 }
 
 // Generates a quad from a position, size and colour.
-void GeometryUtilities::GenerateQuad(Vertex* vertices, int* indices, const Vector2f& origin, const Vector2f& dimensions, const Colourb& colour, int index_offset)
+void GeometryUtilities::GenerateQuad(Vertex* vertices, const Vector2f& origin, const Vector2f& dimensions, const Colourb& colour, int index_offset)
 {
-	GenerateQuad(vertices, indices, origin, dimensions, colour, Vector2f(0, 0), Vector2f(1, 1), index_offset);
+	GenerateQuad(vertices, origin, dimensions, colour, Vector2f(0, 0), Vector2f(1, 1), index_offset);
 }
 
 // Generates a quad from a position, size, colour and texture coordinates.
-void GeometryUtilities::GenerateQuad(Vertex* vertices, int* indices, const Vector2f& origin, const Vector2f& dimensions, const Colourb& colour, const Vector2f& top_left_texcoord, const Vector2f& bottom_right_texcoord, int index_offset)
+void GeometryUtilities::GenerateQuad(Vertex* vertices, const Vector2f& origin, const Vector2f& dimensions, const Colourb& colour, const Vector2f& top_left_texcoord, const Vector2f& bottom_right_texcoord, int index_offset)
 {
 	vertices[0].position = origin;
 	vertices[0].colour = colour;
@@ -63,14 +63,6 @@ void GeometryUtilities::GenerateQuad(Vertex* vertices, int* indices, const Vecto
 	vertices[3].position = Vector2f(origin.x, origin.y + dimensions.y);
 	vertices[3].colour = colour;
 	vertices[3].tex_coord = Vector2f(top_left_texcoord.x, bottom_right_texcoord.y);
-
-	indices[0] = index_offset + 0;
-	indices[1] = index_offset + 3;
-	indices[2] = index_offset + 1;
-
-	indices[3] = index_offset + 1;
-	indices[4] = index_offset + 3;
-	indices[5] = index_offset + 2;
 }
 
 }

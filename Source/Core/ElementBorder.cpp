@@ -77,16 +77,14 @@ void ElementBorder::GenerateBorder()
 	}
 
 	Container::vector< Vertex >::Type& vertices = geometry.GetVertices();
-	Container::vector< int >::Type& indices = geometry.GetIndices();
 
 	int index_offset = 0;
 	vertices.resize(4 * num_edges);
-	indices.resize(6 * num_edges);
+    geometry.IncreaseNumIndices(6 * num_edges);
 
 	if (num_edges > 0)
 	{
 		Vertex* raw_vertices = &vertices[0];
-		int* raw_indices = &indices[0];
 
 		Colourb border_colours[4];
 		border_colours[0] = element->GetProperty(BORDER_TOP_COLOR)->value.Get< Colourb >();
@@ -95,14 +93,14 @@ void ElementBorder::GenerateBorder()
 		border_colours[3] = element->GetProperty(BORDER_LEFT_COLOR)->value.Get< Colourb >();
 
 		for (int i = 0; i < element->GetNumBoxes(); ++i)
-			GenerateBorder(raw_vertices, raw_indices, index_offset, element->GetBox(i), border_colours);
+			GenerateBorder(raw_vertices, index_offset, element->GetBox(i), border_colours);
 	}
 
 	geometry.Release();
 }
 
 // Generates the border geometry for a single box.
-void ElementBorder::GenerateBorder(Vertex*& vertices, int*& indices, int& index_offset, const Box& box, const Colourb* colours)
+void ElementBorder::GenerateBorder(Vertex*& vertices, int& index_offset, const Box& box, const Colourb* colours)
 {
 	// The axis of extrusion for each of the edges.
 	Vector2f box_extrusions[4] =
@@ -136,15 +134,7 @@ void ElementBorder::GenerateBorder(Vertex*& vertices, int*& indices, int& index_
 		vertices[2].colour = colours[i];
 		vertices[3].colour = colours[i];
 
-		indices[0] = index_offset;
-		indices[1] = index_offset + 3;
-		indices[2] = index_offset + 1;
-		indices[3] = index_offset;
-		indices[4] = index_offset + 2;
-		indices[5] = index_offset + 3;
-
 		vertices += 4;
-		indices += 6;
 		index_offset += 4;
 	}
 }

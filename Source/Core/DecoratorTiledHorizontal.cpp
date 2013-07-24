@@ -124,12 +124,19 @@ DecoratorDataHandle DecoratorTiledHorizontal::GenerateElementData(Element* eleme
 		right_dimensions.x = padded_size.x * (right_dimensions.x / minimum_width);
 	}
 
+    int num_indices;
+
 	// Generate the geometry for the left tile.
-	tiles[LEFT].GenerateGeometry(data->geometry[tiles[LEFT].texture_index]->GetVertices(), data->geometry[tiles[LEFT].texture_index]->GetIndices(), element, Vector2f(0, 0), left_dimensions, left_dimensions, color_multiplier);
-	// Generate the geometry for the centre tiles.
-	tiles[CENTRE].GenerateGeometry(data->geometry[tiles[CENTRE].texture_index]->GetVertices(), data->geometry[tiles[CENTRE].texture_index]->GetIndices(), element, Vector2f(left_dimensions.x, 0), Vector2f(padded_size.x - (left_dimensions.x + right_dimensions.x), centre_dimensions.y), centre_dimensions, color_multiplier);
-	// Generate the geometry for the right tile.
-	tiles[RIGHT].GenerateGeometry(data->geometry[tiles[RIGHT].texture_index]->GetVertices(), data->geometry[tiles[RIGHT].texture_index]->GetIndices(), element, Vector2f(padded_size.x - right_dimensions.x, 0), right_dimensions, right_dimensions, color_multiplier);
+	num_indices = tiles[LEFT].GenerateGeometry(data->geometry[tiles[LEFT].texture_index]->GetVertices(), element, Vector2f(0, 0), left_dimensions, left_dimensions, color_multiplier);
+	data->geometry[tiles[LEFT].texture_index]->IncreaseNumIndices(num_indices);
+
+    // Generate the geometry for the centre tiles.
+	num_indices = tiles[CENTRE].GenerateGeometry(data->geometry[tiles[CENTRE].texture_index]->GetVertices(), element, Vector2f(left_dimensions.x, 0), Vector2f(padded_size.x - (left_dimensions.x + right_dimensions.x), centre_dimensions.y), centre_dimensions, color_multiplier);
+    data->geometry[tiles[CENTRE].texture_index]->IncreaseNumIndices(num_indices);
+	
+    // Generate the geometry for the right tile.
+	num_indices = tiles[RIGHT].GenerateGeometry(data->geometry[tiles[RIGHT].texture_index]->GetVertices(), element, Vector2f(padded_size.x - right_dimensions.x, 0), right_dimensions, right_dimensions, color_multiplier);
+    data->geometry[tiles[RIGHT].texture_index]->IncreaseNumIndices(num_indices);
 
 	// Set the textures on the geometry.
 	const Texture* texture = NULL;

@@ -84,12 +84,11 @@ public:
 
 		// Generate the geometry for the character.
 		Container::vector< Vertex >::Type& character_vertices = geometry[character.texture_index].GetVertices();
-		Container::vector< int >::Type& character_indices = geometry[character.texture_index].GetIndices();
 
 		character_vertices.resize(character_vertices.size() + 4);
-		character_indices.resize(character_indices.size() + 6);
-		GeometryUtilities::GenerateQuad(&character_vertices[0] + (character_vertices.size() - 4), &character_indices[0] + (character_indices.size() - 6), Vector2f(position.x + character.origin.x, position.y + character.origin.y), character.dimensions, colour, character.texcoords[0], character.texcoords[1], character_vertices.size() - 4);
-	}
+		GeometryUtilities::GenerateQuad(&character_vertices[0] + (character_vertices.size() - 4), Vector2f(position.x + character.origin.x, position.y + character.origin.y), character.dimensions, colour, character.texcoords[0], character.texcoords[1], character_vertices.size() - 4);
+	    geometry[character.texture_index].IncreaseNumIndices(6);
+    }
 
 	/// Returns the effect used to generate the layer.
 	/// @return The layer's effect.

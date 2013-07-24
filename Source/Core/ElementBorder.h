@@ -56,7 +56,7 @@ private:
 	// Generates the border geometry for the element.
 	void GenerateBorder();
 	// Generates the border geometry for a single box.
-	void GenerateBorder(Vertex*& vertices, int*& indices, int& index_offset, const Box& box, const Colourb* colours);
+	void GenerateBorder(Vertex*& vertices, int& index_offset, const Box& box, const Colourb* colours);
 
 	Element* element;
 

@@ -106,12 +106,12 @@ Vector2f DecoratorTiled::Tile::GetDimensions(Element* element)
 }
 
 // Generates geometry to render this tile across a surface.
-void DecoratorTiled::Tile::GenerateGeometry(Container::vector< Vertex >::Type& vertices, Container::vector< int >::Type& indices, Element* element, const Vector2f& surface_origin, const Vector2f& surface_dimensions, const Vector2f& tile_dimensions, const Colourb& color_multiplier) const
+int DecoratorTiled::Tile::GenerateGeometry(Container::vector< Vertex >::Type& vertices, Element* element, const Vector2f& surface_origin, const Vector2f& surface_dimensions, const Vector2f& tile_dimensions, const Colourb& color_multiplier) const
 {
 	RenderInterface* render_interface = element->GetRenderInterface();
 	TileDataMap::iterator data_iterator = data.find(render_interface);
 	if (data_iterator == data.end())
-		return;
+		return 0;
 
 	const TileData& data = data_iterator->second;
 
@@ -181,16 +181,14 @@ void DecoratorTiled::Tile::GenerateGeometry(Container::vector< Vertex >::Type& v
 
 	// If any of the axes are zero or below, then we have a zero surface area and nothing to render.
 	if (num_tiles[0] <= 0 || num_tiles[1] <= 0)
-		return;
+		return 0;
 
 	// Resize the vertex and index arrays to fit the new geometry.
 	int index_offset = (int) vertices.size();
 	vertices.resize(vertices.size() + num_tiles[0] * num_tiles[1] * 4);
 	Vertex* new_vertices = &vertices[0] + index_offset;
 
-	size_t num_indices = indices.size();
-	indices.resize(indices.size() + num_tiles[0] * num_tiles[1] * 6);
-	int* new_indices = &indices[0] + num_indices;
+	size_t num_indices = num_tiles[0] * num_tiles[1] * 6;
 
 	// Generate the vertices for the tiled surface.
 	for (int y = 0; y < num_tiles[1]; y++)
@@ -245,12 +243,13 @@ void DecoratorTiled::Tile::GenerateGeometry(Container::vector< Vertex >::Type& v
 			tile_position.x = surface_origin.x + (float) tile_dimensions.x * x;
 			tile_size.x = (float) (x < num_tiles[0] - 1 ? tile_dimensions.x : final_tile_dimensions.x);
 
-			GeometryUtilities::GenerateQuad(new_vertices, new_indices, tile_position, tile_size, color_multiplier, tile_texcoords[0], tile_texcoords[1], index_offset);
+			GeometryUtilities::GenerateQuad(new_vertices, tile_position, tile_size, color_multiplier, tile_texcoords[0], tile_texcoords[1], index_offset);
 			new_vertices += 4;
-			new_indices += 6;
 			index_offset += 4;
 		}
 	}
+
+    return num_indices;
 }
 
 // Scales a tile dimensions by a fixed value along one axis.

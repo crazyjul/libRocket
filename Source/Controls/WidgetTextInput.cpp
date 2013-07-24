@@ -736,7 +736,6 @@ Rocket::Core::Vector2f WidgetTextInput::FormatText()
 	// be generated.
 	selection_geometry.Release(true);
 	Rocket::Core::Container::vector< Core::Vertex >::Type& selection_vertices = selection_geometry.GetVertices();
-	Rocket::Core::Container::vector< int >::Type& selection_indices = selection_geometry.GetIndices();
 
 	// Determine the line-height of the text element.
 	int line_height = Rocket::Core::ElementUtilities::GetLineHeight(parent);
@@ -817,9 +816,8 @@ Rocket::Core::Vector2f WidgetTextInput::FormatText()
 			int selection_width = Core::ElementUtilities::GetStringWidth(selected_text_element, selection);
 
 			selection_vertices.resize(selection_vertices.size() + 4);
-			selection_indices.resize(selection_indices.size() + 6);
-			Core::GeometryUtilities::GenerateQuad(&selection_vertices[selection_vertices.size() - 4], &selection_indices[selection_indices.size() - 6], line_position, Rocket::Core::Vector2f((float) selection_width, (float) line_height), selection_colour, selection_vertices.size() - 4);
-
+			Core::GeometryUtilities::GenerateQuad(&selection_vertices[selection_vertices.size() - 4], line_position, Rocket::Core::Vector2f((float) selection_width, (float) line_height), selection_colour, selection_vertices.size() - 4);
+            selection_geometry.IncreaseNumIndices(6);
 			line_position.x += selection_width;
 		}
 
@@ -870,12 +868,10 @@ void WidgetTextInput::GenerateCursor()
 	Rocket::Core::Container::vector< Core::Vertex >::Type& vertices = cursor_geometry.GetVertices();
 	vertices.resize(4);
 
-	Rocket::Core::Container::vector< int >::Type& indices = cursor_geometry.GetIndices();
-	indices.resize(6);
-
 	cursor_size.x = 1;
 	cursor_size.y = (float) Core::ElementUtilities::GetLineHeight(text_element) + 2;
-	Core::GeometryUtilities::GenerateQuad(&vertices[0], &indices[0], Rocket::Core::Vector2f(0, 0), cursor_size, parent->GetProperty< Rocket::Core::Colourb >("color"));
+	Core::GeometryUtilities::GenerateQuad(&vertices[0], Rocket::Core::Vector2f(0, 0), cursor_size, parent->GetProperty< Rocket::Core::Colourb >("color"));
+    cursor_geometry.SetNumIndices(6);
 }
 
 void WidgetTextInput::UpdateCursorPosition()

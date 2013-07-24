@@ -236,7 +236,6 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 void FontFaceHandle::GenerateLine(Geometry* geometry, const Vector2f& position, int width, Font::Line height, const Colourb& colour) const
 {
 	Container::vector< Vertex >::Type& line_vertices = geometry->GetVertices();
-	Container::vector< int >::Type& line_indices = geometry->GetIndices();
 
 	float offset;
 	switch (height)
@@ -248,8 +247,8 @@ void FontFaceHandle::GenerateLine(Geometry* geometry, const Vector2f& position, 
 	}
 
 	line_vertices.resize(line_vertices.size() + 4);
-	line_indices.resize(line_indices.size() + 6);
-	GeometryUtilities::GenerateQuad(&line_vertices[0] + (line_vertices.size() - 4), &line_indices[0] + (line_indices.size() - 6), Vector2f(position.x, position.y + offset), Vector2f((float) width, underline_thickness), colour, line_vertices.size() - 4);
+	GeometryUtilities::GenerateQuad(&line_vertices[0] + (line_vertices.size() - 4), Vector2f(position.x, position.y + offset), Vector2f((float) width, underline_thickness), colour, line_vertices.size() - 4);
+    geometry->IncreaseNumIndices(6);
 }
 
 // Returns the font face's raw charset (the charset range as a string).

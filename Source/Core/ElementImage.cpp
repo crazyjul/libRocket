@@ -188,10 +188,8 @@ void ElementImage::GenerateGeometry()
 	geometry.Release(true);
 
 	Container::vector< Rocket::Core::Vertex >::Type& vertices = geometry.GetVertices();
-	Container::vector< int >::Type& indices = geometry.GetIndices();
 
 	vertices.resize(4);
-	indices.resize(6);
 
 	Colourb color = GetProperty(COLOR)->value.Get< Colourb >();
 
@@ -218,12 +216,12 @@ void ElementImage::GenerateGeometry()
 	}
 
 	Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],									// vertices to write to
-												  &indices[0],									// indices to write to
 												  Vector2f(0, 0),								// origin of the quad
 												  GetBox().GetSize(Rocket::Core::Box::CONTENT),	// size of the quad
 												  color,										// colour of the vertices
 												  texcoords[0],									// top-left texture coordinate
 												  texcoords[1]);								// top-right texture coordinate
+    geometry.SetNumIndices(6);
 
 	geometry_dirty = false;
 }
