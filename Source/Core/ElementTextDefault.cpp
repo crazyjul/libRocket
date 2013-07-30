@@ -47,7 +47,7 @@ ROCKET_RTTI_Implement( ElementTextDefault )
 
 ElementTextDefault::ElementTextDefault(const String& tag) : ElementText(tag), colour(255, 255, 255), decoration(this)
 {
-	dirty_layout_on_change = true;
+	dirty_layout_on_change = false;
 
 	generated_decoration = TEXT_DECORATION_NONE;
 	decoration_property = TEXT_DECORATION_NONE;
