@@ -87,6 +87,16 @@ void ReferenceCountable::DumpLeakReport()
 		Log::Message(Log::LT_WARNING, "%d %s still allocated.", num_outstanding_objects, num_outstanding_objects == 1 ? "object" : "objects");
 }
 
+void * ReferenceCountable::operator new(size_t size)
+{
+    return Allocate( size );
+}
+
+void ReferenceCountable::operator delete(void * ptr, size_t size)
+{
+    Deallocate( ptr, size );
+}
+
 // A hook method called when the reference count climbs from 0.
 void ReferenceCountable::OnReferenceActivate()
 {
