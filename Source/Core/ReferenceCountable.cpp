@@ -27,7 +27,6 @@
 
 #include "precompiled.h"
 #include <Rocket/Core/ReferenceCountable.h>
-#include <cstdlib>
 
 namespace Rocket {
 namespace Core {

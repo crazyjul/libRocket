@@ -29,6 +29,7 @@
 #define ROCKETCOREHEADER_H
 
 #include <Rocket/Core/Platform.h>
+#include <cstdlib>
 
 #if !defined STATIC_LIB
 	#if defined ROCKET_PLATFORM_WIN32
