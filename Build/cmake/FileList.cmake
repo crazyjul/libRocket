@@ -77,6 +77,7 @@ set(Core_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/TextureLayoutRow.h
     ${PROJECT_SOURCE_DIR}/Source/Core/TextureLayoutTexture.h
     ${PROJECT_SOURCE_DIR}/Source/Core/TextureResource.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/UIElementScroll.h
     ${PROJECT_SOURCE_DIR}/Source/Core/WidgetSlider.h
     ${PROJECT_SOURCE_DIR}/Source/Core/WidgetSliderScroll.h
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerBody.h
@@ -279,6 +280,7 @@ set(Core_SRC_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/TextureLayoutRow.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/TextureLayoutTexture.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/TextureResource.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/UIElementScroll.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/UnicodeRange.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/URL.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/Variant.cpp
