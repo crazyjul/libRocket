@@ -96,12 +96,12 @@ void UIElementScroll::OnUpdate()
         mScrollValue += mScrollVelocity * deltaTime;
         mScrollVelocity *= (1.0f - deltaTime) * 0.9f;
 
-        if (fabs(mScrollVelocity) < 0.01f)
+        if (Math::AbsoluteValue(mScrollVelocity) < 0.01f)
         {
             mScrollVelocity = 0.0f;
         }
 
-        if (fabs(mScrollValue) > 1.0f)
+        if (Math::AbsoluteValue(mScrollValue) > 1.0f)
         {
             int scrollAmount = (int)mScrollValue;
             SetScrollTop(GetScrollTop() + scrollAmount);
