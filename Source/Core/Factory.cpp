@@ -50,6 +50,7 @@
 #include "XMLNodeHandlerHead.h"
 #include "XMLNodeHandlerTemplate.h"
 #include "XMLParseTools.h"
+#include "UIElementScroll.h"
 
 namespace Rocket {
 namespace Core {
@@ -120,6 +121,8 @@ bool Factory::Initialise()
 	XMLParser::RegisterNodeHandler("body", new XMLNodeHandlerBody())->RemoveReference();
 	XMLParser::RegisterNodeHandler("head", new XMLNodeHandlerHead())->RemoveReference();
 	XMLParser::RegisterNodeHandler("template", new XMLNodeHandlerTemplate())->RemoveReference();
+
+    UIElementScroll::registerWithlibRocket();
 
 	return true;
 }
