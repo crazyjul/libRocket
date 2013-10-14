@@ -3,7 +3,11 @@
 #define ROCKETCORECONTAINERWRAPPER_H
 
 #ifdef LIBROCKET_CUSTOM_CONTAINER_WRAPPER
-   #include LIBROCKET_CUSTOM_CONTAINER_WRAPPER
+    #define QUOTE_2(x) #x
+    #define QUOTE(x) QUOTE_2(x)
+    #include QUOTE(LIBROCKET_CUSTOM_CONTAINER_WRAPPER)
+    #undef QUOTE
+    #undef QUOTE_2
 #else
 
    #include <map>
