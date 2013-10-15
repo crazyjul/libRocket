@@ -412,12 +412,16 @@ public:
 	/// Sets the left scroll offset of the element.
 	/// @param[in] scroll_left The element's new left scroll offset.
 	void SetScrollLeft(float scroll_left);
+    /// locks the left scroll offset of the element to 0
+    void LockScrollLeft();
 	/// Gets the top scroll offset of the element.
 	/// @return The element's top scroll offset.
 	float GetScrollTop();
 	/// Sets the top scroll offset of the element.
 	/// @param[in] scroll_top The element's new top scroll offset.
 	void SetScrollTop(float scroll_top);
+    /// Locks the top scroll offset of the element to 0
+    void LockScrollTop();
 	/// Gets the width of the scrollable content of the element; it includes the element padding but not its margin.
 	/// @return The width (in pixels) of the of the scrollable content of the element.
 	float GetScrollWidth();
@@ -698,6 +702,9 @@ private:
 
 	// True if the element is visible and active.
 	bool visible;
+
+    bool isLockedScrollLeft;
+    bool isLockedScrollTop;
 
 	ElementList children;
 	int num_non_dom_children;

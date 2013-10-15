@@ -105,6 +105,9 @@ Element::Element(const String& _tag) : absolute_offset(0, 0), relative_offset_ba
 	clipping_enabled = false;
 	clipping_state_dirty = true;
 
+    isLockedScrollLeft = false;
+    isLockedScrollTop = false;
+
 	event_dispatcher = new EventDispatcher(this);
 	style = new ElementStyle(this);
 	background = new ElementBackground(this);
@@ -831,11 +834,30 @@ float Element::GetScrollLeft()
 // Sets the left scroll offset of the element.
 void Element::SetScrollLeft(float scroll_left)
 {
-	scroll_offset.x = LayoutEngine::Round(Math::Clamp(scroll_left, 0.0f, GetScrollWidth() - GetClientWidth()));
-	scroll->UpdateScrollbar(ElementScroll::HORIZONTAL);
-	DirtyOffset();
+    if( isLockedScrollLeft )
+	{
+		scroll_offset.x = LayoutEngine::Round(Math::Clamp(scroll_left, 0.0f, GetScrollWidth() - GetClientWidth()));
+		scroll->UpdateScrollbar(ElementScroll::HORIZONTAL);
+		DirtyOffset();
+		
+		DispatchEvent("scroll", Dictionary());        
+    }
+}
 
-	DispatchEvent("scroll", Dictionary());
+// Sets the elements left scroll locked state
+void Element::SetScrollLeftLocked( bool locked )
+{
+	if(locked)
+	{
+		SetScrollLeft( 0 );	
+	}
+
+	isLockedScrollLeft = locked;
+}
+
+bool Element::IsLockedScrollLeft()
+{
+	return isLockedScrollLeft;
 }
 
 // Gets the top scroll offset of the element.
@@ -848,11 +870,30 @@ float Element::GetScrollTop()
 // Sets the top scroll offset of the element.
 void Element::SetScrollTop(float scroll_top)
 {
-	scroll_offset.y = LayoutEngine::Round(Math::Clamp(scroll_top, 0.0f, GetScrollHeight() - GetClientHeight()));
-	scroll->UpdateScrollbar(ElementScroll::VERTICAL);
-	DirtyOffset();
+	if( !isLockedScrollTop)
+	{
+		scroll_offset.y = LayoutEngine::Round(Math::Clamp(scroll_top, 0.0f, GetScrollHeight() - GetClientHeight()));
+		scroll->UpdateScrollbar(ElementScroll::VERTICAL);
+		DirtyOffset();
 
-	DispatchEvent("scroll", Dictionary());
+		DispatchEvent("scroll", Dictionary());
+	}
+}
+
+// Sets the elements top scroll locked state
+void Element::SetScrollTopLocked( bool locked )
+{
+	if( locked )
+	{
+		SetScrollTop( 0 );		
+	}    
+
+	isLockedScrollTop = locked;
+}
+
+bool Element::IsLockedScrollTop()
+{
+	return isLockedScrollTop;
 }
 
 // Gets the width of the scrollable content of the element; it includes the element padding but not its margin.
