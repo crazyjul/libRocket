@@ -278,6 +278,10 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 						final_character = default_character;
 					}
 				}
+				else
+				{
+					continue;
+				}
 			}
 
 			// Adjust the cursor for the kerning between this character and the previous one.
