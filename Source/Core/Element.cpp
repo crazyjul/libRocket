@@ -105,8 +105,8 @@ Element::Element(const String& _tag) : absolute_offset(0, 0), relative_offset_ba
 	clipping_enabled = false;
 	clipping_state_dirty = true;
 
-    isLockedScrollLeft = false;
-    isLockedScrollTop = false;
+	isLockedScrollLeft = false;
+	isLockedScrollTop = false;
 
 	event_dispatcher = new EventDispatcher(this);
 	style = new ElementStyle(this);
@@ -834,14 +834,14 @@ float Element::GetScrollLeft()
 // Sets the left scroll offset of the element.
 void Element::SetScrollLeft(float scroll_left)
 {
-    if( isLockedScrollLeft )
+	if( isLockedScrollLeft )
 	{
 		scroll_offset.x = LayoutEngine::Round(Math::Clamp(scroll_left, 0.0f, GetScrollWidth() - GetClientWidth()));
 		scroll->UpdateScrollbar(ElementScroll::HORIZONTAL);
 		DirtyOffset();
 		
-		DispatchEvent("scroll", Dictionary());        
-    }
+		DispatchEvent("scroll", Dictionary());
+	}
 }
 
 // Sets the elements left scroll locked state
@@ -885,8 +885,8 @@ void Element::SetScrollTopLocked( bool locked )
 {
 	if( locked )
 	{
-		SetScrollTop( 0 );		
-	}    
+		SetScrollTop( 0 );
+	}
 
 	isLockedScrollTop = locked;
 }
@@ -1541,6 +1541,7 @@ void Element::OnAttributeChange(const AttributeNameList& changed_attributes)
 void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 {
 	bool all_dirty = StyleSheetSpecification::GetRegisteredProperties() == changed_properties;
+	PropertyNameList::const_iterator changed_properties_end = changed_properties.end();
 
 	if (!IsLayoutDirty())
 	{
@@ -1551,7 +1552,7 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 		else
 		{
 			// Force a relayout if any of the changed properties require it.
-			for (PropertyNameList::const_iterator i = changed_properties.begin(); i != changed_properties.end(); ++i)
+			for (PropertyNameList::const_iterator i = changed_properties.begin(); i != changed_properties_end; ++i)
 			{
 				const PropertyDefinition* property_definition = StyleSheetSpecification::GetProperty(*i);
 				if (property_definition)
@@ -1567,8 +1568,8 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 	}
 
 	// Update the visibility.
-	if (all_dirty || changed_properties.find(VISIBILITY) != changed_properties.end() ||
-		changed_properties.find(DISPLAY) != changed_properties.end())
+	if (all_dirty || changed_properties.find(VISIBILITY) != changed_properties_end ||
+		changed_properties.find(DISPLAY) != changed_properties_end)
 	{
 		bool new_visibility = GetDisplay() != DISPLAY_NONE &&
 							  GetProperty< int >(VISIBILITY) == VISIBILITY_VISIBLE;
@@ -1582,7 +1583,7 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 		}
 
 		if (all_dirty || 
-			changed_properties.find(DISPLAY) != changed_properties.end())
+			changed_properties.find(DISPLAY) != changed_properties_end)
 		{
 			if (parent != NULL)
 				parent->DirtyStructure();
@@ -1591,10 +1592,10 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 
 	// Update the position.
 	if (all_dirty ||
-		changed_properties.find(LEFT) != changed_properties.end() ||
-		changed_properties.find(RIGHT) != changed_properties.end() ||
-		changed_properties.find(TOP) != changed_properties.end() ||
-		changed_properties.find(BOTTOM) != changed_properties.end())
+		changed_properties.find(LEFT) != changed_properties_end ||
+		changed_properties.find(RIGHT) != changed_properties_end ||
+		changed_properties.find(TOP) != changed_properties_end ||
+		changed_properties.find(BOTTOM) != changed_properties_end)
 	{
 		UpdateOffset();
 		DirtyOffset();
@@ -1602,7 +1603,7 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 
 	// Update the z-index.
 	if (all_dirty || 
-		changed_properties.find(Z_INDEX) != changed_properties.end())
+		changed_properties.find(Z_INDEX) != changed_properties_end)
 	{
 		const Property* z_index_property = GetProperty(Z_INDEX);
 
@@ -1657,28 +1658,28 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 
 	// Dirty the background if it's changed.
 	if (all_dirty ||
-		changed_properties.find(BACKGROUND_COLOR) != changed_properties.end())
+		changed_properties.find(BACKGROUND_COLOR) != changed_properties_end)
 		background->DirtyBackground();
 
 	// Dirty the border if it's changed.
 	if (all_dirty || 
-		changed_properties.find(BORDER_TOP_WIDTH) != changed_properties.end() ||
-		changed_properties.find(BORDER_RIGHT_WIDTH) != changed_properties.end() ||
-		changed_properties.find(BORDER_BOTTOM_WIDTH) != changed_properties.end() ||
-		changed_properties.find(BORDER_LEFT_WIDTH) != changed_properties.end() ||
-		changed_properties.find(BORDER_TOP_COLOR) != changed_properties.end() ||
-		changed_properties.find(BORDER_RIGHT_COLOR) != changed_properties.end() ||
-		changed_properties.find(BORDER_BOTTOM_COLOR) != changed_properties.end() ||
-		changed_properties.find(BORDER_LEFT_COLOR) != changed_properties.end())
+		changed_properties.find(BORDER_TOP_WIDTH) != changed_properties_end ||
+		changed_properties.find(BORDER_RIGHT_WIDTH) != changed_properties_end ||
+		changed_properties.find(BORDER_BOTTOM_WIDTH) != changed_properties_end ||
+		changed_properties.find(BORDER_LEFT_WIDTH) != changed_properties_end ||
+		changed_properties.find(BORDER_TOP_COLOR) != changed_properties_end ||
+		changed_properties.find(BORDER_RIGHT_COLOR) != changed_properties_end ||
+		changed_properties.find(BORDER_BOTTOM_COLOR) != changed_properties_end ||
+		changed_properties.find(BORDER_LEFT_COLOR) != changed_properties_end)
 		border->DirtyBorder();
 
 	// Fetch a new font face if it has been changed.
 	if (all_dirty ||
-		changed_properties.find(FONT_FAMILY) != changed_properties.end() ||
-		changed_properties.find(FONT_CHARSET) != changed_properties.end() ||
-		changed_properties.find(FONT_WEIGHT) != changed_properties.end() ||
-		changed_properties.find(FONT_STYLE) != changed_properties.end() ||
-		changed_properties.find(FONT_SIZE) != changed_properties.end())
+		changed_properties.find(FONT_FAMILY) != changed_properties_end ||
+		changed_properties.find(FONT_CHARSET) != changed_properties_end ||
+		changed_properties.find(FONT_WEIGHT) != changed_properties_end ||
+		changed_properties.find(FONT_STYLE) != changed_properties_end ||
+		changed_properties.find(FONT_SIZE) != changed_properties_end)
 	{
 		// Store the old em; if it changes, then we need to dirty all em-relative properties.
 		int old_em = -1;
@@ -1714,9 +1715,9 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 	
 	// Check for clipping state changes
 	if (all_dirty ||
-		changed_properties.find(CLIP) != changed_properties.end() ||
-		changed_properties.find(OVERFLOW_X) != changed_properties.end() ||
-		changed_properties.find(OVERFLOW_Y) != changed_properties.end())
+		changed_properties.find(CLIP) != changed_properties_end ||
+		changed_properties.find(OVERFLOW_X) != changed_properties_end ||
+		changed_properties.find(OVERFLOW_Y) != changed_properties_end)
 	{
 		clipping_state_dirty = true;
 	}
