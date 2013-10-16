@@ -42,6 +42,11 @@ EventDispatcher::EventDispatcher(Element* _element)
 
 EventDispatcher::~EventDispatcher()
 {
+	Finalize();
+}
+
+void EventDispatcher::Finalize()
+{
 	// Detach from all event dispatchers
 	for (Events::iterator event_itr = events.begin(); event_itr != events.end(); ++event_itr)
 	{
@@ -50,6 +55,8 @@ EventDispatcher::~EventDispatcher()
 			(*listener_itr).listener->OnDetach(element);
 		}
 	}
+
+	events.clear();
 }
 
 void EventDispatcher::AttachEvent(const String& type, EventListener* listener, bool in_capture_phase)

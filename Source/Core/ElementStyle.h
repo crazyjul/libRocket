@@ -190,7 +190,7 @@ private:
 	PseudoClassList pseudo_classes;
 
 	// Any properties that have been overridden in this element.
-	PropertyDictionary* local_properties;
+	PropertyDictionary local_properties;
 	// All properties (including inherited) that are EM-relative.
 	PropertyNameList* em_properties;
 	// The definition of this element; if this is NULL one will be fetched from the element's style.

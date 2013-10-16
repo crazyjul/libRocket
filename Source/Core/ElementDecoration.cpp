@@ -45,6 +45,22 @@ ElementDecoration::~ElementDecoration()
 	ReleaseDecorators();
 }
 
+// Releases all existing decorators and frees their data.
+void ElementDecoration::ReleaseDecorators()
+{
+	for (size_t i = 0; i < decorators.size(); i++)
+	{
+		if (decorators[i].decorator_data)
+			decorators[i].decorator->ReleaseElementData(decorators[i].decorator_data);
+
+		decorators[i].decorator->RemoveReference();
+	}
+
+	decorators.clear();
+	active_decorators.clear();
+	decorator_index.clear();
+}
+
 // Releases existing decorators and loads all decorators required by the element's definition.
 bool ElementDecoration::ReloadDecorators()
 {
@@ -111,22 +127,6 @@ int ElementDecoration::LoadDecorator(Decorator* decorator)
 
 	decorators.push_back(element_decorator);
 	return (int) (decorators.size() - 1);
-}
-
-// Releases all existing decorators and frees their data.
-void ElementDecoration::ReleaseDecorators()
-{
-	for (size_t i = 0; i < decorators.size(); i++)
-	{
-		if (decorators[i].decorator_data)
-			decorators[i].decorator->ReleaseElementData(decorators[i].decorator_data);
-
-		decorators[i].decorator->RemoveReference();
-	}
-
-	decorators.clear();
-	active_decorators.clear();
-	decorator_index.clear();
 }
 
 // Updates the list of active decorators (if necessary).

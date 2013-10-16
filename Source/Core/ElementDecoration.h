@@ -50,6 +50,8 @@ public:
 	ElementDecoration(Element* element);
 	~ElementDecoration();
 
+	// Releases all existing decorators and frees their data.
+	void ReleaseDecorators();
 	// Releases existing decorators and loads all decorators required by the element's definition.
 	bool ReloadDecorators();	
 
@@ -71,8 +73,6 @@ public:
 private:
 	// Loads a single decorator and adds it to the list of loaded decorators for this element.
 	int LoadDecorator(Decorator* decorator);
-	// Releases all existing decorators and frees their data.
-	void ReleaseDecorators();
 	// Updates the list of active decorators (if necessary)
 	void UpdateActiveDecorators();
 

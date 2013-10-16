@@ -29,12 +29,6 @@
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Dictionary.h>
 #include <Rocket/Core/ContainerWrapper.h>
-#include "ElementBackground.h"
-#include "ElementBorder.h"
-#include "ElementDefinition.h"
-#include "ElementStyle.h"
-#include "EventDispatcher.h"
-#include "ElementDecoration.h"
 #include <Rocket/Core/FontFaceHandle.h>
 #include "LayoutEngine.h"
 #include "PluginRegistry.h"
@@ -75,7 +69,20 @@ public:
 ROCKET_RTTI_Implement( Element )
 
 /// Constructs a new libRocket element.
-Element::Element(const String& _tag) : absolute_offset(0, 0), relative_offset_base(0, 0), relative_offset_position(0, 0), scroll_offset(0, 0), content_offset(0, 0), content_box(0, 0), boxes(1)
+Element::Element(const String& _tag) :
+	absolute_offset(0, 0),
+	relative_offset_base(0, 0),
+	relative_offset_position(0, 0),
+	scroll_offset(0, 0),
+	content_offset(0, 0),
+	content_box(0, 0),
+	boxes(1),
+	event_dispatcher(this),
+	style(this),
+	background(this),
+	border(this),
+	decoration(this),
+	scroll(this)
 {
 	tag = _tag.ToLower();
 	parent = NULL;
@@ -107,13 +114,6 @@ Element::Element(const String& _tag) : absolute_offset(0, 0), relative_offset_ba
 
 	isLockedScrollLeft = false;
 	isLockedScrollTop = false;
-
-	event_dispatcher = new EventDispatcher(this);
-	style = new ElementStyle(this);
-	background = new ElementBackground(this);
-	border = new ElementBorder(this);
-	decoration = new ElementDecoration(this);
-	scroll = new ElementScroll(this);
 }
 
 Element::~Element()
@@ -123,7 +123,7 @@ Element::~Element()
 	PluginRegistry::NotifyElementDestroy(this);
 
 	// Delete the scroll funtionality before we delete the children!
-	delete scroll;
+	scroll.Finalize();
 
 	while (!children.empty())
 	{
@@ -141,11 +141,13 @@ Element::~Element()
 	// Release all deleted children.
 	ReleaseElements(deleted_children);
 
-	delete decoration;
+	decoration.ReleaseDecorators();
+	event_dispatcher.Finalize();
+	/*
 	delete border;
 	delete background;
-	delete style;
-	delete event_dispatcher;
+	delete style;*/
+
 
 	if (font_face_handle != NULL)
 		font_face_handle->RemoveReference();
@@ -162,9 +164,9 @@ void Element::Update()
 		active_children[i]->Update();
 
 	// Force a definition reload, if necessary.
-	style->GetDefinition();
+	style.GetDefinition();
 
-	scroll->Update();
+	scroll.Update();
 	OnUpdate();
 }
 
@@ -182,9 +184,9 @@ void Element::Render()
 	// Set up the clipping region for this element.
 	if (ElementUtilities::SetClippingRegion(this))
 	{
-		background->RenderBackground();
-		border->RenderBorder();
-		decoration->RenderDecorators();
+		background.RenderBackground();
+		border.RenderBorder();
+		decoration.RenderDecorators();
 
 		OnRender();
 	}
@@ -222,13 +224,13 @@ Element* Element::Clone() const
 // Sets or removes a class on the element.
 void Element::SetClass(const String& class_name, bool activate)
 {
-	style->SetClass(class_name, activate);
+	style.SetClass(class_name, activate);
 }
 
 // Checks if a class is set on the element.
 bool Element::IsClassSet(const String& class_name) const
 {
-	return style->IsClassSet(class_name);
+	return style.IsClassSet(class_name);
 }
 
 // Specifies the entire list of classes for this element. This will replace any others specified.
@@ -240,19 +242,19 @@ void Element::SetClassNames(const String& class_names)
 /// Return the active class list
 String Element::GetClassNames() const
 {
-	return style->GetClassNames();
+	return style.GetClassNames();
 }
 
 // Returns the active style sheet for this element. This may be NULL.
 StyleSheet* Element::GetStyleSheet() const
 {
-	return style->GetStyleSheet();
+	return style.GetStyleSheet();
 }
 
 // Returns the element's definition, updating if necessary.
 const ElementDefinition* Element::GetDefinition()
 {
-	return style->GetDefinition();
+	return style.GetDefinition();
 }
 
 // Fills an String with the full address of this element.
@@ -268,7 +270,7 @@ String Element::GetAddress(bool include_pseudo_classes) const
 		address += id;
 	}
 
-	String classes = style->GetClassNames();
+	String classes = style.GetClassNames();
 	if (!classes.Empty())
 	{
 		classes = classes.Replace(".", " ");
@@ -278,7 +280,7 @@ String Element::GetAddress(bool include_pseudo_classes) const
 
 	if (include_pseudo_classes)
 	{
-		const PseudoClassList& pseudo_classes = style->GetActivePseudoClasses();		
+		const PseudoClassList& pseudo_classes = style.GetActivePseudoClasses();		
 		for (PseudoClassList::const_iterator i = pseudo_classes.begin(); i != pseudo_classes.end(); ++i)
 		{
 			address += ":";
@@ -406,9 +408,9 @@ void Element::SetBox(const Box& box)
 		boxes[0] = box;
 		boxes.resize(1);
 
-		background->DirtyBackground();
-		border->DirtyBorder();
-		decoration->ReloadDecorators();
+		background.DirtyBackground();
+		border.DirtyBorder();
+		decoration.ReloadDecorators();
 
 		DispatchEvent(RESIZE, Dictionary());
 	}
@@ -420,9 +422,9 @@ void Element::AddBox(const Box& box)
 	boxes.push_back(box);
 	DispatchEvent(RESIZE, Dictionary());
 
-	background->DirtyBackground();
-	border->DirtyBorder();
-	decoration->ReloadDecorators();
+	background.DirtyBackground();
+	border.DirtyBorder();
+	decoration.ReloadDecorators();
 }
 
 // Returns one of the boxes describing the size of the element.
@@ -501,131 +503,131 @@ FontFaceHandle* Element::GetFontFaceHandle() const
 // Sets a local property override on the element.
 bool Element::SetProperty(const String& name, const String& value)
 {
-	return style->SetProperty(name, value);
+	return style.SetProperty(name, value);
 }
 
 // Removes a local property override on the element.
 void Element::RemoveProperty(const String& name)
 {
-	style->RemoveProperty(name);
+	style.RemoveProperty(name);
 }
 
 // Sets a local property override on the element to a pre-parsed value.
 bool Element::SetProperty(const String& name, const Property& property)
 {
-	return style->SetProperty(name, property);
+	return style.SetProperty(name, property);
 }
 
 // Returns one of this element's properties.
 const Property* Element::GetProperty(const String& name)
 {
-	return style->GetProperty(name);	
+	return style.GetProperty(name);	
 }
 
 // Returns one of this element's properties.
 const Property* Element::GetLocalProperty(const String& name)
 {
-	return style->GetLocalProperty(name);
+	return style.GetLocalProperty(name);
 }
 
 // Resolves one of this element's style.
 float Element::ResolveProperty(const String& name, float base_value)
 {
-	return style->ResolveProperty(name, base_value);
+	return style.ResolveProperty(name, base_value);
 }
 
 // Resolves one of this element's style.
 float Element::ResolveProperty(const Property *property, float base_value)
 {
-	return style->ResolveProperty(property, base_value);
+	return style.ResolveProperty(property, base_value);
 }
 
 void Element::GetBorderWidthProperties(const Property **border_top, const Property **border_bottom, const Property **border_left, const Property **bottom_right)
 {
-	style->GetBorderWidthProperties(border_top, border_bottom, border_left, bottom_right);
+	style.GetBorderWidthProperties(border_top, border_bottom, border_left, bottom_right);
 }
 
 void Element::GetMarginProperties(const Property **margin_top, const Property **margin_bottom, const Property **margin_left, const Property **margin_right)
 {
-	style->GetMarginProperties(margin_top, margin_bottom, margin_left, margin_right);
+	style.GetMarginProperties(margin_top, margin_bottom, margin_left, margin_right);
 }
 
 void Element::GetPaddingProperties(const Property **padding_top, const Property **padding_bottom, const Property **padding_left, const Property **padding_right)
 {
-	style->GetPaddingProperties(padding_top, padding_bottom, padding_left, padding_right);
+	style.GetPaddingProperties(padding_top, padding_bottom, padding_left, padding_right);
 }
 
 void Element::GetDimensionProperties(const Property **width, const Property **height)
 {
-	style->GetDimensionProperties(width, height);
+	style.GetDimensionProperties(width, height);
 }
 
 void Element::GetLocalDimensionProperties(const Property **width, const Property **height)
 {
-	style->GetLocalDimensionProperties(width, height);
+	style.GetLocalDimensionProperties(width, height);
 }
 
 void Element::GetOverflow(int *overflow_x, int *overflow_y)
 {
-	style->GetOverflow(overflow_x, overflow_y);
+	style.GetOverflow(overflow_x, overflow_y);
 }
 
 int Element::GetPosition()
 {
-	return style->GetPosition();
+	return style.GetPosition();
 }
 
 int Element::GetFloat()
 {
-	return style->GetFloat();
+	return style.GetFloat();
 }
 
 int Element::GetDisplay()
 {
-	return style->GetDisplay();
+	return style.GetDisplay();
 }
 
 int Element::GetWhitespace()
 {
-	return style->GetWhitespace();
+	return style.GetWhitespace();
 }
 
 const Property *Element::GetLineHeightProperty()
 {
-	return style->GetLineHeightProperty();
+	return style.GetLineHeightProperty();
 }
 
 int Element::GetTextAlign()
 {
-	return style->GetTextAlign();
+	return style.GetTextAlign();
 }
 
 int Element::GetTextTransform()
 {
-	return style->GetTextTransform();
+	return style.GetTextTransform();
 }
 
 const Property *Element::GetVerticalAlignProperty()
 {
-	return style->GetVerticalAlignProperty();
+	return style.GetVerticalAlignProperty();
 }
 
 // Iterates over the properties defined on this element.
-bool Element::IterateProperties(int& index, PseudoClassList& pseudo_classes, String& name, const Property*& property) const
+bool Element::IterateProperties(int& index, PseudoClassList& pseudo_classes, String& name, const Property*& property)
 {
-	return style->IterateProperties(index, pseudo_classes, name, property);
+	return style.IterateProperties(index, pseudo_classes, name, property);
 }
 
 // Sets or removes a pseudo-class on the element.
 void Element::SetPseudoClass(const String& pseudo_class, bool activate)
 {
-	style->SetPseudoClass(pseudo_class, activate);
+	style.SetPseudoClass(pseudo_class, activate);
 }
 
 // Checks if a specific pseudo-class has been set on the element.
 bool Element::IsPseudoClassSet(const String& pseudo_class) const
 {
-	return style->IsPseudoClassSet(pseudo_class);
+	return style.IsPseudoClassSet(pseudo_class);
 }
 
 // Checks if a complete set of pseudo-classes are set on the element.
@@ -643,7 +645,7 @@ bool Element::ArePseudoClassesSet(const PseudoClassList& pseudo_classes) const
 // Gets a list of the current active pseudo classes
 const PseudoClassList& Element::GetActivePseudoClasses() const
 {
-	return style->GetActivePseudoClasses();
+	return style.GetActivePseudoClasses();
 }
 
 /// Get the named attribute
@@ -729,7 +731,7 @@ int Element::GetNumAttributes() const
 // Iterates over all decorators attached to the element.
 bool Element::IterateDecorators(int& index, PseudoClassList& pseudo_classes, String& name, Decorator*& decorator, DecoratorDataHandle& decorator_data)
 {
-	return decoration->IterateDecorators(index, pseudo_classes, name, decorator, decorator_data);
+	return decoration.IterateDecorators(index, pseudo_classes, name, decorator, decorator_data);
 }
 
 // Gets the name of the element.
@@ -780,14 +782,14 @@ float Element::GetClientTop()
 float Element::GetClientWidth()
 {
 	UpdateLayout();
-	return GetBox().GetSize(client_area).x - scroll->GetScrollbarSize(ElementScroll::VERTICAL);
+	return GetBox().GetSize(client_area).x - scroll.GetScrollbarSize(ElementScroll::VERTICAL);
 }
 
 // Gets the inner height of the element.
 float Element::GetClientHeight()
 {
 	UpdateLayout();
-	return GetBox().GetSize(client_area).y - scroll->GetScrollbarSize(ElementScroll::HORIZONTAL);
+	return GetBox().GetSize(client_area).y - scroll.GetScrollbarSize(ElementScroll::HORIZONTAL);
 }
 
 // Returns the element from which all offset calculations are currently computed.
@@ -837,7 +839,7 @@ void Element::SetScrollLeft(float scroll_left)
 	if( isLockedScrollLeft )
 	{
 		scroll_offset.x = LayoutEngine::Round(Math::Clamp(scroll_left, 0.0f, GetScrollWidth() - GetClientWidth()));
-		scroll->UpdateScrollbar(ElementScroll::HORIZONTAL);
+		scroll.UpdateScrollbar(ElementScroll::HORIZONTAL);
 		DirtyOffset();
 		
 		DispatchEvent("scroll", Dictionary());
@@ -873,7 +875,7 @@ void Element::SetScrollTop(float scroll_top)
 	if( !isLockedScrollTop)
 	{
 		scroll_offset.y = LayoutEngine::Round(Math::Clamp(scroll_top, 0.0f, GetScrollHeight() - GetClientHeight()));
-		scroll->UpdateScrollbar(ElementScroll::VERTICAL);
+		scroll.UpdateScrollbar(ElementScroll::VERTICAL);
 		DirtyOffset();
 
 		DispatchEvent("scroll", Dictionary());
@@ -911,7 +913,7 @@ float Element::GetScrollHeight()
 // Gets the object representing the declarations of an element's style attributes.
 ElementStyle* Element::GetStyle()
 {
-	return style;
+	return & style;
 }
 
 // Gets the document this element belongs to.
@@ -1084,19 +1086,19 @@ void Element::Click()
 // Adds an event listener
 void Element::AddEventListener(const String& event, EventListener* listener, bool in_capture_phase)
 {
-	event_dispatcher->AttachEvent(event, listener, in_capture_phase);
+	event_dispatcher.AttachEvent(event, listener, in_capture_phase);
 }
 
 // Removes an event listener from this element.
 void Element::RemoveEventListener(const String& event, EventListener* listener, bool in_capture_phase)
 {
-	event_dispatcher->DetachEvent(event, listener, in_capture_phase);
+	event_dispatcher.DetachEvent(event, listener, in_capture_phase);
 }
 
 // Dispatches the specified event
 bool Element::DispatchEvent(const String& event, const Dictionary& parameters, bool interruptible)
 {
-	return event_dispatcher->DispatchEvent(this, event, parameters, interruptible);
+	return event_dispatcher.DispatchEvent(this, event, parameters, interruptible);
 }
 
 // Scrolls the parent element's contents so that this element is visible.
@@ -1402,33 +1404,33 @@ void Element::GetElementsByClassName(ElementList& elements, const String& class_
 }
 
 // Access the event dispatcher
-EventDispatcher* Element::GetEventDispatcher() const
+EventDispatcher* Element::GetEventDispatcher()
 {
-	return event_dispatcher;
+	return & event_dispatcher;
 }
 
 // Access the element background.
-ElementBackground* Element::GetElementBackground() const
+ElementBackground* Element::GetElementBackground()
 {
-	return background;
+	return & background;
 }
 
 // Access the element border.
-ElementBorder* Element::GetElementBorder() const
+ElementBorder* Element::GetElementBorder()
 {
-	return border;
+	return & border;
 }
 
 // Access the element decorators
-ElementDecoration* Element::GetElementDecoration() const
+ElementDecoration* Element::GetElementDecoration()
 {
-	return decoration;
+	return & decoration;
 }
 
 // Returns the element's scrollbar functionality.
-ElementScroll* Element::GetElementScroll() const
+ElementScroll* Element::GetElementScroll()
 {
-	return scroll;
+	return & scroll;
 }
 	
 int Element::GetClippingIgnoreDepth()
@@ -1446,8 +1448,8 @@ bool Element::IsClippingEnabled()
 	if (clipping_state_dirty)
 	{
 		// Is clipping enabled for this element, yes unless both overlow properties are set to visible
-		clipping_enabled = style->GetProperty(OVERFLOW_X)->Get< int >() != OVERFLOW_VISIBLE 
-							|| style->GetProperty(OVERFLOW_Y)->Get< int >() != OVERFLOW_VISIBLE;
+		clipping_enabled = style.GetProperty(OVERFLOW_X)->Get< int >() != OVERFLOW_VISIBLE 
+							|| style.GetProperty(OVERFLOW_Y)->Get< int >() != OVERFLOW_VISIBLE;
 		
 		// Get the clipping ignore depth from the clip property
 		clipping_ignore_depth = 0;
@@ -1514,12 +1516,12 @@ void Element::OnAttributeChange(const AttributeNameList& changed_attributes)
 	if (changed_attributes.find("id") != changed_attributes.end())
 	{
 		id = GetAttribute< String >("id", "");
-		style->DirtyDefinition();
+		style.DirtyDefinition();
 	}
 
 	if (changed_attributes.find("class") != changed_attributes.end())
 	{
-		style->SetClassNames(GetAttribute< String >("class", ""));
+		style.SetClassNames(GetAttribute< String >("class", ""));
 	}
 
 	// Add any inline style declarations.
@@ -1659,7 +1661,7 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 	// Dirty the background if it's changed.
 	if (all_dirty ||
 		changed_properties.find(BACKGROUND_COLOR) != changed_properties_end)
-		background->DirtyBackground();
+		background.DirtyBackground();
 
 	// Dirty the border if it's changed.
 	if (all_dirty || 
@@ -1671,7 +1673,7 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 		changed_properties.find(BORDER_RIGHT_COLOR) != changed_properties_end ||
 		changed_properties.find(BORDER_BOTTOM_COLOR) != changed_properties_end ||
 		changed_properties.find(BORDER_LEFT_COLOR) != changed_properties_end)
-		border->DirtyBorder();
+		border.DirtyBorder();
 
 	// Fetch a new font face if it has been changed.
 	if (all_dirty ||
@@ -1706,7 +1708,7 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 
 			if (old_em != new_em)
 			{
-				style->DirtyEmProperties();
+				style.DirtyEmProperties();
 			}
 		}
 		else if (new_font_face_handle != NULL)

@@ -54,6 +54,7 @@ public:
 
 	// Destructor
 	~EventDispatcher();
+	void Finalize();
 
 	/// Attaches a new listener to the specified event name
 	/// @param[in] type Type of the event to attach to

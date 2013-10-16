@@ -55,6 +55,8 @@ public:
 	ElementScroll(Element* element);
 	virtual ~ElementScroll();
 
+	void Finalize();
+
 	/// Updates the increment / decrement arrows.
 	void Update();
 

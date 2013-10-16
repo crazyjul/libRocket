@@ -35,6 +35,13 @@
 #include <Rocket/Core/Event.h>
 #include <Rocket/Core/Property.h>
 #include <Rocket/Core/Types.h>
+#include "ElementBackground.h"
+#include "ElementBorder.h"
+#include "ElementDefinition.h"
+#include "ElementStyle.h"
+#include "EventDispatcher.h"
+#include "ElementDecoration.h"
+#include "ElementScroll.h"
 
 namespace Rocket {
 namespace Core {
@@ -48,15 +55,8 @@ namespace Core {
 class Context;
 class Decorator;
 class ElementInstancer;
-class EventDispatcher;
 class EventListener;
-class ElementBackground;
-class ElementBorder;
-class ElementDecoration;
-class ElementDefinition;
 class ElementDocument;
-class ElementScroll;
-class ElementStyle;
 class FontFaceHandle;
 class PropertyDictionary;
 class RenderInterface;
@@ -267,7 +267,7 @@ public:
 	/// @param[out] name The name of the property at the specified index.
 	/// @param[out] property The property at the specified index.
 	/// @return True if a property was successfully fetched.
-	bool IterateProperties(int& index, PseudoClassList& pseudo_classes, String& name, const Property*& property) const;
+	bool IterateProperties(int& index, PseudoClassList& pseudo_classes, String& name, const Property*& property);
 	///@}
 
 	/** @name Pseudo-classes
@@ -558,19 +558,19 @@ public:
 	//@{
 	/// Access the event dispatcher for this element.
 	/// @return The element's dispatcher.
-	EventDispatcher* GetEventDispatcher() const;
+	EventDispatcher* GetEventDispatcher();
 	/// Access the element background.
 	/// @return The element's background.
-	ElementBackground* GetElementBackground() const;
+	ElementBackground* GetElementBackground();
 	/// Access the element border.
 	/// @return The element's border.
-	ElementBorder* GetElementBorder() const;
+	ElementBorder* GetElementBorder();
 	/// Access the element decorators.
 	/// @return The element decoration.
-	ElementDecoration* GetElementDecoration() const;
+	ElementDecoration* GetElementDecoration();
 	/// Returns the element's scrollbar functionality.
 	/// @return The element's scrolling functionality.
-	ElementScroll* GetElementScroll() const;
+	ElementScroll* GetElementScroll();
 	//@}
 	
 	/// Returns true if this element requires clipping
@@ -670,17 +670,17 @@ private:
 	ElementDocument* owner_document;
 
 	// The event dispatcher for this element.
-	EventDispatcher* event_dispatcher;
+	EventDispatcher event_dispatcher;
 	// Style information for this element.
-	ElementStyle* style;
+	ElementStyle style;
 	// Background functionality for this element.
-	ElementBackground* background;
+	ElementBackground background;
 	// Border functionality for this element.
-	ElementBorder* border;
+	ElementBorder border;
 	// Decorator information for this element.
-	ElementDecoration* decoration;
+	ElementDecoration decoration;
 	// Scrollbar information for this element.
-	ElementScroll* scroll;
+	ElementScroll scroll;
 	// Attributes on this element.
 	ElementAttributes attributes;
 

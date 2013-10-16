@@ -48,7 +48,6 @@ namespace Core {
 
 ElementStyle::ElementStyle(Element* _element)
 {
-	local_properties = NULL;
 	em_properties = NULL;
 	definition = NULL;
 	element = _element;
@@ -60,8 +59,6 @@ ElementStyle::ElementStyle(Element* _element)
 
 ElementStyle::~ElementStyle()
 {
-	if (local_properties != NULL)
-		delete local_properties;
 	if (em_properties != NULL)
 		delete em_properties;
 
@@ -72,7 +69,7 @@ ElementStyle::~ElementStyle()
 }
 
 // Returns the element's definition, updating if necessary.
-const ElementDefinition* ElementStyle::GetDefinition()
+const ElementDefinition * ElementStyle::GetDefinition()
 {
 	if (definition_dirty)
 	{
@@ -231,10 +228,7 @@ String ElementStyle::GetClassNames() const
 // Sets a local property override on the element.
 bool ElementStyle::SetProperty(const String& name, const String& value)
 {
-	if (local_properties == NULL)
-		local_properties = new PropertyDictionary();
-
-	if (StyleSheetSpecification::ParsePropertyDeclaration(*local_properties, name, value))
+	if (StyleSheetSpecification::ParsePropertyDeclaration(local_properties, name, value))
 	{
 		DirtyProperty(name);
 		return true;
@@ -255,10 +249,7 @@ bool ElementStyle::SetProperty(const String& name, const Property& property)
 	if (new_property.definition == NULL)
 		return false;
 
-	if (local_properties == NULL)
-		local_properties = new PropertyDictionary();
-
-	local_properties->SetProperty(name, new_property);
+	local_properties.SetProperty(name, new_property);
 	DirtyProperty(name);
 
 	return true;
@@ -267,12 +258,9 @@ bool ElementStyle::SetProperty(const String& name, const Property& property)
 // Removes a local property override on the element.
 void ElementStyle::RemoveProperty(const String& name)
 {
-	if (local_properties == NULL)
-		return;
-
-	if (local_properties->GetProperty(name) != NULL)
+	if (local_properties.GetProperty(name) != NULL)
 	{
-		local_properties->RemoveProperty(name);
+		local_properties.RemoveProperty(name);
 		DirtyProperty(name);
 	}
 }
@@ -295,7 +283,7 @@ const Property* ElementStyle::GetProperty(const String& name)
 		Element* parent = element->GetParentNode();
 		while (parent != NULL)
 		{
-			const Property* parent_property = parent->style->GetLocalProperty(name);
+			const Property* parent_property = parent->style.GetLocalProperty(name);
 			if (parent_property)
 				return parent_property;
 			
@@ -311,12 +299,10 @@ const Property* ElementStyle::GetProperty(const String& name)
 const Property* ElementStyle::GetLocalProperty(const String& name)
 {
 	// Check for overriding local properties.
-	if (local_properties != NULL)
-	{
-		const Property* property = local_properties->GetProperty(name);
-		if (property != NULL)
-			return property;
-	}
+
+	const Property* property = local_properties.GetProperty(name);
+	if (property != NULL)
+		return property;
 
 	// Check for a property defined in an RCSS rule.
 	if (definition != NULL)
@@ -404,37 +390,33 @@ float ElementStyle::ResolveProperty(const String& name, float base_value)
 bool ElementStyle::IterateProperties(int& index, PseudoClassList& property_pseudo_classes, String& name, const Property*& property)
 {
 	// First check for locally defined properties.
-	if (local_properties != NULL)
+
+	if (index < local_properties.GetNumProperties())
 	{
-		if (index < local_properties->GetNumProperties())
-		{
-			PropertyMap::const_iterator i = local_properties->GetProperties().begin();
-			for (int count = 0; count < index; ++count)
-				++i;
+		PropertyMap::const_iterator i = local_properties.GetProperties().begin();
+		for (int count = 0; count < index; ++count)
+			++i;
 
-			name = (*i).first;
-			property = &((*i).second);
-			property_pseudo_classes.clear();
-			++index;
+		name = (*i).first;
+		property = &((*i).second);
+		property_pseudo_classes.clear();
+		++index;
 
-			return true;
-		}
+		return true;
 	}
+
 
 	const ElementDefinition* definition = GetDefinition();
 	if (definition != NULL)
 	{
-		int index_offset = 0;
-		if (local_properties != NULL)
-			index_offset = local_properties->GetNumProperties();
+		int index_offset = local_properties.GetNumProperties();
 
 		// Offset the index to be relative to the definition before we start indexing. When we do get a property back,
 		// check that it hasn't been overridden by the element's local properties; if so, continue on to the next one.
 		index -= index_offset;
 		while (definition->IterateProperties(index, pseudo_classes, property_pseudo_classes, name, property))
 		{
-			if (local_properties == NULL ||
-				local_properties->GetProperty(name) == NULL)
+			if (local_properties.GetProperty(name) == NULL)
 			{
 				index += index_offset;
 				return true;

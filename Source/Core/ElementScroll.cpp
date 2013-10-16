@@ -45,10 +45,30 @@ ElementScroll::ElementScroll(Element* _element)
 
 ElementScroll::~ElementScroll()
 {
+	Finalize();
+}
+
+void ElementScroll::Finalize()
+{
 	for (int i = 0; i < 2; i++)
 	{
-		if (scrollbars[i].element != NULL)
-			scrollbars[i].element->RemoveEventListener("scrollchange", this);
+		Rocket::Core::Element * element = scrollbars[i].element;
+		Rocket::Core::WidgetSliderScroll * widget = scrollbars[i].widget;
+
+		if (element != NULL)
+		{
+			element->RemoveEventListener("scrollchange", this);
+			if (element->GetParentNode() != NULL)
+				element->GetParentNode()->RemoveChild(element);
+
+			scrollbars[i].element = NULL;
+		}
+
+		if (widget != NULL)
+		{
+			delete widget;
+			scrollbars[i].widget = NULL;
+		}
 	}
 }
 
