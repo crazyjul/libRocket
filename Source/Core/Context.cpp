@@ -1208,7 +1208,7 @@ void Context::ReleaseUnloadedDocuments()
 	}
 }
 
-// Sends the specified event to all elements in new_items that don't appear in old_items.
+// Sends the specified event to all elements in old_items that don't appear in new_items.
 void Context::SendEvents(const ElementSet& old_items, const ElementSet& new_items, const String& event, const Dictionary& parameters, bool interruptible)
 {
 	ElementList elements;
