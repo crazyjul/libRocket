@@ -64,6 +64,8 @@ public:
 	/// Returns a reference to the underlying element.
 	/// @return The underlying element. This may be NULL.
 	Element* operator*();
+    /// @return The underlying element. This may be NULL.
+	const Element* operator*() const;
 	/// Returns a reference to the underlying element.
 	/// @return The underlying element. This may be NULL.
 	Element* operator->();

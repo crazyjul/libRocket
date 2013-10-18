@@ -82,6 +82,12 @@ Element* ElementReference::operator*()
 }
 
 // Returns a reference to the underlying element.
+const Element* ElementReference::operator*() const
+{
+	return element;
+}
+
+// Returns a reference to the underlying element.
 Element* ElementReference::operator->()
 {
 	return element;
