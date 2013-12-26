@@ -50,6 +50,13 @@ option(BUILD_PYTHON_BINDINGS "Build python bindings" OFF)
 option(BUILD_SAMPLES "Build samples" OFF)
 option(BUILD_CONTRIB "Build contrib libraries" OFF)
 option(DISABLE_RTTI "Build with rtti disable" OFF)
+option(USE_C7_DEBUG_INFO "Use C7 debug information format (MSVC only)"  OFF)
+
+IF(MSVC AND USE_C7_DEBUG_INFO)
+    FOREACH(flag CMAKE_C_FLAGS_DEBUG CMAKE_CXX_FLAGS_DEBUG CMAKE_C_FLAGS_RELWITHDEBINFO CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+        STRING(REGEX REPLACE "/Zi" "/Z7" ${flag} "${${flag}}")
+    ENDFOREACH(flag)
+ENDIF(MSVC AND USE_C7_DEBUG_INFO)
 
 if(NOT BUILD_SHARED_LIBS)
     add_definitions(-DSTATIC_LIB)
@@ -62,7 +69,7 @@ IF(WIN32)
       message("Visual Studio 2010 (${MSVC_VERSION}) build fix at play (/FORCE:MULTIPLE)")
       set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /FORCE:MULTIPLE")
     endif()
-  endif() 
+  endif()
 ENDIF(WIN32)
 
 
@@ -73,7 +80,7 @@ ENDIF(WIN32)
 # FreeType
 if(BUILD_FREETYPE_SUPPORT)
 
-	find_package(Freetype REQUIRED)	
+	find_package(Freetype REQUIRED)
 
 	if(FREETYPE_FOUND)
 		include_directories(${FREETYPE_INCLUDE_DIRS})
@@ -149,7 +156,7 @@ foreach(library ${LIBRARIES})
 						   VERSION ${PROJECT_VERSION}
 						   SOVERSION ${LIBROCKET_VERSION_MAJOR}
 	)
-	
+
 	if(APPLE)
 		set_target_properties(${NAME} PROPERTIES
 						OSX_ARCHITECTURES "i386;x86_64;"
@@ -189,7 +196,7 @@ if(BUILD_CONTRIB)
 	include_directories(
 	    ${PROJECT_SOURCE_DIR}/Contrib/Include
 		)
-		
+
     set(LIBRARIES ProgressBar)
 
     foreach(library ${LIBRARIES})
@@ -204,7 +211,7 @@ if(BUILD_CONTRIB)
 						   VERSION ${PROJECT_VERSION}
 						   SOVERSION ${LIBROCKET_VERSION_MAJOR}
 						   )
-						   
+
 		if(APPLE)
 			set_target_properties(${NAME} PROPERTIES
 						OSX_ARCHITECTURES "i386;x86_64;"
@@ -223,9 +230,9 @@ endif()
 if(DISABLE_RTTI)
     set(ROCKET_SUPPORTS_RTTI false)
 
-    if( CMAKE_COMPILER_IS_GNUCXX ) 
-		add_definitions( -fno-exceptions ) 
-    elseif( MSVC ) 
+    if( CMAKE_COMPILER_IS_GNUCXX )
+		add_definitions( -fno-exceptions )
+    elseif( MSVC )
 		add_definitions( -D_HAS_EXCEPTIONS=0 /GR- )
 		if(CMAKE_CXX_FLAGS MATCHES "/EHsc ")
 			string(REPLACE "/EHsc" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
@@ -236,7 +243,7 @@ if(DISABLE_RTTI)
 			string(REPLACE "/EHsc" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 			message(STATUS "CMAKE_CXX_FLAGS matches /EHsc at end of string replaced...")
 		endif()
-    endif() 
+    endif()
 else()
     set(ROCKET_SUPPORTS_RTTI true)
 endif()
@@ -274,7 +281,7 @@ macro(bl_sample NAME)
     else()
     	add_executable(${NAME} ${${NAME}_SRC_FILES} ${${NAME}_HDR_FILES} )
     endif()
-    
+
     if (APPLE)
     	# We only support i386 for the samples as it still uses Carbon
     	set_target_properties(${NAME} PROPERTIES OSX_ARCHITECTURES "i386;" )
@@ -288,22 +295,22 @@ if(BUILD_SAMPLES)
 
     set(samples treeview customlog drag loaddocument)
     set(tutorials template datagrid datagrid_tree tutorial_drag)
-    
+
     set(sample_LIBRARIES
-    	shell 
-    	RocketCore 
+    	shell
+    	RocketCore
     	RocketControls
     	RocketDebugger
     )
 
-	# Find OpenGL 
+	# Find OpenGL
 	find_package(OpenGL REQUIRED)
-    	   
+
     if(OPENGL_FOUND)
 	include_directories(${OPENGL_INCLUDE_DIR})
 	list(APPEND sample_LIBRARIES ${OPENGL_LIBRARIES})
     endif()
-    
+
     # Set up required system libraries
     if(WIN32)
 		list(APPEND samples directx)
@@ -311,7 +318,7 @@ if(BUILD_SAMPLES)
     elseif(APPLE)
 		include(FindCarbon)
     	find_package(Carbon REQUIRED)
-    	
+
     	if (Carbon_FOUND)
     		include_directories(${Carbon_INCLUDE_DIR})
         	list(APPEND sample_LIBRARIES ${Carbon_LIBRARIES})
@@ -322,7 +329,7 @@ if(BUILD_SAMPLES)
         	list(APPEND sample_LIBRARIES ${X11_LIBRARIES})
         endif()
     endif()
-   
+
     set(SAMPLES_DIR opt/Rocket/Samples CACHE PATH "path to samples dir")
 
     # The samples and tutorials use the shell library
@@ -346,7 +353,7 @@ if(BUILD_SAMPLES)
 
         # The samples always set this as their current working directory
         install(DIRECTORY DESTINATION ${SAMPLES_DIR}/basic/${sample})
-        install(TARGETS ${sample} 
+        install(TARGETS ${sample}
         	RUNTIME DESTINATION ${SAMPLES_DIR}/${sample}
         	BUNDLE DESTINATION ${SAMPLES_DIR})
     endforeach()
@@ -365,7 +372,7 @@ if(BUILD_SAMPLES)
     # Build and install invaders sample
     bl_sample(invaders ${sample_LIBRARIES})
     install(DIRECTORY DESTINATION ${SAMPLES_DIR}/invaders)
-    install(TARGETS invaders 
+    install(TARGETS invaders
     	RUNTIME DESTINATION ${SAMPLES_DIR}/invaders
     	BUNDLE DESTINATION ${SAMPLES_DIR})
 endif()
