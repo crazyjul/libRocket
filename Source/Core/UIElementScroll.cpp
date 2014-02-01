@@ -22,8 +22,8 @@ UIElementScroll::~UIElementScroll()
 {
     if (mContext)
     {
-        mContext->RemoveEventListener("mouseup", this);
-        mContext->RemoveEventListener("mousemove", this);
+        mContext->RemoveEventListener("mouseup", this, true);
+        mContext->RemoveEventListener("mousemove", this, true);
     }
 }
 
