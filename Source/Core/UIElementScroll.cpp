@@ -54,6 +54,7 @@ void UIElementScroll::ProcessEvent(Rocket::Core::Event& event)
         mMouseDownTime = Rocket::Core::GetSystemInterface()->GetElapsedTime();
         mScrollVelocity = 0.0f;
         mScrollValue = 0.0f;
+        mHasMoved = false;
     }
     else if (mScrolling)
     {
@@ -65,6 +66,8 @@ void UIElementScroll::ProcessEvent(Rocket::Core::Event& event)
 
             SetScrollTop(GetScrollTop() + delta);
             event.StopPropagation();
+
+            mHasMoved = (delta != 0);
         }
         else if (event.GetType() == "mouseup")
         {
@@ -78,7 +81,11 @@ void UIElementScroll::ProcessEvent(Rocket::Core::Event& event)
             }
 
             mScrolling = false;
-            event.StopPropagation();
+
+            if (mHasMoved) 
+            {
+                event.StopPropagation();
+            }
         }
     }
 

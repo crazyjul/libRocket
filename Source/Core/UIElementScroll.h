@@ -25,6 +25,7 @@ private:
     Rocket::Core::Context* mContext;
 
     bool mScrolling;
+    bool mHasMoved;
     int mMouseY;
     int mMouseDownY;
     float mMouseDownTime;
