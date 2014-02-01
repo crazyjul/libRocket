@@ -40,8 +40,8 @@ void UIElementScroll::OnChildAdd(Rocket::Core::Element* child)
     // We need to attach at the global level to catch the mouse up
     // while the cursor is no longer over us
     mContext = GetContext();
-    mContext->AddEventListener("mouseup", this);
-    mContext->AddEventListener("mousemove", this);
+    mContext->AddEventListener("mouseup", this, true);
+    mContext->AddEventListener("mousemove", this, true);
 }
 
 void UIElementScroll::ProcessEvent(Rocket::Core::Event& event)
