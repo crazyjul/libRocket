@@ -8,6 +8,8 @@ UIElementScroll::UIElementScroll(const Rocket::Core::String& tag) :
 Rocket::Core::Element(tag),
     mContext(NULL),
     mScrolling(false),
+    mMouseX(0),
+    mMouseDownX(0),
     mMouseY(0),
     mMouseDownY(0),
     mMouseDownTime(0.0f),
@@ -49,7 +51,9 @@ void UIElementScroll::ProcessEvent(Rocket::Core::Event& event)
     if (event.GetType() == "mousedown")
     {
         mScrolling = true;
+        mMouseX = int(event.GetParameter<float>("mouse_x", 0));
         mMouseY = int(event.GetParameter<float>("mouse_y", 0));
+        mMouseDownX = mMouseX;
         mMouseDownY = mMouseY;
         mMouseDownTime = Rocket::Core::GetSystemInterface()->GetElapsedTime();
         mScrollVelocity = 0.0f;
@@ -60,14 +64,18 @@ void UIElementScroll::ProcessEvent(Rocket::Core::Event& event)
     {
         if (event.GetType() == "mousemove")
         {
+            int mouseX = int(event.GetParameter<float>("mouse_x", 0));
             int mouseY = int(event.GetParameter<float>("mouse_y", 0));
-            int delta = mMouseY - mouseY;
+            int deltaX = mMouseX - mouseX;
+            int deltaY = mMouseY - mouseY;
+            mMouseX = mouseX;
             mMouseY = mouseY;
 
-            SetScrollTop(GetScrollTop() + delta);
+            SetScrollTop(GetScrollTop() + deltaY);
+            SetScrollLeft(GetScrollLeft() + deltaX);
             event.StopPropagation();
 
-            mHasMoved = (delta != 0);
+            mHasMoved = (deltaX != 0 || deltaY != 0);
         }
         else if (event.GetType() == "mouseup")
         {
@@ -82,7 +90,7 @@ void UIElementScroll::ProcessEvent(Rocket::Core::Event& event)
 
             mScrolling = false;
 
-            if (mHasMoved) 
+            if (mHasMoved)
             {
                 event.StopPropagation();
             }

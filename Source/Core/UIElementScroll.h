@@ -26,7 +26,9 @@ private:
 
     bool mScrolling;
     bool mHasMoved;
+    int mMouseX;
     int mMouseY;
+    int mMouseDownX;
     int mMouseDownY;
     float mMouseDownTime;
 
