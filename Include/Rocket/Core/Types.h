@@ -56,6 +56,7 @@ typedef void* ScriptObject;
 
 #ifdef ROCKET_PLATFORM_WIN32
 typedef unsigned __int64 uint64_t;
+#elif defined ROCKET_PLATFORM_WIN64
 #else
 #include <inttypes.h>
 #endif

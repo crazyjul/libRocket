@@ -30,12 +30,18 @@
 
 #include "Config.h"
 
-#if defined __WIN32__ || defined _WIN32
+#if ( defined __WIN32__ || defined _WIN32 ) && !defined( _WIN64 )
 	#define ROCKET_PLATFORM_WIN32
 	#define ROCKET_PLATFORM_NAME "win32"
 	#if !defined(__MINGW32__)
 		#pragma warning(disable:4355)
 	#endif
+#elif defined( _WIN64 )
+    #define ROCKET_PLATFORM_WIN64
+    #define ROCKET_PLATFORM_NAME "win64"
+    #if !defined(__MINGW32__)
+        #pragma warning(disable:4355)
+    #endif
 #elif defined __APPLE_CC__
 	#define ROCKET_PLATFORM_UNIX
 	#define ROCKET_PLATFORM_MACOSX

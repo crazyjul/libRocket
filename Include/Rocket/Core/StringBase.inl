@@ -49,7 +49,7 @@ template< typename T >
 StringBase< T >::StringBase(const T* string_start, const T* string_end) : value((T*)local_buffer), buffer_size(LOCAL_BUFFER_SIZE), length(0), hash(0)
 {
 	value[0] = 0;
-	length = (string_end - string_start);
+	length = size_type(string_end - string_start);
 
 	if (length > 0)
 	{
@@ -549,7 +549,7 @@ typename StringBase< T >::size_type StringBase< T >::GetLength(const T* string) 
 		ptr++;		
 	}
 
-	return ptr - string;
+	return size_type(ptr - string);
 }
 
 template< typename T >
